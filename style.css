@@ -29,6 +29,22 @@ header p {
   font-size: 1.2rem;
 }
 
+header nav {
+  margin-top: 1rem;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+
 .container {
   max-width: 900px;
   margin: 0 auto;
