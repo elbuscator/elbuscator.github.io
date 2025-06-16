@@ -44,6 +44,11 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+header nav a,
+header nav a:visited,
+header nav a:active {
+  color: white;
+}
 
 .container {
   max-width: 900px;
