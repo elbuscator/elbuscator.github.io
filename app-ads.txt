@@ -1234,3 +1234,8 @@ zmaticoo.com, 114490, RESELLER
 zmaticoo.com, 5135195, RESELLER
 zmaticoo.com, 5135655, RESELLER
 zmaticoo.com, 5135704, RESELLER
+krushmedia.com, ajxf6R585a9m6Catvk, RESELLER
+lacunads.com, LCb555b3bc8667a09a, RESELLER
+ushareit.com, LCb555b3bc8667a09a, RESELLER
+xapads.com, 117219, RESELLER
+zmaticoo.com, 5135063, RESELLER
