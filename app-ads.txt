@@ -85,6 +85,7 @@ adview.com, 48045325, RESELLER, 1b2cc038a11ea319
 adx-dra.op.hicloud.com, PUB_HW_1003, RESELLER
 adx-dre.op.hicloud.com, PUB_HW_1003, RESELLER
 adx-drru.op.hicloud.com, PUB_HW_1003, RESELLER
+adyoulike.com, 2d578cf695c89ec2ba707280319d2020, RESELLER
 adyoulike.com, 5e09d5fe0d58941e6adc167159cc9218, RESELLER
 adyoulike.com, 5e09d5fe0d58941e6adc167159cc9218, RESELLER, 4ad745ead2958bf7
 adyoulike.com, 76375ac0f5abb5a550c87326b9063b59, RESELLER
@@ -253,6 +254,7 @@ connekt.ai, 5585919044, RESELLER
 connekt.ai, 7343318920, RESELLER
 consumable.com, 2001470, RESELLER, aefcd3d2f45b5070
 consumable.com, 2001585, RESELLER, aefcd3d2f45b5070
+contextweb.com , 562615, RESELLER, 89ff185a4c4e857c
 contextweb.com, 159668, RESELLER, 89ff185a4c4e857c
 contextweb.com, 558511, RESELLER, 89ff185a4c4e857c
 contextweb.com, 561849, RESELLER, 89ff185a4c4e857c
@@ -349,6 +351,7 @@ facebook.com, 572883135056243, RESELLER, c3e20eee3f780d68
 flat-ads.com, 2196901, RESELLER
 freewheel.tv, 1137745, RESELLER
 freewheel.tv, 1138513, RESELLER
+freewheel.tv, 1138513-524565, RESELLER
 freewheel.tv, 1220655, RESELLER
 freewheel.tv, 1235183, RESELLER
 freewheel.tv, 1235279, RESELLER
@@ -361,6 +364,7 @@ freewheel.tv, 1606620, RESELLER
 freewheel.tv, 1606633, reseller
 freewheel.tv, 1606633, RESELLER
 freewheel.tv, 741650, RESELLER
+freewheel.tv, sg1258340, RESELLER
 gamaigroup.com, 423056, RESELLER
 gitberry.com, 325100011, RESELLER
 gitberry.com, 325100012, RESELLER
@@ -447,6 +451,7 @@ indexexchange.com, 194974, RESELLER, 50b1c356f2c5c8fc
 indexexchange.com, 195812, RESELLER, 50b1c356f2c5c8fc
 indexexchange.com, 198417, RESELLER, 50b1c356f2c5c8fc
 indexexchange.com, 199195, RESELLER, 50b1c356f2c5c8fc
+indexexchange.com, 211341, RESELLER, 50b1c356f2c5c8fc
 inmobi.com, 062029933580429f9920bad476d8d70a, RESELLER, 83e75a7ae333ca9d
 inmobi.com, 0c2fa8130b884712913cc0bfc84e1c31, RESELLER, 83e75a7ae333ca9d
 inmobi.com, 0c8e054083954c68a45044396a1c3df8, RESELLER, 83e75a7ae333ca9d
@@ -494,6 +499,7 @@ krushmedia.com, ajxf6R585a9m6Catvk, RESELLER
 kubient.com, 5e2cb089c866, RESELLER, 4f12311e6ed900a3
 lacunads.com, LC136f79e999464edc, RESELLER
 lacunads.com, lcb555b3bc8667a09a, RESELLER
+lacunads.com, LCb555b3bc8667a09a, RESELLER
 lemmatechnologies.com, 362, RESELLER, 7829010c5bebd1fb
 liftoff.io, 7f6945815e6, RESELLER
 lijit.com, 273050, RESELLER, fafdf38b16bf6b2b
@@ -568,6 +574,7 @@ media.net, 8CU76268D, RESELLER
 media.net, 8CU813E2H, RESELLER
 media.net, 8CU9B72O6, RESELLER
 media.net, 8CUD06Z68, RESELLER
+media.net, 8CUE65SNU, RESELLER
 media.net, 8CUI89K0D, RESELLER
 media.net, 8CUN37DCC, RESELLER
 meitu.com, 282, RESELLER
@@ -1173,6 +1180,7 @@ unrulymedia.com, 7093244032824963982, RESELLER
 unrulymedia.com, 7823643795310613975, RESELLER
 unrulymedia.com, 962111114, RESELLER
 ushareit.com, lcb555b3bc8667a09a, RESELLER
+ushareit.com, LCb555b3bc8667a09a, RESELLER
 velismedia.com, 1137, RESELLER
 velismedia.com, 725, RESELLER
 verve.com, 15290, RESELLER, 0c8f5958fc2d6270
@@ -1314,41 +1322,3 @@ zmaticoo.com, 5135063, RESELLER
 zmaticoo.com, 5135195, RESELLER
 zmaticoo.com, 5135655, RESELLER
 zmaticoo.com, 5135704, RESELLER
-applovin.com, 27665b8315dda627fcb7e791fbb2797d, DIRECT
-adyoulike.com, 2d578cf695c89ec2ba707280319d2020, RESELLER
-algorix.co, 60532, RESELLER, 5b394c12fea27a1d
-contextweb.com , 562615, RESELLER, 89ff185a4c4e857c
-gamaigroup.com, 423056, RESELLER
-improvedigital.com, 2602, RESELLER
-indexexchange.com, 211341, RESELLER, 50b1c356f2c5c8fc
-lijit.com, 516975, RESELLER, fafdf38b16bf6b2b
-loopme.com, 11303, RESELLER, 6c8d5f95897a5a3b
-loopme.com, 11424, RESELLER, 6c8d5f95897a5a3b
-media.net, 8CU12AQ1Y, RESELLER
-media.net, 8CUD06Z68, RESELLER
-openx.com, 540785403, RESELLER, 6a698e2ec38604c6
-openx.com, 559798512, RESELLER, 6a698e2ec38604c6
-opera.com, pub6538436382208, RESELLER, 55a0c5fd61378de3
-pubmatic.com, 158154, RESELLER, 5d62403b186f2ace
-pubmatic.com, 158862, RESELLER, 5d62403b186f2ace
-pubmatic.com, 159509, RESELLER, 5d62403b186f2ace
-pubmatic.com, 160974, RESELLER, 5d62403b186f2ace
-pubmatic.com, 164532, RESELLER, 5d62403b186f2ace
-pubnative.net, 1007501, RESELLER, d641df8625486a7b
-rhebus.works, 9019999555, RESELLER
-risecodes.com, 64e346c45ab8e700016b45cd, RESELLER
-rubiconproject.com, 16356, RESELLER, 0bfd66d529a55807
-rubiconproject.com, 20050, RESELLER, 0bfd66d529a55807
-rubiconproject.com, 20744, RESELLER, 0bfd66d529a55807
-rubiconproject.com, 23876, RESELLER, 0bfd66d529a55807
-sharethrough.com, bXzzb1bR, RESELLER, d53b998a7bd4ecd2
-sharethrough.com, NNB0Zl76, RESELLER, d53b998a7bd4ecd2
-sharethrough.com, UbYLkrys, RESELLER, d53b998a7bd4ecd2
-smartadserver.com, 3817, RESELLER
-sonobi.com, d2b13d1c36, RESELLER, d1a215d9eb5aee9e
-video.unrulymedia.com, 169764768, RESELLER
-video.unrulymedia.com, 322585001, RESELLER
-xandr.com, 13799, RESELLER
-xandr.com, 14082, RESELLER
-yieldmo.com, 3591550211052216798, RESELLER, 6a92c77cfc3d2258
-zmaticoo.com, 5135655, RESELLER
