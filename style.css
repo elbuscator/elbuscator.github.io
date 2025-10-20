@@ -240,6 +240,56 @@
       background: linear-gradient(135deg, #006699 0%, #0088cc 100%);
     }
 
+.contact-box {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+      border: 2px solid #0055aa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .contact-box p {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    .contact-box strong {
+      color: #0055aa;
+      font-size: 1.1rem;
+    }
+
+    .contact-box .email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, #0055aa 0%, #003d80 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      margin: 0.8rem 0.5rem;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .contact-box .email-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,85,170,0.4);
+      background: linear-gradient(135deg, #003d80 0%, #0055aa 100%);
+    }
+
+    .update-date {
+      background: #f8f9fa;
+      border-left: 4px solid #0055aa;
+      padding: 1rem 1.5rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #0055aa;
+    }
+
     footer {
       text-align: center;
       font-size: 0.95rem;
