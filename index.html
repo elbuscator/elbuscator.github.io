@@ -3,47 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>elbuscator</title>
+  <title>elbuscator - Innovación en cada línea de código</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <img src="header.jpg" alt="Imagen de cabecera de El Buscator" class="header-image" />
-
-  <header>
-    <h1>elbuscator</h1>
-    <p>Innovación en cada línea de código</p>
-    <nav>
-      <a href="index.html">Inicio</a> |
-      <a href="privacy.html">Política de Privacidad</a>
-    </nav>
-  </header>
+  <div class="header-wrapper">
+    <img src="header.jpg" alt="Imagen de cabecera de El Buscator" class="header-image" />
+    <div class="header-overlay">
+      <h1>elbuscator</h1>
+      <p>Innovación en cada línea de código</p>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="privacy.html">Privacidad</a>
+      </nav>
+    </div>
+  </div>
 
   <div class="container">    
+    <div class="section-grid">
+      <section>
+        <i class="fas fa-mobile-alt section-icon"></i>
+        <h2>Nuestras Apps</h2>
+        <p>Explora nuestras aplicaciones en Google Play. Constantemente desarrollamos nuevas ideas e innovaciones.</p>
+        <a class="button" href="https://play.google.com/store/apps/dev?id=9106952322187766274">
+          <i class="fab fa-google-play"></i> Ver en Google Play
+        </a>
+      </section>
 
-    <section>
-      <h2>Accede a nuestras apps</h2>
-      <p>Explora nuestras aplicaciones disponibles en Google Play. Constantemente desarrollamos nuevas ideas.</p>
-      <a class="button" href="https://play.google.com/store/apps/dev?id=9106952322187766274">Ver en Google Play</a>
+      <section>
+        <i class="fas fa-gamepad section-icon"></i>
+        <h2>Comunidad itch.io</h2>
+        <p>¿Fan de los indies? Visita nuestro perfil de itch.io para seguir nuestros avances y acceder a contenido extra.</p>
+        <a class="button" href="https://elbuscator.itch.io/">
+          <i class="fab fa-itch-io"></i> Síguenos en itch.io
+        </a>
+      </section>
+    </div>
+
+    <section class="full-width">
+      <i class="fab fa-telegram section-icon"></i>
+      <h2>Únete a nuestra comunidad en Telegram</h2>
+      <p>Mantente conectado con nosotros a través de nuestros canales de Telegram. Recibe actualizaciones, novedades y comparte con la comunidad.</p>
+      
+      <div class="telegram-channels">
+        <div class="telegram-card">
+          <i class="fab fa-telegram"></i>
+          <h3>Canal Principal</h3>
+          <p>Noticias y actualizaciones de nuestros proyectos</p>
+          <a class="button" href="https://t.me/tu_canal_principal">
+            <i class="fas fa-paper-plane"></i> Unirse
+          </a>
+        </div>
+
+        <div class="telegram-card">
+          <i class="fab fa-telegram"></i>
+          <h3>Soporte Técnico</h3>
+          <p>Ayuda y resolución de dudas sobre nuestras apps</p>
+          <a class="button" href="https://t.me/tu_canal_soporte">
+            <i class="fas fa-paper-plane"></i> Unirse
+          </a>
+        </div>
+
+        <div class="telegram-card">
+          <i class="fab fa-telegram"></i>
+          <h3>Comunidad</h3>
+          <p>Comparte ideas y conecta con otros usuarios</p>
+          <a class="button" href="https://t.me/tu_canal_comunidad">
+            <i class="fas fa-paper-plane"></i> Unirse
+          </a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Nuestra Comunidad en itch.io</h2>
-      <p>¿Eres un fan de los indies? Visita nuestro perfil de itch.io para seguir nuestros avances, acceder a contenido extra y apoyarnos de forma directa. ¡Te esperamos!</p>
-      <a class="button" href="https://elbuscator.itch.io/">Síguenos en itch.io</a>
-    </section>
+    <div class="section-grid">
+      <section>
+        <i class="fas fa-shield-alt section-icon"></i>
+        <h2>Privacidad</h2>
+        <p>Nos tomamos tu privacidad en serio. Consulta nuestra política actualizada para conocer cómo protegemos tus datos.</p>
+        <a class="button" href="privacy.html">
+          <i class="fas fa-lock"></i> Política de Privacidad
+        </a>
+      </section>
 
-    <section>
-      <h2>Transparencia y privacidad</h2>
-      <p>Nos tomamos tu privacidad en serio. Puedes consultar nuestra política de privacidad actualizada aquí:</p>
-      <a class="button" href="privacy.html">Política de Privacidad</a>
-    </section>
-
-    <section>
-      <h2>Apóyanos</h2>
-      <p>Si te gustan nuestras aplicaciones, puedes invitarnos a un café:</p>
-      <a class="button" href="https://buymeacoffee.com/elbuscator">Buy Me a Coffee</a>
-    </section>
+      <section>
+        <i class="fas fa-coffee section-icon"></i>
+        <h2>Apóyanos</h2>
+        <p>Si te gustan nuestras aplicaciones y quieres apoyar nuestro trabajo, invítanos a un café.</p>
+        <a class="button" href="https://buymeacoffee.com/elbuscator">
+          <i class="fas fa-heart"></i> Buy Me a Coffee
+        </a>
+      </section>
+    </div>
   </div>
 
   <footer>
