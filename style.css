@@ -355,3 +355,11 @@
         margin: 0.3rem 0;
       }
     }
+
+    .aliexpress {
+          background: linear-gradient(135deg, #E62E04 0%, #C41E3A 100%);
+    }
+
+    .amazon {
+          background: linear-gradient(135deg, #FF9900 0%, #FF6600 100%);
+    }
