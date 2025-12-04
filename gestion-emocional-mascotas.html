@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Petfeel - Gestión Emocional de Mascotas | elbuscator</title>
+  <meta name="description" content="Petfeel - La app definitiva para organizar el cuidado de tu mascota. Rutinas, recordatorios y seguimiento de salud.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 50%, #FFE0B2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .header-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #A8D5BA 0%, #F4E4C1 50%, #F5CAB3 100%);
+    }
+
+    .header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-overlay h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .header-overlay p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: -50px auto 0;
+      padding: 0 20px 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #5FA777 0%, #4A8C61 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .button i {
+      margin-right: 8px;
+    }
+
+    section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .section-icon {
+      font-size: 3em;
+      color: #5FA777;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    h2 {
+      font-size: 2em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 100%);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-card i {
+      font-size: 2.5em;
+      color: #5FA777;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+
+    .benefits-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .benefits-list li {
+      padding: 15px;
+      margin: 10px 0;
+      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 100%);
+      border-radius: 10px;
+      border-left: 4px solid #5FA777;
+      font-size: 1.05em;
+    }
+
+    .benefits-list li::before {
+      content: "✓ ";
+      color: #5FA777;
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, #A8D5BA 0%, #F4E4C1 100%);
+      padding: 50px 40px;
+    }
+
+    .cta-section h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .cta-section p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .screenshots {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 40px 0;
+    }
+
+    .screenshot-placeholder {
+      width: 200px;
+      height: 400px;
+      background: linear-gradient(135deg, #A8D5BA 0%, #F5CAB3 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3em;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+      background: white;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .header-overlay h1 {
+        font-size: 2em;
+      }
+
+      .header-overlay p {
+        font-size: 1.1em;
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      section {
+        padding: 30px 20px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshot-placeholder {
+        width: 150px;
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <div class="header-overlay">
+      <img src="https://play-lh.googleusercontent.com/lu5vz9-O81_YBY8Erb0wb6XeALltSoZgpEMDN4L8-kjEzBBI-ZykH6ciYYb0uo1zlS6xx3eeuM2mfs-MEuxLGz8=w480-h960" alt="Petfeel App Icon" class="app-icon" />
+      <h1>Petfeel</h1>
+      <p>Gestión Emocional de Mascotas</p>
+      <a class="button" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel">
+        <i class="fab fa-google-play"></i> Descargar en Google Play
+      </a>
+      <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <section>
+      <i class="fas fa-heart section-icon"></i>
+      <h2>La app definitiva para el cuidado de tu mascota</h2>
+      <p>Petfeel te ayuda a organizar y seguir fácilmente todas las rutinas y cuidados de tu mascota. Desde recordatorios de alimentación y paseos, hasta seguimiento de salud y hábitos diarios.</p>
+      <p>Con una interfaz intuitiva y un diseño pensado para simplificar tu rutina, podrás concentrarte en lo más importante: disfrutar tiempo de calidad con tu compañero peludo 🐶🐱</p>
+    </section>
+
+    <section>
+      <i class="fas fa-star section-icon"></i>
+      <h2>Funciones Principales</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-clock"></i>
+          <h3>Rutinas Personalizadas</h3>
+          <p>Crea y adapta horarios de alimentación, paseos, medicación y más.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-bell"></i>
+          <h3>Recordatorios Diarios</h3>
+          <p>Nunca olvides un cuidado importante de tu mascota.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Seguimiento de Hábitos</h3>
+          <p>Controla la alimentación, ejercicio y bienestar de tu mascota.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-cloud"></i>
+          <h3>Backup en la Nube</h3>
+          <p>Protege tus datos y recupéralos fácilmente.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-gem"></i>
+          <h3>Opciones Premium</h3>
+          <p>Accede a funciones avanzadas y exclusivas para mejorar la experiencia.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-globe"></i>
+          <h3>Multilenguaje</h3>
+          <p>Disponible en español e inglés.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <i class="fas fa-paw section-icon"></i>
+      <h2>Beneficios para ti y tu mascota</h2>
+      <ul class="benefits-list">
+        <li>Simplifica tu rutina diaria de cuidados</li>
+        <li>Mejora la salud y bienestar de tu mascota</li>
+        <li>Organiza medicaciones y visitas al veterinario</li>
+        <li>Ideal para perros, gatos y otras mascotas</li>
+        <li>Interfaz intuitiva y fácil de usar</li>
+        <li>Dedica más tiempo de calidad con tu compañero peludo</li>
+      </ul>
+    </section>
+
+    <section class="cta-section">
+      <h2>¿Listo para empezar?</h2>
+      <p>Descarga Petfeel ahora y convierte el cuidado de tu mascota en algo fácil, organizado y divertido 🎉🐾</p>
+      <a class="button" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel">
+        <i class="fab fa-google-play"></i> Descargar Gratis
+      </a>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 elbuscator. Todos los derechos reservados.</p>
+    <p style="margin-top: 10px;">
+      <a href="index.html" style="color: #5FA777; text-decoration: none; font-weight: 600;">← Volver al inicio</a>
+    </p>
+  </footer>
+</body>
+</html>
