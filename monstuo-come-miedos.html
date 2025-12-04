@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fear Eater Monsters - El Monstruo Come-Miedos | elbuscator</title>
+  <meta name="description" content="Fear Eater Monsters - Ayuda a los niños a gestionar sus miedos de forma divertida y educativa con nuestro adorable monstruo come-miedos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #B8E994 0%, #78E08F 50%, #38ADA9 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .header-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #B8E994 0%, #78E08F 50%, #38ADA9 100%);
+    }
+
+    .header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-overlay h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      color: #FFF4A3;
+    }
+
+    .header-overlay p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: -50px auto 0;
+      padding: 0 20px 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #B8E994 0%, #78E08F 100%);
+      color: #333;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .button i {
+      margin-right: 8px;
+    }
+
+    section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .section-icon {
+      font-size: 3em;
+      color: #78E08F;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    h2 {
+      font-size: 2em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #B8E994 0%, #FFF9C4 100%);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-card i {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .feature-card:nth-child(1) i { color: #FF6B6B; }
+    .feature-card:nth-child(2) i { color: #FFD93D; }
+    .feature-card:nth-child(3) i { color: #78E08F; }
+    .feature-card:nth-child(4) i { color: #6BCF7F; }
+    .feature-card:nth-child(5) i { color: #95BDFF; }
+    .feature-card:nth-child(6) i { color: #A78BFA; }
+
+    .feature-card h3 {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+
+    .benefits-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .benefits-list li {
+      padding: 15px;
+      margin: 10px 0;
+      background: linear-gradient(135deg, #B8E994 0%, #FFF9C4 100%);
+      border-radius: 10px;
+      border-left: 4px solid #78E08F;
+      font-size: 1.05em;
+    }
+
+    .benefits-list li::before {
+      content: "✓ ";
+      color: #78E08F;
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, #B8E994 0%, #78E08F 100%);
+      padding: 50px 40px;
+    }
+
+    .cta-section h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .cta-section p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .emotion-balls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .emotion-ball {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .emotion-ball:nth-child(1) { background: #FF6B6B; animation-delay: 0s; }
+    .emotion-ball:nth-child(2) { background: #FFA502; animation-delay: 0.2s; }
+    .emotion-ball:nth-child(3) { background: #FFD93D; animation-delay: 0.4s; }
+    .emotion-ball:nth-child(4) { background: #6BCF7F; animation-delay: 0.6s; }
+    .emotion-ball:nth-child(5) { background: #95BDFF; animation-delay: 0.8s; }
+    .emotion-ball:nth-child(6) { background: #A78BFA; animation-delay: 1s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #fff;
+      background: rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .header-overlay h1 {
+        font-size: 2em;
+      }
+
+      .header-overlay p {
+        font-size: 1.1em;
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      section {
+        padding: 30px 20px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .emotion-ball {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <div class="header-overlay">
+      <img src="https://i.imgur.com/placeholder.png" alt="Fear Eater Monsters Icon" class="app-icon" onerror="this.style.display='none'" />
+      <h1>El Monstruo Come-Miedos 👹</h1>
+      <a class="button" target="_blank" href="#">
+        <i class="fab fa-google-play"></i> Próximamente en Google Play
+      </a>
+      <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <section>
+      <i class="fas fa-dragon section-icon"></i>
+      <h2>Ayuda a los niños a superar sus miedos</h2>
+      <p>Fear Eater Monsters es una aplicación educativa diseñada para ayudar a los niños a gestionar sus emociones y superar sus miedos de una manera divertida y amigable.</p>
+      <p>Nuestro adorable monstruo verde no da miedo, ¡todo lo contrario! Se alimenta de los miedos de los niños, transformándolos en emociones coloridas y positivas representadas por las simpáticas bolitas de colores.</p>
+      
+      <div class="emotion-balls">
+        <div class="emotion-ball">😊</div>
+        <div class="emotion-ball">😄</div>
+        <div class="emotion-ball">🥰</div>
+        <div class="emotion-ball">😌</div>
+        <div class="emotion-ball">😁</div>
+        <div class="emotion-ball">💚</div>
+      </div>
+    </section>
+
+    <section>
+      <i class="fas fa-star section-icon"></i>
+      <h2>Características Principales</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-heart"></i>
+          <h3>Gestión Emocional</h3>
+          <p>Enseña a los niños a identificar y expresar sus emociones de forma saludable.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-smile"></i>
+          <h3>Personaje Amigable</h3>
+          <p>Un monstruo adorable que transforma los miedos en algo positivo y divertido.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-gamepad"></i>
+          <h3>Juegos Educativos</h3>
+          <p>Actividades interactivas que ayudan a los niños a enfrentar sus temores.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-palette"></i>
+          <h3>Colores Vibrantes</h3>
+          <p>Diseño colorido y atractivo que capta la atención de los más pequeños.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-user-friends"></i>
+          <h3>Para Familias</h3>
+          <p>Herramienta perfecta para padres y educadores que trabajan con niños.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-child"></i>
+          <h3>Apropiado para Niños</h3>
+          <p>Contenido seguro y educativo diseñado específicamente para edades tempranas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <i class="fas fa-lightbulb section-icon"></i>
+      <h2>¿Por qué Fear Eater Monsters?</h2>
+      <ul class="benefits-list">
+        <li>Ayuda a los niños a verbalizar sus miedos en un entorno seguro</li>
+        <li>Transforma los temores en experiencias positivas de aprendizaje</li>
+        <li>Promueve la inteligencia emocional desde edades tempranas</li>
+        <li>Reduce la ansiedad nocturna y los miedos comunes de la infancia</li>
+        <li>Fortalece el vínculo entre padres e hijos a través del juego</li>
+        <li>Basado en principios de psicología infantil</li>
+      </ul>
+    </section>
+
+    <section class="cta-section">
+      <h2>¡Convierte los miedos en sonrisas!</h2>
+      <p>Descarga Fear Eater Monsters y ayuda a tus hijos a crecer emocionalmente fuertes 💪👹</p>
+      <a class="button" style="background: white; color: #78E08F;" target="_blank" href="#">
+        <i class="fab fa-google-play"></i> Disponible Próximamente
+      </a>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 elbuscator. Todos los derechos reservados.</p>
+    <p style="margin-top: 10px;">
+      <a href="index.html" style="text-decoration: none;">← Volver al inicio</a>
+    </p>
+  </footer>
+</body>
+</html>
