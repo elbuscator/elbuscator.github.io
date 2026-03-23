@@ -3,404 +3,640 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fear Eater Monsters - El Monstruo Come-Miedos | elbuscator</title>
+  <title>El Monstruo Come-Miedos · Fear Eater Monsters</title>
   <meta name="description" content="Fear Eater Monsters - Ayuda a los niños a gestionar sus miedos de forma divertida y educativa con nuestro adorable monstruo come-miedos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --green:      #3ecf6e;
+      --green-dark: #27a356;
+      --green-pale: #d4f5e2;
+      --yellow:     #ffe048;
+      --orange:     #ff8c42;
+      --pink:       #ff6bae;
+      --purple:     #b08fff;
+      --blue:       #5ec4ff;
+      --red:        #ff6b6b;
+      --bg:         #f0fdf6;
+      --ink:        #1a2a1e;
+      --card-bg:    #ffffff;
+      --radius:     24px;
     }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      background: linear-gradient(135deg, #B8E994 0%, #78E08F 50%, #38ADA9 100%);
-      min-height: 100vh;
-      color: #333;
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
     }
 
-    .header-wrapper {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #B8E994 0%, #78E08F 50%, #38ADA9 100%);
+    /* ── CURSOR ── */
+    body { cursor: none; }
+    #cursor {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--yellow); opacity: .7;
+      position: fixed; pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform .1s, background .2s;
+      mix-blend-mode: multiply;
     }
 
-    .header-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .app-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    .header-overlay h1 {
-      font-size: 3em;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      color: #FFF4A3;
-    }
-
-    .header-overlay p {
-      font-size: 1.3em;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
-
+    /* ── NAV ── */
     nav {
-      margin-top: 20px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(240,253,246,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid rgba(62,207,110,0.15);
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 20px; color: var(--green-dark); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 14px; font-weight: 700; color: #555; text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green-dark); }
+    .nav-cta {
+      background: var(--green); color: white;
+      font-weight: 800; font-size: 14px; padding: 10px 24px;
+      border-radius: 100px; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(62,207,110,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(62,207,110,.4); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    /* Wobbly blob background */
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; left: -120px;
+      width: 600px; height: 600px; border-radius: 40% 60% 55% 45% / 45% 55% 60% 40%;
+      background: radial-gradient(135deg, #b8f5d0 0%, #d4f5e2 100%);
+      animation: morphBlob 10s ease-in-out infinite;
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; right: -80px;
+      width: 400px; height: 400px; border-radius: 60% 40% 45% 55% / 55% 45% 40% 60%;
+      background: radial-gradient(135deg, #fffacc 0%, #ffeebb 100%);
+      animation: morphBlob2 12s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes morphBlob {
+      0%,100% { border-radius: 40% 60% 55% 45% / 45% 55% 60% 40%; }
+      33%      { border-radius: 60% 40% 40% 60% / 60% 30% 70% 40%; }
+      66%      { border-radius: 30% 70% 60% 40% / 40% 60% 30% 70%; }
+    }
+    @keyframes morphBlob2 {
+      0%,100% { border-radius: 60% 40% 45% 55% / 55% 45% 40% 60%; }
+      50%      { border-radius: 40% 60% 60% 40% / 30% 70% 50% 50%; }
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-      transition: opacity 0.3s;
-    }
+    .hero-content { position: relative; z-index: 2; }
 
-    nav a:hover {
-      opacity: 0.8;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: -50px auto 0;
-      padding: 0 20px 40px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .button {
+    .hero-badge {
       display: inline-block;
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #B8E994 0%, #78E08F 100%);
-      color: #333;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      background: var(--yellow); color: var(--ink);
+      font-weight: 800; font-size: 13px; letter-spacing: .5px;
+      padding: 6px 18px; border-radius: 100px;
+      margin-bottom: 24px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.12);
+      animation: popIn .6s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn { from { opacity:0; transform: scale(.6); } to { opacity:1; transform: scale(1); } }
+
+    /* SVG Monster */
+    .monster-wrap {
+      margin: 0 auto 32px;
+      width: 200px; height: 200px;
+      animation: monsterBob 3s ease-in-out infinite;
+      position: relative; z-index: 2;
+    }
+    @keyframes monsterBob {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-16px) rotate(2deg); }
+    }
+    .monster-wrap svg { width: 100%; height: 100%; }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(44px, 7vw, 82px); line-height: 1.05;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .hero h1 .highlight {
+      color: var(--green-dark);
+      position: relative; display: inline-block;
+    }
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute; bottom: 2px; left: 0; right: 0; height: 8px;
+      background: var(--yellow); z-index: -1; border-radius: 4px;
+      transform: rotate(-1deg);
+    }
+    .hero-sub {
+      font-size: 18px; font-weight: 600; color: #4a7a5a;
+      max-width: 520px; margin: 0 auto 44px; line-height: 1.7;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-play {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green-dark); color: white;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px; text-decoration: none;
+      box-shadow: 0 6px 0 #1a7a3e, 0 10px 30px rgba(39,163,86,.3);
+      transition: all .15s;
+    }
+    .btn-play:hover { transform: translateY(2px); box-shadow: 0 4px 0 #1a7a3e, 0 6px 20px rgba(39,163,86,.3); }
+    .btn-play svg { width: 22px; height: 22px; fill: white; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--green-dark);
+      font-weight: 800; font-size: 16px;
+      padding: 16px 30px; border-radius: 100px; text-decoration: none;
+      border: 3px solid var(--green);
+      transition: all .2s;
+    }
+    .btn-ghost:hover { background: var(--green-pale); }
+
+    /* floating stars */
+    .star {
+      position: absolute; font-size: 24px; z-index: 1;
+      animation: starFloat 4s ease-in-out infinite;
+      user-select: none; pointer-events: none;
+    }
+    @keyframes starFloat {
+      0%,100% { transform: translateY(0) rotate(0deg); opacity: .8; }
+      50%      { transform: translateY(-20px) rotate(15deg); opacity: 1; }
     }
 
-    .button i {
-      margin-right: 8px;
+    /* emotion balls row */
+    .balls-row {
+      display: flex; justify-content: center; gap: 14px;
+      flex-wrap: wrap; margin: 48px 0 0;
+    }
+    .ball {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 6px 0 rgba(0,0,0,.12), 0 10px 24px rgba(0,0,0,.08);
+      animation: ballBob 3s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .ball:hover { transform: scale(1.2) rotate(-8deg); }
+    .ball:nth-child(1) { background: var(--red);    animation-delay: 0s; }
+    .ball:nth-child(2) { background: var(--orange); animation-delay: .15s; }
+    .ball:nth-child(3) { background: var(--yellow); animation-delay: .3s; }
+    .ball:nth-child(4) { background: var(--green);  animation-delay: .45s; }
+    .ball:nth-child(5) { background: var(--blue);   animation-delay: .6s; }
+    .ball:nth-child(6) { background: var(--purple); animation-delay: .75s; }
+    @keyframes ballBob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
     }
 
-    section {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    /* ── SECTION BASE ── */
+    .section { padding: 96px 24px; }
+    .inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-weight: 800; font-size: 12px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green-dark);
+      background: var(--green-pale); padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(32px, 5vw, 52px); line-height: 1.1;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 17px; font-weight: 600; color: #5a7a6a;
+      max-width: 540px; line-height: 1.7; margin-bottom: 56px;
     }
 
-    .section-icon {
-      font-size: 3em;
-      color: #78E08F;
-      margin-bottom: 15px;
-      display: block;
-    }
-
-    h2 {
-      font-size: 2em;
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    section p {
-      color: #666;
-      margin-bottom: 20px;
-      font-size: 1.1em;
-    }
-
+    /* ── FEATURES ── */
+    .features-bg { background: white; }
     .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
-
-    .feature-card {
-      background: linear-gradient(135deg, #B8E994 0%, #FFF9C4 100%);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .feat-card {
+      border-radius: var(--radius); padding: 36px 30px;
+      border: 3px solid transparent;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative; overflow: hidden;
     }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    .feat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: inherit; filter: brightness(1.03);
+      z-index: 0;
     }
+    .feat-card > * { position: relative; z-index: 1; }
+    .feat-card:hover { transform: translateY(-6px) rotate(.5deg); box-shadow: 0 20px 40px rgba(0,0,0,.1); }
 
-    .feature-card i {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      display: block;
+    .feat-card.c1 { background: #fff5f5; } .feat-card.c1:hover { border-color: var(--red); }
+    .feat-card.c2 { background: #fff9e6; } .feat-card.c2:hover { border-color: var(--yellow); }
+    .feat-card.c3 { background: #f0fff6; } .feat-card.c3:hover { border-color: var(--green); }
+    .feat-card.c4 { background: #f5f0ff; } .feat-card.c4:hover { border-color: var(--purple); }
+    .feat-card.c5 { background: #f0f8ff; } .feat-card.c5:hover { border-color: var(--blue); }
+    .feat-card.c6 { background: #fff3ec; } .feat-card.c6:hover { border-color: var(--orange); }
+
+    .feat-icon {
+      width: 60px; height: 60px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin-bottom: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
     }
+    .c1 .feat-icon { background: #ffe0e0; }
+    .c2 .feat-icon { background: #fff3b8; }
+    .c3 .feat-icon { background: #c8f7dc; }
+    .c4 .feat-icon { background: #e8daff; }
+    .c5 .feat-icon { background: #d0ecff; }
+    .c6 .feat-icon { background: #ffe0c8; }
 
-    .feature-card:nth-child(1) i { color: #FF6B6B; }
-    .feature-card:nth-child(2) i { color: #FFD93D; }
-    .feature-card:nth-child(3) i { color: #78E08F; }
-    .feature-card:nth-child(4) i { color: #6BCF7F; }
-    .feature-card:nth-child(5) i { color: #95BDFF; }
-    .feature-card:nth-child(6) i { color: #A78BFA; }
-
-    .feature-card h3 {
-      font-size: 1.3em;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 10px;
+    .feat-card h3 {
+      font-family: 'Fredoka One', cursive; font-size: 22px;
+      color: var(--ink); margin-bottom: 10px;
     }
+    .feat-card p { font-size: 15px; font-weight: 600; color: #6a8a78; line-height: 1.65; }
 
-    .feature-card p {
-      color: #666;
-      font-size: 1em;
-      margin-bottom: 0;
+    /* ── WHY ── */
+    .why-bg { background: var(--ink); }
+    .why-bg .section-label { background: rgba(62,207,110,.15); color: var(--green); }
+    .why-bg .section-title { color: white; }
+    .why-bg .section-desc { color: #8aad98; }
+
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
     }
-
-    .benefits-list {
-      list-style: none;
-      margin-top: 20px;
+    .why-card {
+      background: rgba(255,255,255,.05); border: 2px solid rgba(62,207,110,.15);
+      border-radius: var(--radius); padding: 28px 24px;
+      display: flex; gap: 18px; align-items: flex-start;
+      transition: background .3s, border-color .3s, transform .3s;
     }
-
-    .benefits-list li {
-      padding: 15px;
-      margin: 10px 0;
-      background: linear-gradient(135deg, #B8E994 0%, #FFF9C4 100%);
-      border-radius: 10px;
-      border-left: 4px solid #78E08F;
-      font-size: 1.05em;
+    .why-card:hover {
+      background: rgba(62,207,110,.08); border-color: rgba(62,207,110,.4);
+      transform: translateY(-4px);
     }
-
-    .benefits-list li::before {
-      content: "✓ ";
-      color: #78E08F;
-      font-weight: bold;
-      font-size: 1.3em;
-      margin-right: 10px;
+    .why-check {
+      width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; box-shadow: 0 4px 12px rgba(62,207,110,.35);
     }
+    .why-card p { font-size: 15px; font-weight: 700; color: #c8e8d4; line-height: 1.5; }
 
-    .cta-section {
-      text-align: center;
-      background: linear-gradient(135deg, #B8E994 0%, #78E08F 100%);
-      padding: 50px 40px;
+    /* ── HOW ── */
+    .how-bg { background: linear-gradient(160deg, #f0fdf6 0%, #fffbe6 100%); }
+    .steps-row {
+      display: flex; flex-direction: column; gap: 0;
+      max-width: 680px; margin: 0 auto;
     }
-
-    .cta-section h2 {
-      color: #333;
-      margin-bottom: 15px;
+    .step-item {
+      display: flex; gap: 28px; align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 2px dashed rgba(62,207,110,.3);
+      opacity: 0; transform: translateX(-20px);
+      transition: opacity .6s ease, transform .6s ease;
     }
-
-    .cta-section p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #333;
+    .step-item.visible { opacity: 1; transform: translateX(0); }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 56px; height: 56px; border-radius: 18px;
+      background: var(--green-dark); color: white;
+      font-family: 'Fredoka One', cursive; font-size: 26px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 0 #1a7a3e;
     }
-
-    .emotion-balls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin: 30px 0;
+    .step-text h3 {
+      font-family: 'Fredoka One', cursive; font-size: 22px;
+      color: var(--ink); margin-bottom: 6px;
     }
+    .step-text p { font-size: 15px; font-weight: 600; color: #5a7a6a; line-height: 1.6; }
 
-    .emotion-ball {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5em;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      animation: float 3s ease-in-out infinite;
+    /* ── CTA ── */
+    .cta-wrap {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #27a356 0%, #1d7a40 50%, #0f4d28 100%);
+      text-align: center; position: relative; overflow: hidden;
     }
-
-    .emotion-ball:nth-child(1) { background: #FF6B6B; animation-delay: 0s; }
-    .emotion-ball:nth-child(2) { background: #FFA502; animation-delay: 0.2s; }
-    .emotion-ball:nth-child(3) { background: #FFD93D; animation-delay: 0.4s; }
-    .emotion-ball:nth-child(4) { background: #6BCF7F; animation-delay: 0.6s; }
-    .emotion-ball:nth-child(5) { background: #95BDFF; animation-delay: 0.8s; }
-    .emotion-ball:nth-child(6) { background: #A78BFA; animation-delay: 1s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    .cta-wrap::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,.05);
     }
+    .cta-wrap h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(34px, 5vw, 60px); color: white;
+      margin-bottom: 16px; position: relative;
+    }
+    .cta-wrap p { font-size: 18px; font-weight: 700; color: rgba(255,255,255,.75); margin-bottom: 40px; position: relative; }
+    .cta-wrap .btn-play {
+      background: var(--yellow); color: var(--ink);
+      box-shadow: 0 6px 0 #c9a800, 0 12px 32px rgba(255,224,72,.3);
+    }
+    .cta-wrap .btn-play svg { fill: var(--ink); }
+    .cta-wrap .btn-play:hover { box-shadow: 0 4px 0 #c9a800, 0 8px 20px rgba(255,224,72,.3); }
+    .cta-note { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.5); margin-top: 20px; }
 
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #fff;
-      background: rgba(0,0,0,0.1);
-      margin-top: 40px;
+      background: #0e1f14; color: rgba(255,255,255,.5);
+      padding: 36px 24px; text-align: center;
     }
-
-    footer a {
-      color: #fff;
-      font-weight: 600;
+    .footer-logo {
+      font-family: 'Fredoka One', cursive; font-size: 22px;
+      color: var(--green); margin-bottom: 14px; display: block;
     }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
+    .footer-links a {
+      color: rgba(255,255,255,.5); text-decoration: none; font-weight: 700; font-size: 13px;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--green); }
+    footer p { font-size: 12px; }
 
-    @media (max-width: 768px) {
-      .header-overlay h1 {
-        font-size: 2em;
-      }
+    /* ── SCROLL FADE ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-      .header-overlay p {
-        font-size: 1.1em;
-      }
-
-      .app-icon {
-        width: 100px;
-        height: 100px;
-      }
-
-      section {
-        padding: 30px 20px;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .emotion-ball {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2em;
-      }
+    @media (max-width: 680px) {
+      nav { padding: 12px 18px; }
+      .nav-links { display: none; }
+      .monster-wrap { width: 150px; height: 150px; }
+      .balls-row .ball { width: 50px; height: 50px; font-size: 22px; }
+      .features-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="header-wrapper">
-    <div class="header-overlay">
-      <img src="https://play-lh.googleusercontent.com/iL5LCZUZVp6E12C9gXYLUlojvd4iEDI3-CFD9mtqlAFoOnSIS3lWrBaMZIa7J004YxgCyen0rATmpk2KfF2HpG8=w480-h960-rw" alt="Fear Eater Monsters Icon" class="app-icon" onerror="this.style.display='none'" />
-      <h1>El Monstruo Come-Miedos 👹</h1>
-      <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
-      </nav>
+
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">👹 Come-Miedos</a>
+  <ul class="nav-links">
+    <li><a href="#funciones">Funciones</a></li>
+    <li><a href="#por-que">¿Por qué?</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+  </ul>
+  <a href="https://play.google.com/store/apps/details?id=com.elbuscator.monstruocomemiedos" class="nav-cta">Descargar 🎉</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- floating stars -->
+  <span class="star" style="top:18%;left:8%;animation-delay:0s;">⭐</span>
+  <span class="star" style="top:25%;right:10%;animation-delay:.5s;font-size:18px;">✨</span>
+  <span class="star" style="top:60%;left:5%;animation-delay:1s;font-size:16px;">💫</span>
+  <span class="star" style="bottom:20%;right:8%;animation-delay:1.5s;">🌟</span>
+  <span class="star" style="top:12%;left:40%;animation-delay:.8s;font-size:14px;">⭐</span>
+
+  <div class="hero-content">
+    <div class="hero-badge">🎉 Descarga gratis en Google Play</div>
+
+    <!-- Monster SVG -->
+    <div class="monster-wrap">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- body -->
+        <ellipse cx="100" cy="115" rx="72" ry="68" fill="#3ecf6e"/>
+        <!-- head -->
+        <ellipse cx="100" cy="82" rx="68" ry="62" fill="#3ecf6e"/>
+        <!-- fur spikes top -->
+        <ellipse cx="60" cy="30" rx="14" ry="22" fill="#3ecf6e" transform="rotate(-20 60 30)"/>
+        <ellipse cx="100" cy="20" rx="14" ry="24" fill="#3ecf6e"/>
+        <ellipse cx="140" cy="30" rx="14" ry="22" fill="#3ecf6e" transform="rotate(20 140 30)"/>
+        <!-- shadow under body -->
+        <ellipse cx="100" cy="180" rx="60" ry="12" fill="rgba(0,0,0,.10)"/>
+        <!-- whites eyes -->
+        <ellipse cx="76" cy="74" rx="22" ry="24" fill="white"/>
+        <ellipse cx="124" cy="74" rx="22" ry="24" fill="white"/>
+        <!-- pupils -->
+        <ellipse cx="80" cy="76" rx="13" ry="14" fill="#1a2a1e"/>
+        <ellipse cx="128" cy="76" rx="13" ry="14" fill="#1a2a1e"/>
+        <!-- eye shine -->
+        <circle cx="85" cy="70" r="4" fill="white"/>
+        <circle cx="133" cy="70" r="4" fill="white"/>
+        <!-- smile open -->
+        <path d="M68 106 Q100 132 132 106" stroke="#1a2a1e" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- teeth -->
+        <rect x="79" y="106" width="12" height="14" rx="3" fill="white"/>
+        <rect x="95" y="108" width="12" height="14" rx="3" fill="white"/>
+        <rect x="111" y="106" width="12" height="14" rx="3" fill="white"/>
+        <!-- belly spot -->
+        <ellipse cx="100" cy="145" rx="38" ry="28" fill="#5ddd88" opacity=".5"/>
+        <!-- arms -->
+        <ellipse cx="32" cy="120" rx="16" ry="28" fill="#3ecf6e" transform="rotate(-15 32 120)"/>
+        <ellipse cx="168" cy="120" rx="16" ry="28" fill="#3ecf6e" transform="rotate(15 168 120)"/>
+        <!-- little horns -->
+        <ellipse cx="75" cy="22" rx="7" ry="12" fill="#27a356" transform="rotate(-10 75 22)"/>
+        <ellipse cx="125" cy="22" rx="7" ry="12" fill="#27a356" transform="rotate(10 125 22)"/>
+        <!-- spots -->
+        <circle cx="58" cy="140" r="7" fill="#27a356" opacity=".6"/>
+        <circle cx="142" cy="138" r="5" fill="#27a356" opacity=".6"/>
+      </svg>
+    </div>
+
+    <h1>El Monstruo<br><span class="highlight">Come-Miedos</span> 👹</h1>
+    <p class="hero-sub">Transforma los miedos de tus hijos en bolitas de colores felices. ¡Una app mágica que convierte el miedo en diversión!</p>
+
+    <div class="hero-btns">
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.monstruocomemiedos" class="btn-play" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+        Descargar gratis
+      </a>
+      <a href="#funciones" class="btn-ghost">Ver cómo funciona ↓</a>
+    </div>
+
+    <div class="balls-row">
+      <div class="ball">😊</div>
+      <div class="ball">😄</div>
+      <div class="ball">🥰</div>
+      <div class="ball">😌</div>
+      <div class="ball">😁</div>
+      <div class="ball">💚</div>
     </div>
   </div>
+</section>
 
-  <div class="container">
-    <section>
-      <i class="fas fa-dragon section-icon"></i>
-      <h2>Ayuda a los niños a superar sus miedos</h2>
-      <p>Fear Eater Monsters es una aplicación educativa diseñada para ayudar a los niños a gestionar sus emociones y superar sus miedos de una manera divertida y amigable.</p>
-      <p>Nuestro adorable monstruo verde no da miedo, ¡todo lo contrario! Se alimenta de los miedos de los niños, transformándolos en emociones coloridas y positivas representadas por las simpáticas bolitas de colores.</p>
-      
-      <div class="emotion-balls">
-        <div class="emotion-ball">😊</div>
-        <div class="emotion-ball">😄</div>
-        <div class="emotion-ball">🥰</div>
-        <div class="emotion-ball">😌</div>
-        <div class="emotion-ball">😁</div>
-        <div class="emotion-ball">💚</div>
+<!-- FEATURES -->
+<section class="section features-bg" id="funciones">
+  <div class="inner">
+    <div class="fade-up">
+      <span class="section-label">✨ Características</span>
+      <h2 class="section-title">Todo lo que necesita<br>tu peque para crecer</h2>
+      <p class="section-desc">Herramientas pensadas para convertir momentos de angustia en oportunidades de aprendizaje emocional.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card c1 fade-up">
+        <div class="feat-icon">❤️</div>
+        <h3>Gestión Emocional</h3>
+        <p>Enseña a los niños a identificar y expresar sus emociones de forma saludable y divertida.</p>
       </div>
-    </section>
-
-    <section>
-      <i class="fas fa-star section-icon"></i>
-      <h2>Características Principales</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <i class="fas fa-heart"></i>
-          <h3>Gestión Emocional</h3>
-          <p>Enseña a los niños a identificar y expresar sus emociones de forma saludable.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-smile"></i>
-          <h3>Personaje Amigable</h3>
-          <p>Un monstruo adorable que transforma los miedos en algo positivo y divertido.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-gamepad"></i>
-          <h3>Juegos Educativos</h3>
-          <p>Actividades interactivas que ayudan a los niños a enfrentar sus temores.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-palette"></i>
-          <h3>Colores Vibrantes</h3>
-          <p>Diseño colorido y atractivo que capta la atención de los más pequeños.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-user-friends"></i>
-          <h3>Para Familias</h3>
-          <p>Herramienta perfecta para padres y educadores que trabajan con niños.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-child"></i>
-          <h3>Apropiado para Niños</h3>
-          <p>Contenido seguro y educativo diseñado específicamente para edades tempranas.</p>
-        </div>
+      <div class="feat-card c2 fade-up">
+        <div class="feat-icon">😄</div>
+        <h3>Personaje Amigable</h3>
+        <p>Nuestro monstruo adorable transforma los miedos en algo positivo. ¡Los niños lo adoran!</p>
       </div>
-    </section>
-
-    <section>
-      <i class="fas fa-lightbulb section-icon"></i>
-      <h2>¿Por qué Fear Eater Monsters?</h2>
-      <ul class="benefits-list">
-        <li>Ayuda a los niños a verbalizar sus miedos en un entorno seguro</li>
-        <li>Transforma los temores en experiencias positivas de aprendizaje</li>
-        <li>Promueve la inteligencia emocional desde edades tempranas</li>
-        <li>Reduce la ansiedad nocturna y los miedos comunes de la infancia</li>
-        <li>Fortalece el vínculo entre padres e hijos a través del juego</li>
-        <li>Basado en principios de psicología infantil</li>
-      </ul>
-    </section>
-
-    <section class="cta-section">
-      <h2>¡Convierte los miedos en sonrisas!</h2>
-      <p>Descarga Fear Eater Monsters y ayuda a tus hijos a crecer emocionalmente fuertes 💪👹</p>
-      <a class="button" style="background: white; color: #78E08F;" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.monstruocomemiedos">
-        <i class="fab fa-google-play"></i> Descargar ahora
-      </a>
-    </section>
+      <div class="feat-card c3 fade-up">
+        <div class="feat-icon">🎮</div>
+        <h3>Juegos Educativos</h3>
+        <p>Actividades interactivas que ayudan a los niños a enfrentar sus temores paso a paso.</p>
+      </div>
+      <div class="feat-card c4 fade-up">
+        <div class="feat-icon">🎨</div>
+        <h3>Colores Vibrantes</h3>
+        <p>Diseño colorido y magnético que captura la atención de los más pequeños al instante.</p>
+      </div>
+      <div class="feat-card c5 fade-up">
+        <div class="feat-icon">👨‍👩‍👧</div>
+        <h3>Para Familias</h3>
+        <p>Herramienta perfecta para padres y educadores que acompañan el desarrollo emocional.</p>
+      </div>
+      <div class="feat-card c6 fade-up">
+        <div class="feat-icon">🌱</div>
+        <h3>Apropiado para Niños</h3>
+        <p>Contenido 100% seguro y educativo, diseñado específicamente para la primera infancia.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <footer>
-    <p>© 2026 elbuscator. Todos los derechos reservados.</p>
-    <p style="margin-top: 10px;">
-      <a href="index.html" style="text-decoration: none;">← Volver al inicio</a>
-    </p>
-  </footer>
+<!-- WHY -->
+<section class="section why-bg" id="por-que">
+  <div class="inner">
+    <div class="fade-up">
+      <span class="section-label">💡 Beneficios</span>
+      <h2 class="section-title" style="color:white;">¿Por qué Fear Eater<br>Monsters?</h2>
+      <p class="section-desc">Basada en principios de psicología infantil para resultados reales.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Ayuda a los niños a verbalizar sus miedos en un entorno seguro y sin juicios</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Transforma los temores en experiencias positivas de aprendizaje y crecimiento</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Promueve la inteligencia emocional desde edades muy tempranas</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Reduce la ansiedad nocturna y los miedos más comunes de la infancia</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Fortalece el vínculo entre padres e hijos a través del juego compartido</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-check">✓</div>
+        <p>Basada en principios de psicología infantil avalados por expertos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section how-bg" id="como">
+  <div class="inner" style="text-align:center;">
+    <div class="fade-up">
+      <span class="section-label">📖 Cómo funciona</span>
+      <h2 class="section-title">3 pasos mágicos</h2>
+      <p class="section-desc" style="margin: 0 auto 56px;">Así de fácil es ayudar a tu hijo a superar sus miedos con nuestro monstruo amigo.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>Tu peque le cuenta su miedo 🗣️</h3>
+          <p>El niño nombra aquello que le asusta. El simple acto de verbalizarlo ya reduce la angustia. El monstruo escucha con atención y sin juzgar.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>¡El monstruo se lo come! 😋</h3>
+          <p>El adorable monstruo verde devora el miedo con su gran sonrisa. Los niños ven cómo su temor desaparece de forma visual y divertida.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h3>Aparecen bolitas de color 🎉</h3>
+          <p>El miedo se transforma en bolitas de emociones positivas y coloridas. Una representación visual poderosa que los niños entienden al instante.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>¡Convierte los miedos<br>en sonrisas! 😄</h2>
+  <p>Descarga Fear Eater Monsters gratis y empieza hoy</p>
+  <a class="btn-play" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.monstruocomemiedos">
+    <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+    Descargar en Google Play
+  </a>
+  <p class="cta-note">Gratis · Sin publicidad invasiva · Para niños</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">👹 El Monstruo Come-Miedos</span>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="privacy.html">Privacidad</a>
+    <a href="https://play.google.com/store/apps/details?id=com.elbuscator.monstruocomemiedos" target="_blank">Google Play</a>
+  </div>
+  <p>© 2026 elbuscator · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cur = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+  });
+
+  // Scroll fade-in
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 80);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+  document.querySelectorAll('.step-item').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
