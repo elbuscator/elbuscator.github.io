@@ -3,370 +3,647 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Petfeel - Gestión Emocional de Mascotas | elbuscator</title>
-  <meta name="description" content="Petfeel - La app definitiva para organizar el cuidado de tu mascota. Rutinas, recordatorios y seguimiento de salud.">
+  <title>Petfeel · La app que cuida a quien más quieres</title>
+  <meta name="description" content="Petfeel - Organiza las rutinas, salud y cuidados de tu mascota en un solo lugar. Recordatorios, seguimiento y mucho amor.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --sand:       #f5ede0;
+      --sand-dark:  #e8d8c4;
+      --cream:      #faf6f0;
+      --coral:      #e8715a;
+      --coral-soft: #f4a090;
+      --coral-pale: #fde8e4;
+      --green:      #4a7c59;
+      --green-mid:  #6a9e78;
+      --green-pale: #e4f0e8;
+      --amber:      #e8a838;
+      --amber-pale: #fef3dc;
+      --blue-pet:   #5b8fcf;
+      --blue-pale:  #deeaf8;
+      --ink:        #2a1f1a;
+      --mid:        #6b5b52;
+      --light:      #a8968a;
+      --radius:     20px;
     }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 50%, #FFE0B2 100%);
-      min-height: 100vh;
-      color: #333;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
     }
 
-    .header-wrapper {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #A8D5BA 0%, #F4E4C1 50%, #F5CAB3 100%);
-    }
-
-    .header-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .app-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    .header-overlay h1 {
-      font-size: 3em;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .header-overlay p {
-      font-size: 1.3em;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
-
+    /* ── NAV ── */
     nav {
-      margin-top: 20px;
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 16px 48px;
+      background: rgba(250,246,240,0.90);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(232,113,90,.12);
+    }
+    .nav-logo {
+      font-family:'Playfair Display',serif; font-size:22px; font-weight:800;
+      color:var(--coral); text-decoration:none; letter-spacing:-.5px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a {
+      font-size:14px; font-weight:500; color:var(--mid);
+      text-decoration:none; transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--coral); }
+    .nav-cta {
+      background:var(--coral); color:white;
+      font-weight:600; font-size:14px; padding:10px 26px;
+      border-radius:100px; text-decoration:none;
+      box-shadow: 0 4px 20px rgba(232,113,90,.3);
+      transition: all .2s;
+    }
+    .nav-cta:hover { background:#d45e48; transform:translateY(-2px); box-shadow:0 8px 28px rgba(232,113,90,.35); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height:100vh;
+      display:grid; grid-template-columns:1fr 1fr;
+      align-items:center; gap:0;
+      padding: 100px 0 0;
+      position:relative; overflow:hidden;
+    }
+    /* warm background */
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse 70% 80% at 0% 50%, #fde8e4 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 60% at 100% 80%, #e4f0e8 0%, transparent 55%),
+                  radial-gradient(ellipse 60% 60% at 60% 0%, #fef3dc 0%, transparent 50%);
+    }
+    .hero-left {
+      position:relative; z-index:2;
+      padding: 60px 48px 80px 80px;
+    }
+    .hero-tag {
+      display:inline-flex; align-items:center; gap:8px;
+      background:white; border:1.5px solid var(--sand-dark);
+      border-radius:100px; padding:6px 16px;
+      font-size:13px; font-weight:500; color:var(--mid);
+      margin-bottom:28px;
+      box-shadow:0 2px 12px rgba(0,0,0,.06);
+    }
+    .hero-tag .dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size: clamp(40px,4.5vw,68px); font-weight:800; line-height:1.1;
+      margin-bottom:20px;
+    }
+    .hero h1 em { font-style:italic; color:var(--coral); }
+    .hero-desc {
+      font-size:17px; font-weight:400; color:var(--mid);
+      line-height:1.75; max-width:480px; margin-bottom:40px;
+    }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:52px; }
+    .btn-main {
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--coral); color:white;
+      font-weight:600; font-size:15px; padding:15px 32px;
+      border-radius:100px; text-decoration:none;
+      box-shadow:0 6px 24px rgba(232,113,90,.35);
+      transition:all .2s;
+    }
+    .btn-main:hover { background:#d45e48; transform:translateY(-2px); }
+    .btn-main svg { width:20px; height:20px; fill:white; }
+    .btn-outline {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--green);
+      font-weight:600; font-size:15px; padding:15px 28px;
+      border-radius:100px; text-decoration:none;
+      border:2px solid var(--green-mid);
+      transition:all .2s;
+    }
+    .btn-outline:hover { background:var(--green-pale); }
+    /* pets row */
+    .pets-row { display:flex; gap:12px; align-items:center; }
+    .pet-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:white; border:1.5px solid var(--sand-dark);
+      border-radius:100px; padding:6px 14px;
+      font-size:14px; font-weight:500; color:var(--mid);
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-      transition: opacity 0.3s;
+    /* hero right — phone illustration */
+    .hero-right {
+      position:relative; z-index:2;
+      display:flex; justify-content:center; align-items:flex-end;
+      padding: 40px 60px 0 20px; height:100%;
+    }
+    .phone-stack { position:relative; width:280px; height:560px; }
+    .phone-card {
+      position:absolute;
+      border-radius:28px;
+      box-shadow:0 24px 60px rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+    .phone-main {
+      width:240px; height:500px;
+      left:20px; top:40px;
+      background:white;
+      border:2px solid rgba(0,0,0,.06);
+      display:flex; flex-direction:column;
+      animation: phoneFloat 5s ease-in-out infinite;
+    }
+    @keyframes phoneFloat {
+      0%,100%{ transform:translateY(0) rotate(.5deg); }
+      50%     { transform:translateY(-14px) rotate(-.5deg); }
+    }
+    .phone-behind {
+      width:220px; height:460px;
+      left:30px; top:20px;
+      background: linear-gradient(135deg,var(--coral-pale),var(--amber-pale));
+      transform:rotate(4deg);
+      z-index:-1;
+    }
+    /* phone interior */
+    .phone-header {
+      background:linear-gradient(135deg, var(--coral),#e8916a);
+      padding:20px 18px 28px;
+      color:white;
+    }
+    .phone-notch {
+      width:50px;height:5px;background:rgba(255,255,255,.3);
+      border-radius:4px;margin:0 auto 16px;
+    }
+    .phone-greeting { font-size:11px; opacity:.8; margin-bottom:4px; }
+    .phone-pet-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; }
+    .phone-pet-icon { font-size:40px; float:right; margin-top:-28px; }
+    .phone-body { padding:16px 16px; flex:1; display:flex; flex-direction:column; gap:10px; }
+    .phone-pill {
+      display:flex; align-items:center; gap:10px;
+      background:var(--cream); border-radius:12px; padding:10px 14px;
+      font-size:12px; font-weight:500; color:var(--ink);
+    }
+    .phone-pill .icon {
+      width:32px;height:32px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:16px;flex-shrink:0;
+    }
+    .pill-green  .icon { background:var(--green-pale); }
+    .pill-coral  .icon { background:var(--coral-pale); }
+    .pill-amber  .icon { background:var(--amber-pale); }
+    .pill-blue   .icon { background:var(--blue-pale);  }
+    .phone-pill small { display:block; font-size:10px; color:var(--light); }
+    .phone-progress { margin-top:2px; }
+    .phone-prog-bar {
+      height:4px; border-radius:4px; background:var(--sand-dark);
+      overflow:hidden; margin-top:10px;
+    }
+    .phone-prog-fill { height:100%; border-radius:4px; background:var(--green-mid); }
+    .phone-prog-label { font-size:10px; color:var(--light); margin-top:4px; }
+
+    /* floating badges around phone */
+    .float-badge {
+      position:absolute; background:white;
+      border-radius:16px; padding:10px 16px;
+      box-shadow:0 8px 28px rgba(0,0,0,.12);
+      font-size:13px; font-weight:600; color:var(--ink);
+      display:flex; align-items:center; gap:8px;
+      animation: badgeFloat 4s ease-in-out infinite;
+      white-space:nowrap;
+    }
+    .float-badge .b-icon { font-size:20px; }
+    @keyframes badgeFloat {
+      0%,100%{ transform:translateY(0); }
+      50%    { transform:translateY(-8px); }
+    }
+    .fb1 { top:60px; right:-30px; animation-delay:0s; }
+    .fb2 { bottom:160px; left:-50px; animation-delay:.8s; }
+    .fb3 { bottom:80px; right:-20px; animation-delay:1.6s; }
+
+    /* ── SECTIONS ── */
+    .sec { padding:100px 24px; }
+    .inner { max-width:1080px; margin:0 auto; }
+    .sec-tag {
+      display:inline-block;
+      font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+      color:var(--coral); background:var(--coral-pale);
+      padding:4px 14px; border-radius:100px; margin-bottom:14px;
+    }
+    .sec-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(30px,4vw,50px); font-weight:800; line-height:1.15;
+      color:var(--ink); margin-bottom:14px;
+    }
+    .sec-title em { font-style:italic; color:var(--coral); }
+    .sec-desc {
+      font-size:16px; color:var(--mid); line-height:1.75;
+      max-width:520px; margin-bottom:60px;
     }
 
-    nav a:hover {
-      opacity: 0.8;
+    /* ── FEATURES ── */
+    .feats-bg { background:var(--cream); }
+    .feats-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+      gap:16px;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: -50px auto 0;
-      padding: 0 20px 40px;
-      position: relative;
-      z-index: 10;
+    .feat {
+      border-radius:var(--radius); padding:36px 30px;
+      transition:transform .25s, box-shadow .25s;
+      border:2px solid transparent;
     }
-
-    .button {
-      display: inline-block;
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #5FA777 0%, #4A8C61 100%);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    .feat:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,.09); }
+    .feat-ico {
+      width:56px;height:56px;border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;margin-bottom:18px;
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    .feat h3 {
+      font-family:'Playfair Display',serif; font-size:20px; font-weight:700;
+      color:var(--ink); margin-bottom:8px;
     }
+    .feat p { font-size:14px; color:var(--mid); line-height:1.7; }
 
-    .button i {
-      margin-right: 8px;
+    .f1 { background:#fff8f6; } .f1:hover{border-color:var(--coral-soft);} .f1 .feat-ico{background:var(--coral-pale);}
+    .f2 { background:#f0f8f3; } .f2:hover{border-color:var(--green-mid);} .f2 .feat-ico{background:var(--green-pale);}
+    .f3 { background:#fffcf0; } .f3:hover{border-color:var(--amber);}     .f3 .feat-ico{background:var(--amber-pale);}
+    .f4 { background:#f0f6fc; } .f4:hover{border-color:var(--blue-pet);}  .f4 .feat-ico{background:var(--blue-pale);}
+    .f5 { background:#fdf0f8; } .f5:hover{border-color:#d48fbf;}          .f5 .feat-ico{background:#fce4f4;}
+    .f6 { background:#f4f0ff; } .f6:hover{border-color:#9b7fd4;}          .f6 .feat-ico{background:#ede4ff;}
+
+    /* ── BENEFITS ── */
+    .benefits-bg {
+      background: linear-gradient(160deg, #2a1f1a 0%, #3d2e26 100%);
     }
+    .benefits-bg .sec-tag { background:rgba(232,113,90,.15); color:var(--coral-soft); }
+    .benefits-bg .sec-title { color:white; }
+    .benefits-bg .sec-desc { color:#b09080; }
 
-    section {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    .benefits-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
     }
-
-    .section-icon {
-      font-size: 3em;
-      color: #5FA777;
-      margin-bottom: 15px;
-      display: block;
+    .benefit-card {
+      background:rgba(255,255,255,.05); border:1.5px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); padding:28px 22px;
+      display:flex; gap:16px; align-items:flex-start;
+      transition:background .3s, border-color .3s, transform .3s;
     }
-
-    h2 {
-      font-size: 2em;
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 15px;
+    .benefit-card:hover {
+      background:rgba(232,113,90,.08); border-color:rgba(232,113,90,.3);
+      transform:translateY(-4px);
     }
-
-    section p {
-      color: #666;
-      margin-bottom: 20px;
-      font-size: 1.1em;
+    .b-check {
+      width:38px;height:38px;min-width:38px;border-radius:50%;
+      background:linear-gradient(135deg,var(--coral),#c9503c);
+      display:flex;align-items:center;justify-content:center;
+      font-size:16px; box-shadow:0 4px 12px rgba(232,113,90,.3);
     }
+    .benefit-card p { font-size:15px; font-weight:500; color:#e8d8cc; line-height:1.55; }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+    /* ── PETS ── */
+    .pets-bg {
+      background: linear-gradient(135deg, var(--sand) 0%, #fef0e8 50%, #f0f8ea 100%);
     }
-
-    .feature-card {
-      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 100%);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .pets-cards {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:16px; margin-top:50px;
     }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    .pet-card {
+      background:white; border-radius:var(--radius); padding:32px 20px;
+      text-align:center; border:2px solid transparent;
+      transition:all .25s;
+      box-shadow:0 4px 20px rgba(0,0,0,.05);
     }
+    .pet-card:hover { border-color:var(--coral-soft); transform:translateY(-6px) rotate(1deg); }
+    .pet-emoji { font-size:52px; margin-bottom:12px; display:block; }
+    .pet-card h3 { font-family:'Playfair Display',serif; font-size:18px; color:var(--ink); margin-bottom:6px; }
+    .pet-card p { font-size:13px; color:var(--light); }
 
-    .feature-card i {
-      font-size: 2.5em;
-      color: #5FA777;
-      margin-bottom: 15px;
-      display: block;
+    /* ── CTA ── */
+    .cta-wrap {
+      padding:110px 24px;
+      background:linear-gradient(135deg, var(--coral) 0%, #d45e48 40%, #b5472e 100%);
+      text-align:center; position:relative; overflow:hidden;
     }
-
-    .feature-card h3 {
-      font-size: 1.3em;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 10px;
+    .cta-wrap::before {
+      content:'🐾'; font-size:200px; opacity:.05;
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-55%);
+      pointer-events:none;
     }
-
-    .feature-card p {
-      color: #666;
-      font-size: 1em;
-      margin-bottom: 0;
+    .cta-wrap h2 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(34px,5vw,62px); font-weight:800; color:white;
+      line-height:1.1; margin-bottom:18px; position:relative;
     }
-
-    .benefits-list {
-      list-style: none;
-      margin-top: 20px;
+    .cta-wrap h2 em { font-style:italic; }
+    .cta-wrap p { font-size:18px; color:rgba(255,255,255,.75); margin-bottom:44px; position:relative; }
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:12px;
+      background:white; color:var(--coral);
+      font-weight:700; font-size:16px; padding:18px 40px;
+      border-radius:100px; text-decoration:none;
+      box-shadow:0 8px 32px rgba(0,0,0,.18);
+      transition:all .2s; position:relative;
     }
+    .cta-btn:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(0,0,0,.22); }
+    .cta-btn svg { width:22px; height:22px; fill:var(--coral); }
+    .cta-note { margin-top:18px; font-size:13px; color:rgba(255,255,255,.5); position:relative; }
 
-    .benefits-list li {
-      padding: 15px;
-      margin: 10px 0;
-      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9C4 100%);
-      border-radius: 10px;
-      border-left: 4px solid #5FA777;
-      font-size: 1.05em;
-    }
-
-    .benefits-list li::before {
-      content: "✓ ";
-      color: #5FA777;
-      font-weight: bold;
-      font-size: 1.3em;
-      margin-right: 10px;
-    }
-
-    .cta-section {
-      text-align: center;
-      background: linear-gradient(135deg, #A8D5BA 0%, #F4E4C1 100%);
-      padding: 50px 40px;
-    }
-
-    .cta-section h2 {
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .cta-section p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    .screenshots {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 40px 0;
-    }
-
-    .screenshot-placeholder {
-      width: 200px;
-      height: 400px;
-      background: linear-gradient(135deg, #A8D5BA 0%, #F5CAB3 100%);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 3em;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #666;
-      background: white;
-      margin-top: 40px;
+      background:var(--ink); padding:44px 24px;
+      text-align:center;
     }
+    .footer-logo {
+      font-family:'Playfair Display',serif; font-size:24px; font-weight:800;
+      color:var(--coral); display:block; margin-bottom:16px;
+    }
+    .footer-links {
+      display:flex; gap:28px; justify-content:center;
+      flex-wrap:wrap; margin-bottom:20px;
+    }
+    .footer-links a {
+      font-size:13px; font-weight:500; color:rgba(255,255,255,.45);
+      text-decoration:none; transition:color .2s;
+    }
+    .footer-links a:hover { color:var(--coral); }
+    footer p { font-size:12px; color:rgba(255,255,255,.25); }
 
-    @media (max-width: 768px) {
-      .header-overlay h1 {
-        font-size: 2em;
-      }
+    /* ── FADE IN ── */
+    .fade { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
+    .fade.on { opacity:1; transform:translateY(0); }
+    .fade-l { opacity:0; transform:translateX(-24px); transition:opacity .65s ease, transform .65s ease; }
+    .fade-l.on { opacity:1; transform:translateX(0); }
 
-      .header-overlay p {
-        font-size: 1.1em;
-      }
-
-      .app-icon {
-        width: 100px;
-        height: 100px;
-      }
-
-      section {
-        padding: 30px 20px;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .screenshot-placeholder {
-        width: 150px;
-        height: 300px;
-      }
+    @media(max-width:860px){
+      .hero { grid-template-columns:1fr; min-height:auto; }
+      .hero-left { padding:80px 24px 40px; text-align:center; }
+      .hero-desc,.pets-row,.hero-btns { justify-content:center; }
+      .hero-right { padding:20px 24px 60px; height:440px; }
+      .phone-stack { width:220px; }
+      .phone-main { width:190px; height:400px; }
+      .float-badge { display:none; }
+      nav { padding:12px 20px; }
+      .nav-links { display:none; }
     }
   </style>
 </head>
 <body>
-  <div class="header-wrapper">
-    <div class="header-overlay">
-      <img src="https://play-lh.googleusercontent.com/lu5vz9-O81_YBY8Erb0wb6XeALltSoZgpEMDN4L8-kjEzBBI-ZykH6ciYYb0uo1zlS6xx3eeuM2mfs-MEuxLGz8=w480-h960" alt="Petfeel App Icon" class="app-icon" />
-      <h1>Petfeel - Gestión Emocional de Mascotas</h1>
-      <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
-      </nav>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">🐾 Petfeel</a>
+  <ul class="nav-links">
+    <li><a href="#funciones">Funciones</a></li>
+    <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#mascotas">Mascotas</a></li>
+  </ul>
+  <a href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel" class="nav-cta">Descargar 🐾</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><span class="dot"></span> Disponible en Google Play</div>
+    <h1>El cuidado que<br><em>merece</em> tu mejor<br>amigo</h1>
+    <p class="hero-desc">Petfeel organiza las rutinas, recordatorios y seguimiento de salud de tu mascota. Todo en un lugar bonito, simple y pensado con amor.</p>
+    <div class="hero-btns">
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel" class="btn-main" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+        Descargar gratis
+      </a>
+      <a href="#funciones" class="btn-outline">Ver funciones →</a>
+    </div>
+    <div class="pets-row">
+      <span class="pet-badge">🐶 Perros</span>
+      <span class="pet-badge">🐱 Gatos</span>
+      <span class="pet-badge">🐰 Conejos</span>
+      <span class="pet-badge">🐦 Aves</span>
     </div>
   </div>
 
-  <div class="container">
-    <section>
-      <i class="fas fa-heart section-icon"></i>
-      <h2>La app definitiva para el cuidado de tu mascota</h2>
-      <p>Petfeel te ayuda a organizar y seguir fácilmente todas las rutinas y cuidados de tu mascota. Desde recordatorios de alimentación y paseos, hasta seguimiento de salud y hábitos diarios.</p>
-      <p>Con una interfaz intuitiva y un diseño pensado para simplificar tu rutina, podrás concentrarte en lo más importante: disfrutar tiempo de calidad con tu compañero peludo 🐶🐱</p>
-    </section>
-
-    <section>
-      <i class="fas fa-star section-icon"></i>
-      <h2>Funciones Principales</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <i class="fas fa-clock"></i>
-          <h3>Rutinas Personalizadas</h3>
-          <p>Crea y adapta horarios de alimentación, paseos, medicación y más.</p>
+  <div class="hero-right">
+    <div class="phone-stack">
+      <!-- Back card -->
+      <div class="phone-card phone-behind"></div>
+      <!-- Main phone -->
+      <div class="phone-card phone-main">
+        <div class="phone-header">
+          <div class="phone-notch"></div>
+          <div class="phone-greeting">Buenos días 🌤️</div>
+          <div class="phone-pet-name">Rocky necesita</div>
+          <span class="phone-pet-icon">🐶</span>
         </div>
-
-        <div class="feature-card">
-          <i class="fas fa-bell"></i>
-          <h3>Recordatorios Diarios</h3>
-          <p>Nunca olvides un cuidado importante de tu mascota.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Seguimiento de Hábitos</h3>
-          <p>Controla la alimentación, ejercicio y bienestar de tu mascota.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-cloud"></i>
-          <h3>Backup en la Nube</h3>
-          <p>Protege tus datos y recupéralos fácilmente.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-gem"></i>
-          <h3>Opciones Premium</h3>
-          <p>Accede a funciones avanzadas y exclusivas para mejorar la experiencia.</p>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-globe"></i>
-          <h3>Multilenguaje</h3>
-          <p>Disponible en español e inglés.</p>
+        <div class="phone-body">
+          <div class="phone-pill pill-green">
+            <div class="icon">🍖</div>
+            <div>
+              <div>Comida · 08:00</div>
+              <small>Hace 10 minutos</small>
+            </div>
+          </div>
+          <div class="phone-pill pill-coral">
+            <div class="icon">🦮</div>
+            <div>
+              <div>Paseo · 10:00</div>
+              <small>En 1h 50min</small>
+            </div>
+          </div>
+          <div class="phone-pill pill-amber">
+            <div class="icon">💊</div>
+            <div>
+              <div>Antiparasitario</div>
+              <small>Vence en 3 días</small>
+            </div>
+          </div>
+          <div class="phone-pill pill-blue">
+            <div class="icon">🏥</div>
+            <div>
+              <div>Veterinario</div>
+              <small>Viernes 12:30</small>
+            </div>
+          </div>
+          <div class="phone-progress">
+            <div style="font-size:11px;font-weight:600;color:#6b5b52;margin-bottom:4px;">Bienestar de hoy</div>
+            <div class="phone-prog-bar"><div class="phone-prog-fill" style="width:75%"></div></div>
+            <div class="phone-prog-label">3 de 4 cuidados completados · 75%</div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section>
-      <i class="fas fa-paw section-icon"></i>
-      <h2>Beneficios para ti y tu mascota</h2>
-      <ul class="benefits-list">
-        <li>Simplifica tu rutina diaria de cuidados</li>
-        <li>Mejora la salud y bienestar de tu mascota</li>
-        <li>Organiza medicaciones y visitas al veterinario</li>
-        <li>Ideal para perros, gatos y otras mascotas</li>
-        <li>Interfaz intuitiva y fácil de usar</li>
-        <li>Dedica más tiempo de calidad con tu compañero peludo</li>
-      </ul>
-    </section>
-
-    <section class="cta-section">
-      <h2>¿Listo para empezar?</h2>
-      <p>Descarga Petfeel ahora y convierte el cuidado de tu mascota en algo fácil, organizado y divertido 🎉🐾</p>
-      <a class="button" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel">
-        <i class="fab fa-google-play"></i> Descargar Gratis
-      </a>
-    </section>
+      <!-- floating badges -->
+      <div class="float-badge fb1">
+        <span class="b-icon">💚</span>
+        <div>
+          <div style="font-size:11px;color:#8a9a90;">Estado</div>
+          <div>¡Rocky feliz!</div>
+        </div>
+      </div>
+      <div class="float-badge fb2">
+        <span class="b-icon">🔔</span>
+        <div>
+          <div style="font-size:11px;color:#8a9a90;">Recordatorio</div>
+          <div>Paseo en 5 min</div>
+        </div>
+      </div>
+      <div class="float-badge fb3">
+        <span class="b-icon">⭐</span>
+        <div>
+          <div style="font-size:11px;color:#8a9a90;">Racha</div>
+          <div>14 días seguidos</div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <footer>
-    <p>© 2026 elbuscator. Todos los derechos reservados.</p>
-    <p style="margin-top: 10px;">
-      <a href="index.html" style="color: #5FA777; text-decoration: none; font-weight: 600;">← Volver al inicio</a>
-    </p>
-  </footer>
+<!-- FEATURES -->
+<section class="sec feats-bg" id="funciones">
+  <div class="inner">
+    <div class="fade">
+      <span class="sec-tag">✨ Funciones</span>
+      <h2 class="sec-title">Todo lo que tu mascota<br><em>necesita,</em> en tu bolsillo</h2>
+      <p class="sec-desc">Diseñado para simplificar el cuidado diario y que puedas centrarte en lo más importante: disfrutar juntos.</p>
+    </div>
+    <div class="feats-grid">
+      <div class="feat f1 fade">
+        <div class="feat-ico">⏰</div>
+        <h3>Rutinas Personalizadas</h3>
+        <p>Crea y adapta horarios de alimentación, paseos, medicación y más. Cada mascota tiene sus propios ritmos.</p>
+      </div>
+      <div class="feat f2 fade">
+        <div class="feat-ico">🔔</div>
+        <h3>Recordatorios Diarios</h3>
+        <p>Nunca olvides un cuidado importante. Notificaciones puntuales que se adaptan a tu estilo de vida.</p>
+      </div>
+      <div class="feat f3 fade">
+        <div class="feat-ico">📊</div>
+        <h3>Seguimiento de Hábitos</h3>
+        <p>Controla la alimentación, el ejercicio y el bienestar general de tu mascota con gráficos claros.</p>
+      </div>
+      <div class="feat f4 fade">
+        <div class="feat-ico">☁️</div>
+        <h3>Backup en la Nube</h3>
+        <p>Tus datos siempre seguros y accesibles. Recupera todo en cualquier dispositivo en segundos.</p>
+      </div>
+      <div class="feat f5 fade">
+        <div class="feat-ico">💎</div>
+        <h3>Funciones Premium</h3>
+        <p>Accede a informes detallados, múltiples mascotas y funciones exclusivas para los más cuidadosos.</p>
+      </div>
+      <div class="feat f6 fade">
+        <div class="feat-ico">🌍</div>
+        <h3>Multilenguaje</h3>
+        <p>Disponible en español e inglés. La app que entiende a tu mascota y a ti, en tu idioma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="sec benefits-bg" id="beneficios">
+  <div class="inner">
+    <div class="fade">
+      <span class="sec-tag">💛 Beneficios</span>
+      <h2 class="sec-title" style="color:white;">Para ti y para quien<br>más quieres</h2>
+      <p class="sec-desc">Petfeel no es solo una agenda para mascotas. Es un compañero que cuida de que tú cuides bien.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade">
+        <div class="b-check">🐾</div>
+        <p>Simplifica tu rutina diaria de cuidados sin esfuerzo extra</p>
+      </div>
+      <div class="benefit-card fade">
+        <div class="b-check">❤️</div>
+        <p>Mejora la salud y el bienestar de tu mascota con seguimiento real</p>
+      </div>
+      <div class="benefit-card fade">
+        <div class="b-check">💊</div>
+        <p>Organiza medicaciones y visitas al veterinario sin olvidar nada</p>
+      </div>
+      <div class="benefit-card fade">
+        <div class="b-check">🐕</div>
+        <p>Ideal para perros, gatos, conejos, aves y muchas más mascotas</p>
+      </div>
+      <div class="benefit-card fade">
+        <div class="b-check">✨</div>
+        <p>Interfaz intuitiva y preciosa que da gusto usar cada día</p>
+      </div>
+      <div class="benefit-card fade">
+        <div class="b-check">🕒</div>
+        <p>Dedica más tiempo de calidad con tu compañero y menos en organizar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PETS -->
+<section class="sec pets-bg" id="mascotas">
+  <div class="inner" style="text-align:center;">
+    <div class="fade">
+      <span class="sec-tag">🐾 Compatible con</span>
+      <h2 class="sec-title">Hecha para <em>toda</em> la familia peluda</h2>
+      <p class="sec-desc" style="margin:0 auto 0;">No importa qué tipo de mascota tengas. Petfeel se adapta a sus necesidades únicas.</p>
+    </div>
+    <div class="pets-cards">
+      <div class="pet-card fade">
+        <span class="pet-emoji">🐶</span>
+        <h3>Perros</h3>
+        <p>Paseos, comida, vacunas y más</p>
+      </div>
+      <div class="pet-card fade">
+        <span class="pet-emoji">🐱</span>
+        <h3>Gatos</h3>
+        <p>Salud felina, arenero y cuidados</p>
+      </div>
+      <div class="pet-card fade">
+        <span class="pet-emoji">🐰</span>
+        <h3>Conejos</h3>
+        <p>Dieta, jaula y ejercicio diario</p>
+      </div>
+      <div class="pet-card fade">
+        <span class="pet-emoji">🐦</span>
+        <h3>Aves</h3>
+        <p>Alimentación y hábitat ideal</p>
+      </div>
+      <div class="pet-card fade">
+        <span class="pet-emoji">🐠</span>
+        <h3>Peces</h3>
+        <p>Acuario, agua y alimentación</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>¿Listo para darle<br>lo <em>mejor</em> a tu mascota?</h2>
+  <p>Descarga Petfeel gratis y empieza hoy. Sin excusas, con amor 🐾</p>
+  <a class="cta-btn" target="_blank" href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel">
+    <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+    Descargar en Google Play
+  </a>
+  <p class="cta-note">Gratis · Recordatorios · Múltiples mascotas</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">🐾 Petfeel</span>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="privacy.html">Privacidad</a>
+    <a href="https://play.google.com/store/apps/details?id=com.elbuscator.petfeel" target="_blank">Google Play</a>
+  </div>
+  <p>© 2026 elbuscator · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade,.fade-l').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
