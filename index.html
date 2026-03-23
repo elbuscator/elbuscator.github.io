@@ -3,151 +3,599 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>elbuscator - Innovación en cada línea de código</title>
+  <title>elbuscator · Innovación en cada línea de código</title>
+  <meta name="description" content="elbuscator - Estudio indie de apps. Desarrollamos aplicaciones útiles, educativas y divertidas para Android.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0e0e12;
+      --bg-2:     #13131a;
+      --bg-3:     #1a1a24;
+      --border:   rgba(255,255,255,.07);
+      --white:    #f0eee8;
+      --mid:      #8a8898;
+      --dim:      #4a4a5a;
+      --accent:   #7c6af7;       /* violet */
+      --accent2:  #f76a6a;       /* coral-red */
+      --accent3:  #f7c26a;       /* amber */
+      --green:    #5ecf8a;
+      --r:        16px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 48px;
+      background:rgba(14,14,18,.85);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo {
+      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
+      color:var(--white); text-decoration:none; letter-spacing:-.5px;
+    }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a {
+      font-size:14px; font-weight:500; color:var(--mid);
+      text-decoration:none; transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--white); }
+    .nav-gp {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--accent); color:white;
+      font-size:13px; font-weight:600; padding:9px 22px;
+      border-radius:100px; text-decoration:none;
+      transition:all .2s; box-shadow:0 0 24px rgba(124,106,247,.3);
+    }
+    .nav-gp:hover { background:#6a58e8; transform:translateY(-1px); }
+    .nav-gp svg { width:16px; height:16px; fill:white; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center;
+      padding:130px 24px 100px;
+      position:relative; overflow:hidden;
+    }
+    /* animated grid bg */
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(124,106,247,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,106,247,.05) 1px, transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    /* glow orbs */
+    .orb {
+      position:absolute; border-radius:50%; filter:blur(80px);
+      pointer-events:none; animation:orbPulse 8s ease-in-out infinite;
+    }
+    .orb1 { width:500px;height:500px; background:rgba(124,106,247,.12); top:-100px; left:-100px; animation-delay:0s; }
+    .orb2 { width:400px;height:400px; background:rgba(247,106,106,.08); bottom:-80px; right:-80px; animation-delay:3s; }
+    .orb3 { width:300px;height:300px; background:rgba(94,207,138,.07); top:40%; left:60%; animation-delay:6s; }
+    @keyframes orbPulse {
+      0%,100% { transform:scale(1); opacity:.8; }
+      50%      { transform:scale(1.15); opacity:1; }
+    }
+
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); border-radius:100px;
+      padding:6px 16px; font-size:13px; font-weight:500; color:var(--mid);
+      margin-bottom:28px; position:relative; z-index:2;
+      background:rgba(255,255,255,.03);
+    }
+    .hero-eyebrow .dot {
+      width:7px; height:7px; border-radius:50%; background:var(--green);
+      box-shadow:0 0 8px var(--green); animation:blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .hero h1 {
+      font-family:'Syne',sans-serif;
+      font-size:clamp(52px,8vw,100px); font-weight:800; line-height:.95;
+      letter-spacing:-3px; margin-bottom:24px; position:relative; z-index:2;
+    }
+    .hero h1 .line2 { color:var(--accent); }
+    .hero h1 .line3 { color:var(--mid); font-weight:700; }
+
+    .hero-sub {
+      font-size:18px; font-weight:400; color:var(--mid);
+      max-width:480px; line-height:1.7; margin-bottom:48px;
+      position:relative; z-index:2;
+    }
+
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--accent); color:white;
+      font-weight:600; font-size:15px; padding:14px 32px;
+      border-radius:100px; text-decoration:none;
+      box-shadow:0 0 30px rgba(124,106,247,.35);
+      transition:all .2s;
+    }
+    .btn-primary:hover { background:#6a58e8; transform:translateY(-2px); box-shadow:0 0 40px rgba(124,106,247,.5); }
+    .btn-primary svg { width:18px;height:18px;fill:white; }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--white);
+      font-weight:600; font-size:15px; padding:14px 28px;
+      border-radius:100px; text-decoration:none;
+      border:1px solid var(--border); transition:all .2s;
+    }
+    .btn-ghost:hover { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.15); }
+
+    /* stats strip */
+    .stats-strip {
+      display:flex; gap:0; margin-top:80px; position:relative; z-index:2;
+      border:1px solid var(--border); border-radius:var(--r);
+      background:rgba(255,255,255,.02); overflow:hidden;
+    }
+    .stat-item {
+      flex:1; padding:22px 32px; text-align:center;
+      border-right:1px solid var(--border);
+    }
+    .stat-item:last-child { border-right:none; }
+    .stat-num {
+      font-family:'Syne',sans-serif; font-size:32px; font-weight:800;
+      color:var(--white); display:block; line-height:1;
+    }
+    .stat-num span { color:var(--accent); }
+    .stat-label { font-size:12px; color:var(--dim); margin-top:6px; display:block; letter-spacing:.5px; }
+
+    /* ── SECTION BASE ── */
+    .sec { padding:100px 24px; }
+    .inner { max-width:1080px; margin:0 auto; }
+    .sec-label {
+      font-size:11px; font-weight:600; letter-spacing:3px;
+      text-transform:uppercase; color:var(--accent);
+      margin-bottom:14px; display:block;
+    }
+    .sec-title {
+      font-family:'Syne',sans-serif;
+      font-size:clamp(30px,4vw,48px); font-weight:800; line-height:1.1;
+      letter-spacing:-1px; margin-bottom:14px;
+    }
+    .sec-desc { font-size:16px; color:var(--mid); line-height:1.75; max-width:500px; margin-bottom:56px; }
+
+    /* ── APPS ── */
+    .apps-bg { background:var(--bg); }
+    .apps-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:2px; background:var(--border);
+      border:1px solid var(--border); border-radius:var(--r); overflow:hidden;
+    }
+    .app-card {
+      background:var(--bg-2); padding:40px 36px;
+      text-decoration:none; color:inherit;
+      transition:background .25s;
+      position:relative; overflow:hidden;
+      display:flex; flex-direction:column;
+    }
+    .app-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:var(--c,var(--accent)); transform:scaleX(0); transform-origin:left;
+      transition:transform .35s ease;
+    }
+    .app-card:hover { background:var(--bg-3); }
+    .app-card:hover::before { transform:scaleX(1); }
+    .app-card:hover .app-arrow { transform:translate(3px,-3px); }
+
+    .app-card.c-violet { --c:var(--accent); }
+    .app-card.c-coral   { --c:var(--accent2); }
+    .app-card.c-amber   { --c:var(--accent3); }
+
+    .app-emoji { font-size:44px; margin-bottom:20px; display:block; }
+    .app-name {
+      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
+      margin-bottom:10px; letter-spacing:-.5px;
+    }
+    .app-desc { font-size:14px; color:var(--mid); line-height:1.65; flex:1; margin-bottom:24px; }
+    .app-footer { display:flex; align-items:center; justify-content:space-between; }
+    .app-tag {
+      font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--c,var(--accent)); background:rgba(124,106,247,.08);
+      padding:4px 12px; border-radius:100px;
+    }
+    .app-card.c-coral .app-tag { background:rgba(247,106,106,.08); }
+    .app-card.c-amber .app-tag { background:rgba(247,194,106,.08); }
+    .app-arrow {
+      color:var(--mid); font-size:20px; transition:transform .2s;
+    }
+
+    /* ── SUPPORT ── */
+    .support-bg { background:var(--bg-2); }
+    .support-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+    }
+    .support-card {
+      border:1px solid var(--border); border-radius:var(--r);
+      padding:32px 28px; text-decoration:none; color:inherit;
+      transition:all .25s; display:flex; flex-direction:column; gap:0;
+      background:var(--bg);
+    }
+    .support-card:hover { border-color:rgba(255,255,255,.18); transform:translateY(-4px); background:var(--bg-3); }
+    .support-icon { font-size:28px; margin-bottom:16px; display:block; }
+    .support-name {
+      font-family:'Syne',sans-serif; font-size:17px; font-weight:800;
+      margin-bottom:8px;
+    }
+    .support-desc { font-size:14px; color:var(--mid); line-height:1.6; flex:1; margin-bottom:20px; }
+    .support-link {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:13px; font-weight:600; padding:9px 20px;
+      border-radius:100px; text-decoration:none; transition:all .2s;
+    }
+
+    /* coffee */
+    .s-coffee .support-link { background:#FFD700; color:#1a1200; }
+    .s-coffee .support-link:hover { background:#ffe040; }
+    /* amazon */
+    .s-amazon .support-link { background:#FF9900; color:white; }
+    .s-amazon .support-link:hover { background:#e08800; }
+    /* aliexpress */
+    .s-aliexpress .support-link { background:#E62E04; color:white; }
+    .s-aliexpress .support-link:hover { background:#c92803; }
+
+    /* ── COMMUNITY ── */
+    .community-bg { background:var(--bg); }
+    .platforms-row {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+    }
+    .platform-card {
+      border:1px solid var(--border); border-radius:var(--r); padding:28px;
+      display:flex; flex-direction:column; gap:12px;
+      background:var(--bg-2); text-decoration:none; color:inherit;
+      transition:all .25s;
+    }
+    .platform-card:hover { border-color:rgba(255,255,255,.15); background:var(--bg-3); transform:translateY(-3px); }
+    .platform-head { display:flex; align-items:center; gap:12px; }
+    .platform-ico {
+      width:44px;height:44px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;flex-shrink:0;
+    }
+    .pi-gp    { background:rgba(124,106,247,.15); }
+    .pi-itch  { background:rgba(247,106,106,.15); }
+    .pi-tg1   { background:rgba(38,169,224,.15); }
+    .pi-tg2   { background:rgba(94,207,138,.15); }
+    .platform-name {
+      font-family:'Syne',sans-serif; font-size:16px; font-weight:800;
+    }
+    .platform-sub { font-size:12px; color:var(--dim); }
+    .platform-desc { font-size:13px; color:var(--mid); line-height:1.6; }
+    .platform-cta {
+      font-size:12px; font-weight:600; color:var(--accent);
+      display:inline-flex; align-items:center; gap:4px; margin-top:4px;
+    }
+
+    /* ── PRIVACY ── */
+    .privacy-strip {
+      padding:60px 24px;
+      background:var(--bg-2);
+      border-top:1px solid var(--border);
+    }
+    .privacy-inner {
+      max-width:1080px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:32px; flex-wrap:wrap;
+    }
+    .privacy-text h3 {
+      font-family:'Syne',sans-serif; font-size:22px; font-weight:800;
+      margin-bottom:8px;
+    }
+    .privacy-text p { font-size:15px; color:var(--mid); }
+    .btn-privacy {
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); color:var(--white);
+      font-weight:600; font-size:14px; padding:12px 28px;
+      border-radius:100px; text-decoration:none;
+      transition:all .2s; white-space:nowrap;
+      background:rgba(255,255,255,.03);
+    }
+    .btn-privacy:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background:var(--bg); border-top:1px solid var(--border);
+      padding:48px 24px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:24px;
+    }
+    .footer-brand { display:flex; flex-direction:column; gap:6px; }
+    .footer-logo {
+      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
+      color:var(--white); letter-spacing:-.5px;
+    }
+    .footer-logo span { color:var(--accent); }
+    .footer-tagline { font-size:13px; color:var(--dim); }
+    .footer-links { display:flex; gap:24px; flex-wrap:wrap; }
+    .footer-links a {
+      font-size:13px; font-weight:500; color:var(--dim);
+      text-decoration:none; transition:color .2s;
+    }
+    .footer-links a:hover { color:var(--white); }
+    .footer-copy { font-size:12px; color:var(--dim); }
+
+    /* ── FADE ── */
+    .fade { opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
+    .fade.on { opacity:1; transform:translateY(0); }
+
+    @media(max-width:700px){
+      nav { padding:14px 20px; }
+      .nav-links { display:none; }
+      .stats-strip { flex-direction:column; }
+      .stat-item { border-right:none; border-bottom:1px solid var(--border); }
+      .stat-item:last-child { border-bottom:none; }
+      footer { flex-direction:column; text-align:center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="header-wrapper">
-    <img src="header.jpg" alt="Imagen de cabecera de El Buscator" class="header-image" />
-    <div class="header-overlay">
-      <h1>elbuscator</h1>
-      <p>Innovación en cada línea de código</p>
-      <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
-      </nav>
-    </div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">el<span>buscator</span></a>
+  <ul class="nav-links">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#comunidad">Comunidad</a></li>
+    <li><a href="#apoyanos">Apóyanos</a></li>
+  </ul>
+  <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="nav-gp" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+    Google Play
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Estudio indie · Apps para Android
   </div>
 
-  <div class="container">    
-    <div class="section-grid">
-      <section>
-        <i class="fas fa-mobile-alt section-icon"></i>
-        <h2>Nuestras Apps</h2>
-        <p>Explora nuestras aplicaciones en Google Play. Constantemente desarrollamos nuevas ideas e innovaciones.</p>
-        <a class="button" target="_blank" href="https://play.google.com/store/apps/dev?id=9106952322187766274">
-          <i class="fab fa-google-play"></i> Ver en Google Play
-        </a>
-      </section>
-      <section>
-        <i class="fas fa-gamepad section-icon"></i>
-        <h2>Comunidad itch.io</h2>
-        <p>¿Fan de los indies? Visita nuestro perfil de itch.io para seguir nuestros avances y acceder a contenido extra.</p>
-        <a class="button" target="_blank" href="https://elbuscator.itch.io/">
-          <i class="fab fa-itch-io"></i> Síguenos en itch.io
-        </a>
-      </section>      
+  <h1>
+    <div>el</div>
+    <div class="line2">buscator</div>
+    <div class="line3">studio</div>
+  </h1>
+
+  <p class="hero-sub">Desarrollamos aplicaciones útiles, educativas y divertidas. Innovación en cada línea de código.</p>
+
+  <div class="hero-btns">
+    <a href="#apps" class="btn-primary">
+      Ver nuestras apps →
+    </a>
+    <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="btn-ghost" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="opacity:.6"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
+      Google Play
+    </a>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-item">
+      <span class="stat-num">3<span>+</span></span>
+      <span class="stat-label">Apps publicadas</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100<span>%</span></span>
+      <span class="stat-label">Android</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2<span>k</span></span>
+      <span class="stat-label">Seguidores Telegram</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Café consumido</span>
+    </div>
+  </div>
+</section>
+
+<!-- APPS -->
+<section class="sec apps-bg" id="apps">
+  <div class="inner">
+    <div class="fade">
+      <span class="sec-label">// nuestras apps</span>
+      <h2 class="sec-title">Lo que hemos<br>construido</h2>
+      <p class="sec-desc">Aplicaciones pensadas para resolver problemas reales. Cada una con su propia personalidad.</p>
+    </div>
+    <div class="apps-grid fade">
+      <a href="gestion-emocional-mascotas.html" class="app-card c-coral">
+        <span class="app-emoji">🐾</span>
+        <div class="app-name">Petfeel</div>
+        <p class="app-desc">Gestión completa del cuidado de tu mascota. Rutinas personalizadas, recordatorios diarios y seguimiento de salud para perros, gatos y más.</p>
+        <div class="app-footer">
+          <span class="app-tag">Mascotas · Salud</span>
+          <span class="app-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="monstruo-come-miedos.html" class="app-card c-violet">
+        <span class="app-emoji">👹</span>
+        <div class="app-name">El Monstruo Come-Miedos</div>
+        <p class="app-desc">Ayuda a los niños a gestionar sus miedos de forma divertida. El adorable monstruo verde transforma los temores en emociones positivas.</p>
+        <div class="app-footer">
+          <span class="app-tag">Infantil · Educativa</span>
+          <span class="app-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="viviendas-turisticas-cv.html" class="app-card c-amber">
+        <span class="app-emoji">🏠</span>
+        <div class="app-name">Viviendas Turísticas CV</div>
+        <p class="app-desc">Busca y analiza los 88.000+ pisos turísticos registrados en la Comunitat Valenciana con datos oficiales actualizados de la GVA.</p>
+        <div class="app-footer">
+          <span class="app-tag">Datos · Turismo</span>
+          <span class="app-arrow">↗</span>
+        </div>
+      </a>
     </div>
 
-    <section class="full-width">
-        <i class="fas fa-star section-icon"></i>
-        <h2>Apps Destacadas</h2>
-        <p>Descubre nuestras aplicaciones más populares</p>
-        
-        <div class="telegram-channels">
-          <div class="telegram-card">
-              <i class="fas fa-paw"></i>
-              <h3>🐾 Petfeel</h3>
-              <p>Gestión completa del cuidado de tu mascota: rutinas, recordatorios y seguimiento de salud.</p>
-              <a class="button" href="gestion-emocional-mascotas.html">
-                <i class="fas fa-info-circle"></i> Más información
-              </a>
-          </div>
-      
-          <div class="telegram-card">
-              <i class="fas fa-dragon"></i>
-              <h3>👹 El Monstruo Come-Miedos</h3>
-              <p>Ayuda a los niños a gestionar sus miedos de forma divertida y educativa.</p>
-              <a class="button" href="monstruo-come-miedos.html">
-                <i class="fas fa-info-circle"></i> Más información
-              </a>
-          </div>
-          <div class="telegram-card">
-              <i class="fas fa-home"></i>
-              <h3>🏠 Viviendas Turísticas CV</h3>
-              <p>Busca y analiza pisos turísticos registrados en la Comunitat Valenciana con datos oficiales de la GVA.</p>
-              <a class="button" href="viviendas-turisticas-cv.html">
-                  <i class="fas fa-info-circle"></i> Más información
-              </a>
+    <div style="margin-top:24px; text-align:center;" class="fade">
+      <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="btn-ghost" target="_blank" style="font-size:14px;">
+        Ver todas en Google Play →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="sec community-bg" id="comunidad">
+  <div class="inner">
+    <div class="fade">
+      <span class="sec-label">// comunidad</span>
+      <h2 class="sec-title">Únete a nuestra<br>comunidad</h2>
+      <p class="sec-desc">Síguenos en nuestras plataformas y mantente al día con todo lo que hacemos.</p>
+    </div>
+    <div class="platforms-row fade">
+      <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="platform-card" target="_blank">
+        <div class="platform-head">
+          <div class="platform-ico pi-gp">📱</div>
+          <div>
+            <div class="platform-name">Google Play</div>
+            <div class="platform-sub">Todas nuestras apps</div>
           </div>
         </div>
-    </section>
+        <p class="platform-desc">Descarga y valora nuestras aplicaciones. Tu opinión nos ayuda a mejorar.</p>
+        <span class="platform-cta">Visitar perfil →</span>
+      </a>
 
-    <section class="full-width">
-      <i class="fas fa-gift section-icon"></i>
-      <h2>Apóyanos</h2>
-      <p>Si te gustan nuestras aplicaciones y quieres apoyar nuestro trabajo, invítanos a un café o compra a través de nuestros enlaces de afiliado.</p>      
-      
-      <div class="telegram-channels">
-        <div class="telegram-card">
-          <i class="fas fa-coffee section-icon"></i>
-          <h3>Buy Me a Coffee</h3>
-          <p>Invítanos a un café</p>
-          <a class="button" target="_blank" style="background: linear-gradient(135deg, #FFEE75 0%, #FFDD00 100%); color:#000000" href="https://buymeacoffee.com/elbuscator">
-            Buy me a Coffee
-          </a>
+      <a href="https://elbuscator.itch.io/" class="platform-card" target="_blank">
+        <div class="platform-head">
+          <div class="platform-ico pi-itch">🎮</div>
+          <div>
+            <div class="platform-name">itch.io</div>
+            <div class="platform-sub">Juegos indie</div>
+          </div>
         </div>
+        <p class="platform-desc">¿Fan de los indies? Accede a nuestros proyectos y contenido extra en itch.io.</p>
+        <span class="platform-cta">Ver perfil →</span>
+      </a>
 
-        <div class="telegram-card">
-          <i class="fab fa-amazon"></i>
-          <h3>Amazon</h3>
-          <p>Compra en Amazon a través de nuestro enlace de afiliado</p>
-          <a class="button" target="_blank" style="background: linear-gradient(135deg, #FF9900 0%, #FF6600 100%);" href="https://amzn.to/4hk1ZeR">
-            Amazon
-          </a>
+      <a href="https://t.me/gamingaldia" class="platform-card" target="_blank">
+        <div class="platform-head">
+          <div class="platform-ico pi-tg1">🎮</div>
+          <div>
+            <div class="platform-name">Gaming Al Día</div>
+            <div class="platform-sub">Telegram</div>
+          </div>
         </div>
+        <p class="platform-desc">Nuevos lanzamientos, tráilers oficiales de Nintendo, PlayStation y Xbox cada día.</p>
+        <span class="platform-cta">Unirse al canal →</span>
+      </a>
 
-        <div class="telegram-card">
-          <i class="fas fa-shopping-bag"></i>
-          <h3>Aliexpress</h3>
-          <p>Compra en Aliexpress a través de nuestro enlace de afiliado</p>
-          <a class="button" target="_blank" style="background: linear-gradient(135deg, #E62E04 0%, #C41E3A 100%);" href="https://s.click.aliexpress.com/e/_c3O9DWyX">
-            AliExpress
-          </a>
+      <a href="https://t.me/librosentendencia" class="platform-card" target="_blank">
+        <div class="platform-head">
+          <div class="platform-ico pi-tg2">📚</div>
+          <div>
+            <div class="platform-name">Libros en Tendencia</div>
+            <div class="platform-sub">Telegram</div>
+          </div>
         </div>
+        <p class="platform-desc">Las lecturas más populares del momento, seleccionadas entre los más vendidos.</p>
+        <span class="platform-cta">Unirse al canal →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="sec support-bg" id="apoyanos">
+  <div class="inner">
+    <div class="fade">
+      <span class="sec-label">// apóyanos</span>
+      <h2 class="sec-title">¿Te gustan<br>nuestras apps?</h2>
+      <p class="sec-desc">Si quieres apoyar nuestro trabajo, invítanos a un café o compra a través de nuestros enlaces. Cada pequeño gesto nos ayuda a seguir creando.</p>
+    </div>
+    <div class="support-grid fade">
+      <div class="support-card s-coffee">
+        <span class="support-icon">☕</span>
+        <div class="support-name">Buy Me a Coffee</div>
+        <p class="support-desc">La forma más directa de apoyarnos. Invítanos un café y nos alegras el día (y el código).</p>
+        <a href="https://buymeacoffee.com/elbuscator" target="_blank" class="support-link">
+          ☕ Invitar un café
+        </a>
       </div>
-    </section>
 
-    <section class="full-width">
-        <i class="fab fa-telegram section-icon"></i>
-        <h2>Canales de telegram</h2>
-        <p>Mantente conectado con nosotros a través de nuestros canales de Telegram.</p>        
-        <div class="telegram-channels">
-          <div class="telegram-card">
-            <i class="fab fa-telegram"></i>            
-            <h3>🎮 Gaming Al Día</h3>
-            <p> Nuevos lanzamientos de videojuegos. 🎥 Trailers oficiales (Nintendo, PlayStation, Xbox)</p>            
-            <a class="button" href="https://t.me/gamingaldia">
-              <i class="fas fa-paper-plane"></i> Unirse
-            </a>       
-          </div>
-  
-          <div class="telegram-card">
-            <i class="fab fa-telegram"></i>
-            <h3>📚 Libros en Tendencia ✍️</h3>
-            <p>Las lecturas más populares del momento, seleccionadas entre los más vendidos.</p>   
-            <a class="button" href="https://t.me/librosentendencia">
-              <i class="fas fa-paper-plane"></i> Unirse
-            </a>
-          </div>  
-        </div>
-      </section>
-
-    <section class="full-width">
-        <i class="fas fa-shield-alt section-icon"></i>
-        <h2>Privacidad</h2>
-        <p>Nos tomamos tu privacidad en serio. Consulta nuestra política actualizada para conocer cómo protegemos tus datos.</p>
-        <a class="button" href="privacy.html">
-          <i class="fas fa-lock"></i> Política de Privacidad
+      <div class="support-card s-amazon">
+        <span class="support-icon">📦</span>
+        <div class="support-name">Amazon</div>
+        <p class="support-desc">¿Ibas a comprar en Amazon de todas formas? Hazlo a través de nuestro enlace de afiliado sin coste extra para ti.</p>
+        <a href="https://amzn.to/4hk1ZeR" target="_blank" class="support-link">
+          Ir a Amazon →
         </a>
-    </section>
+      </div>
+
+      <div class="support-card s-aliexpress">
+        <span class="support-icon">🛍️</span>
+        <div class="support-name">AliExpress</div>
+        <p class="support-desc">Compra en AliExpress usando nuestro enlace de afiliado. Mismo precio, mismo producto, un pequeño empujón para nosotros.</p>
+        <a href="https://s.click.aliexpress.com/e/_c3O9DWyX" target="_blank" class="support-link">
+          Ir a AliExpress →
+        </a>
+      </div>
+    </div>
   </div>
-  <footer>
-    <p>© 2026 elbuscator. Todos los derechos reservados.</p>
-  </footer>
+</section>
+
+<!-- PRIVACY STRIP -->
+<div class="privacy-strip">
+  <div class="privacy-inner">
+    <div class="privacy-text">
+      <h3>🔒 Tu privacidad, primero</h3>
+      <p>Nos tomamos tu privacidad en serio. Consulta nuestra política para saber cómo protegemos tus datos.</p>
+    </div>
+    <a href="privacy.html" class="btn-privacy">
+      Política de Privacidad →
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-logo">el<span>buscator</span></span>
+    <span class="footer-tagline">Innovación en cada línea de código</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="gestion-emocional-mascotas.html">Petfeel</a>
+    <a href="monstruo-come-miedos.html">Come-Miedos</a>
+    <a href="viviendas-turisticas-cv.html">Viviendas CV</a>
+    <a href="privacy.html">Privacidad</a>
+  </div>
+  <span class="footer-copy">© 2026 elbuscator · Todos los derechos reservados</span>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
