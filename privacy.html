@@ -3,101 +3,473 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Política de Privacidad - elbuscator</title>
+  <title>Política de Privacidad · elbuscator</title>
+  <meta name="description" content="Política de privacidad de las aplicaciones de elbuscator.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />  
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #0e0e12;
+      --bg-2:   #13131a;
+      --bg-3:   #1a1a24;
+      --border: rgba(255,255,255,.07);
+      --white:  #f0eee8;
+      --mid:    #8a8898;
+      --dim:    #4a4a5a;
+      --accent: #7c6af7;
+      --accent2:#f76a6a;
+      --green:  #5ecf8a;
+      --r:      16px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 48px;
+      background:rgba(14,14,18,.85);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo {
+      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
+      color:var(--white); text-decoration:none; letter-spacing:-.5px;
+    }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a {
+      font-size:14px; font-weight:500; color:var(--mid);
+      text-decoration:none; transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--white); }
+    .nav-back {
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); color:var(--white);
+      font-size:13px; font-weight:600; padding:9px 22px;
+      border-radius:100px; text-decoration:none;
+      background:rgba(255,255,255,.03);
+      transition:all .2s;
+    }
+    .nav-back:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.15); }
+
+    /* ── HERO ── */
+    .hero {
+      padding:140px 24px 80px;
+      text-align:center;
+      position:relative; overflow:hidden;
+      border-bottom:1px solid var(--border);
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(124,106,247,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,106,247,.04) 1px, transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 70% 100% at 50% 0%, black 30%, transparent 100%);
+    }
+    .orb {
+      position:absolute; border-radius:50%; filter:blur(80px);
+      pointer-events:none;
+    }
+    .orb1 { width:400px;height:400px; background:rgba(124,106,247,.1); top:-150px; left:50%; transform:translateX(-50%); }
+    .orb2 { width:250px;height:250px; background:rgba(94,207,138,.06); bottom:-50px; right:10%; }
+
+    .hero-inner { position:relative; z-index:2; max-width:680px; margin:0 auto; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); border-radius:100px;
+      padding:6px 16px; font-size:13px; font-weight:500; color:var(--mid);
+      margin-bottom:24px;
+      background:rgba(255,255,255,.03);
+    }
+    .hero-badge .shield { color:var(--accent); font-size:14px; }
+    .hero h1 {
+      font-family:'Syne',sans-serif;
+      font-size:clamp(38px,6vw,72px); font-weight:800; line-height:1.05;
+      letter-spacing:-2px; margin-bottom:18px;
+    }
+    .hero h1 span { color:var(--accent); }
+    .hero-sub {
+      font-size:17px; color:var(--mid); line-height:1.7; margin-bottom:36px;
+    }
+    .hero-meta {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:13px; color:var(--dim);
+    }
+    .hero-meta .dot { width:4px; height:4px; border-radius:50%; background:var(--dim); }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width:860px; margin:0 auto;
+      padding:80px 24px 100px;
+      display:grid; grid-template-columns:220px 1fr; gap:60px;
+      align-items:start;
+    }
+
+    /* ── SIDEBAR TOC ── */
+    .toc {
+      position:sticky; top:90px;
+    }
+    .toc-label {
+      font-size:11px; font-weight:600; letter-spacing:2px;
+      text-transform:uppercase; color:var(--dim);
+      margin-bottom:16px; display:block;
+    }
+    .toc-list { list-style:none; display:flex; flex-direction:column; gap:2px; }
+    .toc-list a {
+      display:block; font-size:13px; font-weight:500; color:var(--mid);
+      text-decoration:none; padding:7px 12px; border-radius:8px;
+      border-left:2px solid transparent;
+      transition:all .2s; line-height:1.4;
+    }
+    .toc-list a:hover {
+      color:var(--white); background:rgba(255,255,255,.04);
+      border-left-color:var(--accent);
+    }
+
+    /* ── CONTENT ── */
+    .content { min-width:0; }
+
+    .section-block {
+      margin-bottom:56px;
+      padding-bottom:56px;
+      border-bottom:1px solid var(--border);
+    }
+    .section-block:last-child { border-bottom:none; margin-bottom:0; }
+
+    .section-num {
+      font-size:11px; font-weight:600; letter-spacing:2px;
+      text-transform:uppercase; color:var(--accent);
+      margin-bottom:10px; display:block;
+    }
+    .section-block h2 {
+      font-family:'Syne',sans-serif; font-size:24px; font-weight:800;
+      letter-spacing:-.5px; margin-bottom:16px; color:var(--white);
+    }
+    .section-block h3 {
+      font-family:'Syne',sans-serif; font-size:17px; font-weight:700;
+      color:var(--white); margin:28px 0 10px;
+    }
+    .section-block p {
+      font-size:15px; color:var(--mid); line-height:1.8; margin-bottom:14px;
+    }
+    .section-block p:last-child { margin-bottom:0; }
+
+    /* lists */
+    .section-block ul {
+      list-style:none; display:flex; flex-direction:column; gap:10px;
+      margin:16px 0;
+    }
+    .section-block ul li {
+      display:flex; gap:12px; align-items:flex-start;
+      font-size:14px; color:var(--mid); line-height:1.65;
+      background:rgba(255,255,255,.02); border:1px solid var(--border);
+      border-radius:10px; padding:14px 16px;
+    }
+    .section-block ul li::before {
+      content:'→'; color:var(--accent); font-weight:700;
+      flex-shrink:0; margin-top:1px;
+    }
+    .section-block ul li strong { color:var(--white); font-weight:600; }
+
+    /* partners list */
+    .partners-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin:16px 0; }
+    .partners-list li {
+      display:flex; gap:12px; align-items:center;
+      background:var(--bg-2); border:1px solid var(--border);
+      border-radius:10px; padding:12px 16px;
+      font-size:14px; color:var(--mid);
+    }
+    .partners-list li::before { content:'🔗'; flex-shrink:0; }
+    .partners-list li strong { color:var(--white); min-width:200px; }
+    .partners-list a {
+      color:var(--accent); text-decoration:none; font-size:13px;
+      transition:color .2s; word-break:break-all;
+    }
+    .partners-list a:hover { color:#a090ff; text-decoration:underline; }
+
+    /* rights grid */
+    .rights-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:10px; margin:16px 0;
+    }
+    .right-card {
+      background:var(--bg-2); border:1px solid var(--border);
+      border-radius:12px; padding:18px 16px;
+      transition:border-color .2s, background .2s;
+    }
+    .right-card:hover { border-color:rgba(124,106,247,.3); background:var(--bg-3); }
+    .right-card h4 {
+      font-size:13px; font-weight:700; color:var(--white);
+      margin-bottom:6px;
+    }
+    .right-card p { font-size:13px; color:var(--dim); line-height:1.55; margin:0; }
+
+    /* contact box */
+    .contact-box {
+      background:var(--bg-2); border:1px solid var(--border);
+      border-radius:var(--r); padding:32px 28px; margin-top:20px;
+    }
+    .contact-box p { font-size:15px; color:var(--mid); margin-bottom:20px; }
+    .contact-links { display:flex; flex-direction:column; gap:10px; }
+    .contact-link {
+      display:inline-flex; align-items:center; gap:12px;
+      background:rgba(124,106,247,.08); border:1px solid rgba(124,106,247,.2);
+      border-radius:10px; padding:14px 20px;
+      font-size:14px; font-weight:600; color:var(--white);
+      text-decoration:none; transition:all .2s;
+    }
+    .contact-link:hover { background:rgba(124,106,247,.15); border-color:rgba(124,106,247,.4); }
+    .contact-link .ci { font-size:18px; }
+
+    /* date badge */
+    .date-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.04); border:1px solid var(--border);
+      border-radius:100px; padding:8px 18px;
+      font-size:13px; color:var(--dim); margin-top:32px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background:var(--bg); border-top:1px solid var(--border);
+      padding:48px 24px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:24px;
+    }
+    .footer-brand { display:flex; flex-direction:column; gap:6px; }
+    .footer-logo {
+      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
+      color:var(--white); letter-spacing:-.5px;
+    }
+    .footer-logo span { color:var(--accent); }
+    .footer-tagline { font-size:13px; color:var(--dim); }
+    .footer-links { display:flex; gap:24px; flex-wrap:wrap; }
+    .footer-links a {
+      font-size:13px; font-weight:500; color:var(--dim);
+      text-decoration:none; transition:color .2s;
+    }
+    .footer-links a:hover { color:var(--white); }
+    .footer-copy { font-size:12px; color:var(--dim); }
+
+    @media(max-width:760px){
+      nav { padding:14px 20px; }
+      .nav-links { display:none; }
+      .page-wrap { grid-template-columns:1fr; }
+      .toc { display:none; }
+      footer { flex-direction:column; text-align:center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="header-wrapper">
-    <img src="header.jpg" alt="Imagen de cabecera de El Buscator" class="header-image" />
-    <div class="header-overlay">
-      <h1><i class="fas fa-shield-alt"></i> Política de Privacidad</h1>
-      <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-        <a href="privacy.html"><i class="fas fa-lock"></i> Privacidad</a>
-      </nav>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">el<span>buscator</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#apps">Apps</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="shield">🔒</span> Documento legal</div>
+    <h1>Política de<br><span>Privacidad</span></h1>
+    <p class="hero-sub">Transparencia total sobre cómo tratamos tus datos en todas las aplicaciones de elbuscator.</p>
+    <div class="hero-meta">
+      <span>elbuscator</span>
+      <span class="dot"></span>
+      <span>Última actualización: 26 de febrero de 2025</span>
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <section>
-      <h2>1. Nuestro propósito</h2>
-      <p>Las aplicaciones desarrolladas tienen como finalidad entretener a los usuarios. Nos gustaría que el uso de la aplicación fuese seguro, y para lograr este propósito creamos esta Política de Privacidad y nos gustaría que revisara todos los puntos.</p>
-  
-      <h2>2. Tipos de datos recopilados</h2>
-      <p>La aplicación no está diseñada para recopilar información, sin importar si son personales o no personales. Todos los permisos que solicita son para el rendimiento de la aplicación. Queremos asegurarle que esta información privada suya no será utilizada de ninguna otra manera, no la reenviaremos a terceros ni la usaremos indebidamente.</p>
-      <p>Entre los tipos de datos personales que recopila esta aplicación por medio de terceros, se encuentran: datos de uso; Cookies.</p>
-  
-      <h2>3. ¿Cómo obtienen terceros su información?</h2>
-      <p>Al utilizar nuestra aplicación hacemos uso de anuncios personalizados. Para ello, Google consulta información guardada en Cookies y, de esta forma, te muestra anuncios personalizados. También se obtienen estadísticas de uso de la aplicación que permiten al Propietario monitorear y analizar el tráfico y pueden usarse para realizar un seguimiento del comportamiento del Usuario.</p>
-      
-      <h2>4. Nuestros socios y su uso de la información</h2>
-      <p>Dado que la aplicación es gratuita, estamos cooperando con Google para mostrar anuncios. No es nuestro objetivo recopilar ninguna información privada sobre usted, pero no somos responsables de las acciones de nuestros socios y es por eso que debe consultar sus Políticas de Privacidad:</p>
-  
+<!-- CONTENT -->
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="toc">
+    <span class="toc-label">// contenido</span>
+    <ul class="toc-list">
+      <li><a href="#s1">1. Nuestro propósito</a></li>
+      <li><a href="#s2">2. Datos recopilados</a></li>
+      <li><a href="#s3">3. Cómo obtienen terceros tus datos</a></li>
+      <li><a href="#s4">4. Nuestros socios</a></li>
+      <li><a href="#s5">5. Derechos de los usuarios</a></li>
+      <li><a href="#s6">6. Información adicional</a></li>
+      <li><a href="#s7">7. Cambios en la política</a></li>
+      <li><a href="#s8">8. Contacto</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <div class="section-block" id="s1">
+      <span class="section-num">// 01</span>
+      <h2>Nuestro propósito</h2>
+      <p>Las aplicaciones desarrolladas por elbuscator tienen como finalidad entretener y ser útiles a los usuarios. Queremos que el uso de nuestras aplicaciones sea seguro, y para lograr este propósito hemos creado esta Política de Privacidad.</p>
+      <p>Te recomendamos que la revises con atención para entender cómo gestionamos la información relacionada con el uso de nuestras apps.</p>
+    </div>
+
+    <div class="section-block" id="s2">
+      <span class="section-num">// 02</span>
+      <h2>Tipos de datos recopilados</h2>
+      <p>Nuestras aplicaciones no están diseñadas para recopilar información personal de manera directa. Todos los permisos que se solicitan son exclusivamente para el correcto funcionamiento de la aplicación.</p>
+      <p>Queremos asegurarte que tu información privada no será utilizada de ninguna otra manera, ni reenviada a terceros de forma indebida. No obstante, a través de servicios de terceros integrados en la app, se pueden recopilar los siguientes datos de forma indirecta:</p>
       <ul>
-        <li><strong>Google Play Services:</strong> <a href="https://policies.google.com/privacy?hl=es" target="_blank">https://policies.google.com/privacy?hl=es</a></li>
-        <li><strong>Google Admob:</strong> <a href="https://support.google.com/admob/answer/6128543?hl=es" target="_blank">https://support.google.com/admob/answer/6128543?hl=es</a></li>
-        <li><strong>Google Analytics for Firebase:</strong> <a href="https://firebase.google.com/policies/analytics" target="_blank">https://firebase.google.com/policies/analytics</a></li>
-        <li><strong>Firebase Crashlytics:</strong> <a href="https://firebase.google.com/support/privacy?hl=es-419" target="_blank">https://firebase.google.com/support/privacy?hl=es-419</a></li>
+        <li><strong>Datos de uso</strong> — Estadísticas anónimas de interacción con la aplicación.</li>
+        <li><strong>Cookies</strong> — Utilizadas principalmente por los servicios de publicidad de Google.</li>
       </ul>
-      <p>Tenga en cuenta que esta lista puede sufrir algunos cambios debido a la adición de algunos socios más o la alternancia de los existentes. Debe revisarlo de vez en cuando y mantenerse actualizado.</p>
-  
-      <h2>5. Los derechos de los usuarios</h2>
-      <p>Los usuarios pueden ejercer ciertos derechos con respecto a sus Datos procesados por el Titular.</p>
-      <p>Los usuarios con derecho a estándares de protección más amplios pueden ejercer cualquiera de los derechos que se describen a continuación. En todos los demás casos, los Usuarios pueden consultar con el Propietario para averiguar qué derechos se les aplican.</p>
-      <p>En particular, los usuarios tienen derecho a hacer lo siguiente:</p>
-      <ul>
-        <li><strong>Retirar su consentimiento en cualquier momento.</strong> Los usuarios tienen derecho a retirar el consentimiento cuando previamente hayan dado su consentimiento para el procesamiento de sus Datos Personales.</li>
-        <li><strong>Objetar el procesamiento de sus Datos.</strong> Los usuarios tienen derecho a oponerse al procesamiento de sus Datos si el procesamiento se lleva a cabo sobre una base legal distinta al consentimiento.</li>
-        <li><strong>Acceder a sus datos.</strong> Los usuarios tienen derecho a saber si el propietario está procesando los datos, obtener información sobre ciertos aspectos del procesamiento y obtener una copia de los datos que se procesan.</li>
-        <li><strong>Verificar y buscar rectificación.</strong> Los usuarios tienen derecho a verificar la exactitud de sus Datos y solicitar que se actualicen o corrijan.</li>
-        <li><strong>Restringir el procesamiento de sus Datos.</strong> Los usuarios tienen derecho, en determinadas circunstancias, a restringir el procesamiento de sus datos. En este caso, el Titular no procesará sus Datos para ningún otro fin que no sea su almacenamiento.</li>
-        <li><strong>Hacer que se eliminen sus Datos personales.</strong> Los usuarios tienen derecho, en determinadas circunstancias, a obtener el borrado de sus datos del propietario.</li>
-        <li><strong>Recibir sus datos y transferirlos a otro controlador.</strong> Los usuarios tienen derecho a recibir sus Datos en un formato estructurado, de uso común y legible por máquina y, si es técnicamente posible, a que se transmitan a otro responsable del tratamiento sin ningún obstáculo.</li>
-        <li><strong>Presentar una queja.</strong> Los usuarios tienen derecho a presentar una reclamación ante su autoridad de protección de datos competente.</li>
+    </div>
+
+    <div class="section-block" id="s3">
+      <span class="section-num">// 03</span>
+      <h2>¿Cómo obtienen terceros tu información?</h2>
+      <p>Al utilizar nuestras aplicaciones hacemos uso de anuncios personalizados. Para ello, Google consulta información guardada en Cookies y, de esta forma, te muestra anuncios relevantes para ti.</p>
+      <p>También se obtienen estadísticas de uso de la aplicación que permiten monitorear y analizar el tráfico, con el fin de mejorar la experiencia de usuario y detectar errores. En ningún caso estos datos son vendidos ni cedidos a terceros con fines comerciales ajenos al funcionamiento de la app.</p>
+    </div>
+
+    <div class="section-block" id="s4">
+      <span class="section-num">// 04</span>
+      <h2>Nuestros socios y su uso de la información</h2>
+      <p>Dado que nuestras aplicaciones son gratuitas, cooperamos con Google para mostrar anuncios. No es nuestro objetivo recopilar información privada sobre ti, pero no somos responsables de las acciones de nuestros socios. Te recomendamos consultar sus políticas de privacidad:</p>
+      <ul class="partners-list">
+        <li>
+          <strong>Google Play Services</strong>
+          <a href="https://policies.google.com/privacy?hl=es" target="_blank">policies.google.com/privacy</a>
+        </li>
+        <li>
+          <strong>Google AdMob</strong>
+          <a href="https://support.google.com/admob/answer/6128543?hl=es" target="_blank">support.google.com/admob</a>
+        </li>
+        <li>
+          <strong>Google Analytics for Firebase</strong>
+          <a href="https://firebase.google.com/policies/analytics" target="_blank">firebase.google.com/policies/analytics</a>
+        </li>
+        <li>
+          <strong>Firebase Crashlytics</strong>
+          <a href="https://firebase.google.com/support/privacy?hl=es-419" target="_blank">firebase.google.com/support/privacy</a>
+        </li>
       </ul>
-      
-      <h2>6. Información adicional sobre la recopilación y el procesamiento de datos</h2>
-      
+      <p>Esta lista puede sufrir cambios debido a la adición o sustitución de socios. Te recomendamos revisarla periódicamente.</p>
+    </div>
+
+    <div class="section-block" id="s5">
+      <span class="section-num">// 05</span>
+      <h2>Derechos de los usuarios</h2>
+      <p>Los usuarios pueden ejercer ciertos derechos con respecto a sus datos procesados. En particular, tienes derecho a:</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>Retirar el consentimiento</h4>
+          <p>Puedes retirar tu consentimiento para el procesamiento de datos personales en cualquier momento.</p>
+        </div>
+        <div class="right-card">
+          <h4>Oponerte al procesamiento</h4>
+          <p>Puedes oponerte al procesamiento de tus datos si se basa en una base legal distinta al consentimiento.</p>
+        </div>
+        <div class="right-card">
+          <h4>Acceder a tus datos</h4>
+          <p>Tienes derecho a saber si se están procesando tus datos y a obtener una copia de los mismos.</p>
+        </div>
+        <div class="right-card">
+          <h4>Rectificación</h4>
+          <p>Puedes solicitar que tus datos sean actualizados o corregidos si son inexactos.</p>
+        </div>
+        <div class="right-card">
+          <h4>Restricción del procesamiento</h4>
+          <p>En determinadas circunstancias, puedes limitar el procesamiento de tus datos a su mero almacenamiento.</p>
+        </div>
+        <div class="right-card">
+          <h4>Eliminación de datos</h4>
+          <p>Tienes derecho, en determinadas circunstancias, a solicitar el borrado de tus datos personales.</p>
+        </div>
+        <div class="right-card">
+          <h4>Portabilidad</h4>
+          <p>Puedes recibir tus datos en formato estructurado y legible por máquina para transferirlos a otro responsable.</p>
+        </div>
+        <div class="right-card">
+          <h4>Presentar una queja</h4>
+          <p>Tienes derecho a reclamar ante tu autoridad de protección de datos competente.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="s6">
+      <span class="section-num">// 06</span>
+      <h2>Información adicional</h2>
+
       <h3>Acción legal</h3>
-      <p>Los datos personales del usuario pueden ser utilizados con fines legales por el propietario en el tribunal o en las etapas que conducen a posibles acciones legales derivadas del uso indebido de esta aplicación o los servicios relacionados.</p>
-      <p>El Usuario declara ser consciente de que se le puede solicitar al Titular que revele datos personales a solicitud de las autoridades públicas.</p>
-  
-      <h3>Información adicional sobre los datos personales del usuario</h3>
-      <p>Además de la información contenida en esta política de privacidad, esta Aplicación puede proporcionar al Usuario información adicional y contextual sobre Servicios particulares o la recopilación y procesamiento de Datos Personales cuando lo solicite.</p>
-  
-      <h3>Registros y mantenimiento del sistema</h3>
-      <p>Para fines de operación y mantenimiento, esta Aplicación y cualquier servicio de terceros pueden recopilar archivos que registran la interacción con esta Aplicación (registros del sistema) y utilizar otros Datos Personales (como la Dirección IP) para este propósito.</p>
-      
-      <h3>Información no contenida en esta política</h3>
-      <p>Se pueden solicitar al propietario más detalles sobre la recopilación o el procesamiento de datos personales en cualquier momento. Consulte la información de contacto al final de este documento.</p>
-      
-      <h2>7. Cambios a esta política de privacidad</h2>
-      <p>El Propietario se reserva el derecho de realizar cambios en esta política de privacidad en cualquier momento notificando a sus Usuarios en esta página y posiblemente dentro de esta Aplicación y/o, en la medida en que sea técnica y legalmente posible, enviando un aviso a los Usuarios a través de cualquier información de contacto disponible para el propietario. Se recomienda encarecidamente consultar esta página con frecuencia, refiriéndose a la fecha de la última modificación que se indica en la parte inferior.</p>
-      <p>Si los cambios afectan las actividades de procesamiento realizadas sobre la base del consentimiento del Usuario, el Propietario deberá obtener un nuevo consentimiento del Usuario, cuando sea necesario.</p>
-      
-      <h2>8. ¿Cómo contactar con nosotros?</h2>
-      <div class="contact-box">
-        <p>Si tiene alguna pregunta o inquietud con respecto a esta política de privacidad, puede contactarnos:</p>
-        <a href="mailto:elbuscator@gmail.com" class="email-link">
-          <i class="fas fa-envelope"></i> elbuscator@gmail.com
-        </a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchMos6NxqyE7GArwaJSOHlOkULHo1_YjZz0OCFGtaP1RwMEA/viewform?usp=sharing&ouid=114561640788865159723" class="email-link" target="_blank">
-          <i class="fas fa-paper-plane"></i> Formulario de contacto
-        </a>
-      </div>
-  
-      <div class="update-date">
-        <i class="fas fa-calendar-alt"></i> Fecha de última actualización: 26 de febrero de 2025
-      </div>
-    </section>
-  </div>
+      <p>Los datos personales del usuario pueden ser utilizados con fines legales por el titular en el tribunal o en las etapas previas a posibles acciones legales derivadas del uso indebido de esta aplicación. El usuario declara ser consciente de que se le puede solicitar al titular que revele datos personales a requerimiento de autoridades públicas.</p>
 
-  <footer>
-    <p>© 2025 elbuscator. Todos los derechos reservados.</p>
-  </footer>
+      <h3>Datos personales adicionales</h3>
+      <p>Además de la información contenida en esta política de privacidad, la aplicación puede proporcionar información adicional y contextual sobre servicios particulares o la recopilación y procesamiento de datos personales cuando lo solicites.</p>
+
+      <h3>Registros del sistema</h3>
+      <p>Para fines de operación y mantenimiento, esta aplicación y los servicios de terceros integrados pueden recopilar archivos que registran la interacción con la app (registros del sistema) y usar otros datos —como la dirección IP— para este propósito.</p>
+
+      <h3>Información no contenida en esta política</h3>
+      <p>Puedes solicitar al titular más detalles sobre la recopilación o el procesamiento de datos personales en cualquier momento a través de los datos de contacto que figuran al final de este documento.</p>
+    </div>
+
+    <div class="section-block" id="s7">
+      <span class="section-num">// 07</span>
+      <h2>Cambios en esta política</h2>
+      <p>El titular se reserva el derecho de realizar cambios en esta política de privacidad en cualquier momento, notificando a los usuarios en esta página. Se recomienda consultarla con frecuencia, prestando atención a la fecha de última modificación.</p>
+      <p>Si los cambios afectan actividades de procesamiento realizadas sobre la base del consentimiento del usuario, el titular obtendrá un nuevo consentimiento cuando sea necesario.</p>
+    </div>
+
+    <div class="section-block" id="s8">
+      <span class="section-num">// 08</span>
+      <h2>¿Cómo contactar con nosotros?</h2>
+      <div class="contact-box">
+        <p>Si tienes alguna pregunta o inquietud sobre esta política de privacidad, puedes contactarnos por estos canales:</p>
+        <div class="contact-links">
+          <a href="mailto:elbuscator@gmail.com" class="contact-link">
+            <span class="ci">✉️</span>
+            elbuscator@gmail.com
+          </a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSchMos6NxqyE7GArwaJSOHlOkULHo1_YjZz0OCFGtaP1RwMEA/viewform?usp=sharing" target="_blank" class="contact-link">
+            <span class="ci">📋</span>
+            Formulario de contacto
+          </a>
+        </div>
+      </div>
+      <div class="date-badge">
+        📅 Última actualización: 26 de febrero de 2025
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-logo">el<span>buscator</span></span>
+    <span class="footer-tagline">Innovación en cada línea de código</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#apps">Apps</a>
+    <a href="privacy.html">Privacidad</a>
+  </div>
+  <span class="footer-copy">© 2026 elbuscator · Todos los derechos reservados</span>
+</footer>
+
 </body>
 </html>
