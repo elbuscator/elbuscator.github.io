@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://elbuscator.github.io/sitemap.xml
