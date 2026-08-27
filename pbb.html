@@ -1,887 +1,664 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plaza Blanca Burguer — Hamburguesería en Cantabria</title>
-<meta name="description" content="Plaza Blanca Burguer. Hamburguesas, bocatas y raciones caseras. Ganadora del premio a la Mejor Hamburguesa de Cantabria con La Game Over.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Caveat:wght@600;700&family=Press+Start+2P&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Plaza Blanca Burguer · Ampuero, Cantabria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--p:#8B3DC8;--pd:#5C1F8A;--pl:#C07EF0;--g:#7EC86A;--gd:#4A9E38;--w:#F8F5FF;--b:#0D0D0D;--s1:#111118;--s2:#080810}
+html{scroll-behavior:smooth}
+body{background:var(--b);color:var(--w);font-family:'Nunito',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--b)}::-webkit-scrollbar-thumb{background:var(--p);border-radius:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(13,13,13,0);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(20px);border-bottom-color:rgba(139,61,200,.18)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;font-style:italic;color:var(--pl);text-decoration:none}
+.nav-logo-icon{width:28px;height:28px;background:var(--p);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-style:normal}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:800;color:rgba(248,245,255,.5);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--pl)}
+.nav-cta{padding:.5rem 1.25rem;background:var(--p);color:#fff!important;border-radius:100px;transition:background .2s,transform .2s!important}
+.nav-cta:hover{background:var(--pd)!important;transform:translateY(-1px)!important}
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;opacity:.6}
+.hero-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(139,61,200,.22) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 80% 70%,rgba(126,200,106,.07) 0%,transparent 60%),radial-gradient(ellipse 30% 30% at 20% 80%,rgba(139,61,200,.08) 0%,transparent 50%);pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orb-float 8s ease-in-out infinite}
+.orb-1{width:400px;height:400px;background:rgba(139,61,200,.12);top:-100px;left:-100px}
+.orb-2{width:300px;height:300px;background:rgba(126,200,106,.06);bottom:100px;right:-50px;animation-delay:3s}
+.orb-3{width:200px;height:200px;background:rgba(192,126,240,.08);top:50%;left:60%;animation-delay:5s}
+@keyframes orb-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem;max-width:800px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.4em;color:var(--g);margin-bottom:1.5rem;text-transform:uppercase}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:30px;height:1px;background:var(--g);opacity:.5}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,10vw,7rem);font-weight:900;line-height:.95;color:var(--w);margin-bottom:1.25rem;letter-spacing:-.02em}
+.hero-title .line-italic{display:block;color:var(--pl);font-style:italic;text-shadow:0 0 60px rgba(192,126,240,.4)}
+.hero-title .line-outline{display:block;-webkit-text-stroke:1.5px rgba(248,245,255,.3);color:transparent}
+.hero-slogan{font-family:'Bebas Neue',sans-serif;font-size:clamp(1rem,3vw,1.4rem);letter-spacing:.2em;color:rgba(248,245,255,.35);margin-bottom:2rem}
+.hero-desc{max-width:480px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.85;color:rgba(248,245,255,.65)}
+.hero-desc em{color:var(--pl);font-style:normal;font-weight:800}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.04em;cursor:pointer;transition:all .25s;text-decoration:none;border:2px solid transparent}
+.btn-primary{background:var(--p);color:#fff;box-shadow:0 0 30px rgba(139,61,200,.35),0 4px 20px rgba(0,0,0,.3)}
+.btn-primary:hover{background:var(--pd);transform:translateY(-2px);box-shadow:0 0 50px rgba(139,61,200,.5)}
+.btn-ghost{background:transparent;color:var(--w);border-color:rgba(248,245,255,.15)}
+.btn-ghost:hover{border-color:var(--pl);color:var(--pl);transform:translateY(-2px)}
+.award-pill{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.2rem;background:rgba(139,61,200,.12);border:1px solid rgba(139,61,200,.35);border-radius:100px;font-size:.8rem;font-weight:700;color:var(--pl);animation:pill-glow 3s ease-in-out infinite}
+@keyframes pill-glow{0%,100%{box-shadow:0 0 15px rgba(139,61,200,.2)}50%{box-shadow:0 0 30px rgba(139,61,200,.45)}}
+.scroll-down{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.3;animation:scroll-bounce 2s ease-in-out infinite}
+.scroll-down span{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700}
+.scroll-down-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--pl),transparent)}
+@keyframes scroll-bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--p),var(--g),var(--p),transparent);opacity:.3}
+.section-wrap{padding:6rem 1.5rem}
+.section-inner{max-width:960px;margin:0 auto}
+.section-inner-wide{max-width:1080px;margin:0 auto}
+.section-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:.78rem;letter-spacing:.35em;color:var(--g);margin-bottom:.75rem;text-transform:uppercase}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;color:var(--w);line-height:1.05;margin-bottom:1.5rem}
+.section-title em{color:var(--pl);font-style:italic}
+.about-bg{background:var(--b)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-text p{color:rgba(248,245,255,.68);line-height:1.95;font-size:1rem;margin-bottom:1rem}
+.about-text p strong{color:var(--pl);font-weight:800}
+.about-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.75rem}
+.pill{padding:.32rem 1rem;border-radius:100px;font-size:.76rem;font-weight:800;border:1.5px solid;letter-spacing:.03em;transition:all .2s}
+.pill-p{border-color:rgba(139,61,200,.4);color:var(--pl);background:rgba(139,61,200,.08)}
+.pill-g{border-color:rgba(78,158,56,.4);color:var(--g);background:rgba(126,200,106,.07)}
+.about-stats{display:flex;flex-direction:column;gap:1rem}
+.stat-card{background:rgba(255,255,255,.025);border:1px solid rgba(139,61,200,.18);border-radius:20px;padding:1.6rem 1.8rem;position:relative;overflow:hidden;transition:all .3s}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--p),var(--g));opacity:0;transition:opacity .3s}
+.stat-card:hover{border-color:rgba(139,61,200,.4);background:rgba(139,61,200,.07)}
+.stat-card:hover::before{opacity:1}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.4rem;color:var(--pl);line-height:1;text-shadow:0 0 30px rgba(192,126,240,.35)}
+.stat-label{font-size:.83rem;color:rgba(248,245,255,.5);margin-top:.3rem;font-weight:600}
+.feature-bg{background:var(--s2)}
+.feature-intro{text-align:center;max-width:600px;margin:0 auto 2.5rem}
+.feature-intro p{color:rgba(248,245,255,.6);font-size:1.05rem;line-height:1.8}
 
-  /* ---------- Tokens ---------- */
-  :root{
-    --bg: #0c0b0f;
-    --bg-alt: #141218;
-    --surface: #1a1720;
-    --surface-2: #221e29;
-    --purple: #a644bb;
-    --purple-deep: #6e2c82;
-    --purple-light: #dd9bea;
-    --green: #94d975;
-    --green-deep: #5da33f;
-    --gold: #e8b94b;
-    --ink: #f6f1ec;
-    --muted: #b6acc4;
-    --line: rgba(246,241,236,0.12);
+/* Desktop: grid 3 cols */
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.feature-card{border-radius:24px;padding:2.2rem 1.75rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-card.fc-large{grid-column:span 2}
 
-    --font-display: 'Baloo 2', sans-serif;
-    --font-script: 'Caveat', cursive;
-    --font-arcade: 'Press Start 2P', monospace;
-    --font-body: 'Work Sans', sans-serif;
-  }
+/* Mobile: horizontal scroll */
+.feature-scroll-hint{display:none}
 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-body);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  img{ max-width:100%; display:block; }
-  a{ color: inherit; }
-  h1,h2,h3{ font-family: var(--font-display); margin:0; line-height:1.05; }
-  p{ margin:0; }
-  ul{ margin:0; padding:0; list-style:none; }
-  button{ font-family: inherit; }
-
-  :focus-visible{
-    outline: 3px solid var(--green);
-    outline-offset: 3px;
-  }
-
-  .wrap{
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .eyebrow{
-    font-family: var(--font-arcade);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    color: var(--green);
-    display:inline-block;
-    margin-bottom: 14px;
-  }
-
-  /* ---------- Background texture ---------- */
-  body{
-    background-image:
-      radial-gradient(circle at 12% 8%, rgba(166,68,187,0.16), transparent 42%),
-      radial-gradient(circle at 88% 4%, rgba(148,217,117,0.10), transparent 38%),
-      var(--bg);
-  }
-
-  /* ---------- Nav ---------- */
-  header.site-nav{
-    position: sticky;
-    top:0;
-    z-index: 50;
-    backdrop-filter: blur(10px);
-    background: rgba(12,11,15,0.82);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 14px 24px;
-  }
-  .logo-mark{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color: var(--ink);
-  }
-  .logo-badge{
-    width:40px; height:40px;
-    border-radius: 11px;
-    background: var(--ink);
-    position: relative;
-    flex: none;
-    overflow: hidden;
-    box-shadow: 0 0 0 2px var(--line);
-  }
-  .logo-badge .bun{
-    position:absolute; left:6px; right:6px;
-    height:9px;
-    background: var(--purple);
-    border-radius: 5px;
-  }
-  .logo-badge .bun.top{ top:7px; }
-  .logo-badge .bun.bottom{ bottom:7px; }
-  .logo-badge .lettuce{
-    position:absolute; left:5px; right:5px; top:18px; height:6px;
-  }
-  .logo-word{
-    font-family: var(--font-display);
-    font-weight:800;
-    font-size:1.2rem;
-    letter-spacing: 0.01em;
-  }
-  .logo-word span{
-    display:block;
-    font-family: var(--font-script);
-    font-weight:600;
-    font-size: 0.85rem;
-    color: var(--purple-light);
-    margin-top:-4px;
-  }
-
-  nav.links{
-    display:flex;
-    gap: 28px;
-    align-items:center;
-  }
-  nav.links a{
-    text-decoration:none;
-    font-weight:600;
-    font-size:0.92rem;
-    color: var(--muted);
-    padding: 6px 2px;
-    border-bottom: 2px solid transparent;
-    transition: color .2s ease, border-color .2s ease;
-  }
-  nav.links a:hover{ color: var(--ink); border-color: var(--green); }
-
-  .nav-cta{
-    background: var(--purple);
-    color: var(--ink) !important;
-    padding: 9px 18px !important;
-    border-radius: 999px;
-    border-bottom: none !important;
-    font-weight:700 !important;
-  }
-  .nav-cta:hover{ background: var(--purple-deep); border-color: transparent !important; }
-
-  .burger-toggle{
-    display:none;
-    background:none;
-    border: 1px solid var(--line);
-    border-radius:8px;
-    width:42px; height:38px;
-    color: var(--ink);
-    cursor:pointer;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    padding: 92px 0 110px;
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
-    align-items:center;
-  }
-  .hero h1{
-    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
-    font-weight:800;
-    letter-spacing: -0.01em;
-  }
-  .hero h1 em{
-    font-style:normal;
-    color: var(--purple-light);
-  }
-  .hero .script{
-    font-family: var(--font-script);
-    color: var(--green);
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight:700;
-    display:inline-block;
-    margin-bottom: 8px;
-    transform: rotate(-2deg);
-  }
-  .hero p.lede{
-    margin-top: 22px;
-    max-width: 46ch;
-    color: var(--muted);
-    font-size: 1.08rem;
-  }
-  .hero-actions{
-    margin-top: 34px;
-    display:flex;
-    gap:16px;
-    flex-wrap:wrap;
-  }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-weight:700;
-    font-size:0.98rem;
-    text-decoration:none;
-    cursor:pointer;
-    border: 2px solid transparent;
-    transition: transform .18s ease, background .18s ease, border-color .18s ease;
-  }
-  .btn:hover{ transform: translateY(-2px); }
-  .btn-primary{ background: var(--purple); color:var(--ink); }
-  .btn-primary:hover{ background: var(--purple-deep); }
-  .btn-ghost{ border-color: var(--line); color: var(--ink); }
-  .btn-ghost:hover{ border-color: var(--green); color: var(--green); }
-
-  /* Hero illustration: stacked burger built from CSS */
-  .hero-art{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height: 360px;
-  }
-  .stack{
-    width: 280px;
-    filter: drop-shadow(0 30px 40px rgba(0,0,0,0.55));
-  }
-  .stack > div{ border-radius: 999px; margin: 0 auto; position:relative; }
-  .bun-top{
-    width: 260px; height: 120px;
-    background: linear-gradient(180deg, #e2c07a, #c99a4c);
-    border-radius: 140px 140px 30px 30px;
-  }
-  .bun-top::after{
-    content:"";
-    position:absolute; inset: 14px 22px auto 22px; height:6px;
-    background: rgba(255,255,255,0.35);
-    border-radius: 999px;
-  }
-  .lettuce-layer{
-    width: 292px; height: 34px;
-    margin-top: -14px;
-    background: var(--green);
-    clip-path: polygon(0% 40%,5% 10%,12% 45%,20% 5%,28% 45%,36% 8%,44% 45%,52% 10%,60% 45%,68% 6%,76% 45%,84% 10%,92% 45%,100% 15%,100% 100%,0% 100%);
-  }
-  .cheese-layer{
-    width: 250px; height: 26px;
-    margin-top: -10px;
-    background: var(--gold);
-    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
-  }
-  .patty{
-    width: 258px; height: 40px;
-    margin-top: -6px;
-    background: linear-gradient(180deg, #5a3624, #3f2417);
-    border-radius: 20px;
-  }
-  .purple-sauce{
-    width: 250px; height: 22px;
-    margin-top: -6px;
-    background: var(--purple);
-    border-radius: 14px;
-  }
-  .bun-bottom{
-    width: 268px; height: 60px;
-    margin-top: -4px;
-    background: linear-gradient(180deg, #d9ac5e, #b3813b);
-    border-radius: 22px 22px 60px 60px;
-  }
-  .hero-badge{
-    position:absolute;
-    top: -6px; right: -18px;
-    background: var(--ink);
-    color: var(--bg);
-    font-family: var(--font-arcade);
-    font-size: 0.55rem;
-    line-height:1.6;
-    text-align:center;
-    padding: 12px;
-    border-radius: 50%;
-    width: 92px; height: 92px;
-    display:flex; align-items:center; justify-content:center;
-    transform: rotate(8deg);
-    box-shadow: 0 0 0 4px var(--green);
-  }
-
-  /* ---------- Section shell ---------- */
-  section{ padding: 88px 0; }
-  .section-head{
-    max-width: 640px;
-    margin-bottom: 48px;
-  }
-  .section-head h2{
-    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-    font-weight:800;
-  }
-  .section-head p{
-    margin-top: 14px;
-    color: var(--muted);
-    font-size: 1.02rem;
-  }
-
-  /* ---------- Award / Game Over section ---------- */
-  .award{
-    background: var(--bg-alt);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    position: relative;
-  }
-  .arcade-screen{
-    background: #0a0a0a;
-    border: 3px solid var(--purple);
-    border-radius: 18px;
-    padding: 56px 32px;
-    text-align:center;
-    position:relative;
-    box-shadow:
-      0 0 0 6px rgba(166,68,187,0.12),
-      inset 0 0 60px rgba(166,68,187,0.14);
-    overflow:hidden;
-  }
-  .arcade-screen::before{
-    content:"";
-    position:absolute; inset:0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.035) 0px,
-      rgba(255,255,255,0.035) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    pointer-events:none;
-  }
-  .arcade-score{
-    font-family: var(--font-arcade);
-    font-size: 0.62rem;
-    color: var(--green);
-    letter-spacing: 0.08em;
-    margin-bottom: 26px;
-  }
-  .arcade-title{
-    font-family: var(--font-arcade);
-    color: var(--purple-light);
-    font-size: clamp(1.7rem, 6vw, 3.4rem);
-    text-shadow: 0 0 18px rgba(166,68,187,0.9), 0 0 44px rgba(166,68,187,0.5);
-    letter-spacing: 0.04em;
-    margin-bottom: 22px;
-  }
-  .arcade-sub{
-    font-family: var(--font-arcade);
-    color: var(--gold);
-    font-size: clamp(0.72rem, 1.8vw, 0.95rem);
-    line-height: 2;
-  }
-  .arcade-burger-name{
-    color: var(--ink);
-  }
-  .insert-coin{
-    margin-top: 30px;
-    font-family: var(--font-arcade);
-    font-size: 0.6rem;
-    color: var(--muted);
-    animation: blink 1.1s steps(1) infinite;
-  }
-  @keyframes blink{ 50%{ opacity: 0.15; } }
-
-  .award-copy{
-    max-width: 620px;
-    margin: 34px auto 0;
-    text-align:center;
-    color: var(--muted);
-    font-size: 1.02rem;
-  }
-  .award-copy strong{ color: var(--ink); }
-
-  /* ---------- Menu ---------- */
-  .menu-tabs{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 10px;
-    margin-bottom: 40px;
-  }
-  .menu-tab{
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight:600;
-    font-size: 0.9rem;
-    cursor:pointer;
-    transition: all .18s ease;
-  }
-  .menu-tab:hover{ color: var(--ink); border-color: var(--purple-light); }
-  .menu-tab.active{
-    background: var(--purple);
-    color: var(--ink);
-    border-color: var(--purple);
-  }
-
-  .menu-panel{ display:none; }
-  .menu-panel.active{ display:block; animation: fadeIn .35s ease; }
-  @keyframes fadeIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform:none; } }
-
-  .menu-list{ display:grid; gap: 4px; }
-  .menu-item{
-    display:flex;
-    align-items:baseline;
-    gap: 10px;
-    padding: 16px 4px;
-    border-bottom: 1px dashed var(--line);
-  }
-  .menu-item .name{
-    font-weight:700;
-    font-size: 1.02rem;
-    white-space: nowrap;
-  }
-  .menu-item .desc{
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
-  .menu-item .leader{
-    flex: 1;
-    border-bottom: 2px dotted var(--line);
-    transform: translateY(-5px);
-    min-width: 20px;
-  }
-  .menu-item .price{
-    font-family: var(--font-display);
-    font-weight:700;
-    color: var(--gold);
-    white-space: nowrap;
-    font-size: 1.02rem;
-  }
-  .menu-item .item-text{ display:flex; flex-direction:column; gap:2px; }
-
-  .menu-item.featured{
-    background: linear-gradient(90deg, rgba(166,68,187,0.14), transparent);
-    border-radius: 12px;
-    border-bottom: 1px solid var(--purple);
-    padding: 18px 16px;
-  }
-  .featured-tag{
-    font-family: var(--font-arcade);
-    font-size: 0.5rem;
-    color: var(--bg);
-    background: var(--gold);
-    padding: 4px 8px;
-    border-radius: 5px;
-    margin-right: 8px;
-    display:inline-block;
-    vertical-align: middle;
-  }
-
-  .menu-note{
-    margin-top: 28px;
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-
-  /* ---------- Footer ---------- */
-  footer{
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    padding: 56px 0 32px;
-  }
-  .footer-grid{
-    display:grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 40px;
-  }
-  footer h3{
-    font-size: 1rem;
-    color: var(--green);
-    margin-bottom: 14px;
-    font-family: var(--font-body);
-    font-weight:700;
-  }
-  footer p, footer a{
-    color: var(--muted);
-    font-size: 0.94rem;
-    text-decoration:none;
-  }
-  footer a:hover{ color: var(--purple-light); }
-  footer li{ margin-bottom: 8px; }
-  .footer-bottom{
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap: 10px;
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px){
-    .hero-grid{ grid-template-columns: 1fr; }
-    .hero-art{ order:-1; min-height: 260px; }
-    .stack{ width: 220px; }
-    nav.links{
-      position:fixed; top:66px; left:0; right:0;
-      background: var(--bg-alt);
-      border-bottom: 1px solid var(--line);
-      flex-direction:column;
-      align-items:flex-start;
-      padding: 20px 24px 26px;
-      gap: 18px;
-      transform: translateY(-140%);
-      transition: transform .25s ease;
-    }
-    nav.links.open{ transform: translateY(0); }
-    .burger-toggle{ display:flex; }
-    .footer-grid{ grid-template-columns: 1fr; gap: 28px; }
-    .menu-item .name{ white-space: normal; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-    html{ scroll-behavior:auto; }
-  }
+.fc-purple{background:linear-gradient(135deg,rgba(139,61,200,.22),rgba(92,31,138,.12));border:1px solid rgba(139,61,200,.3)}
+.fc-purple:hover{box-shadow:0 12px 40px rgba(139,61,200,.2)}
+.fc-green{background:linear-gradient(135deg,rgba(78,158,56,.15),rgba(126,200,106,.06));border:1px solid rgba(126,200,106,.2)}
+.fc-green:hover{box-shadow:0 12px 40px rgba(126,200,106,.12)}
+.fc-dark{background:rgba(255,255,255,.03);border:1px solid rgba(248,245,255,.06)}
+.fc-dark:hover{box-shadow:0 12px 40px rgba(0,0,0,.3);border-color:rgba(248,245,255,.1)}
+.fc-gradient{background:linear-gradient(135deg,rgba(139,61,200,.18),rgba(78,158,56,.1));border:1px solid rgba(139,61,200,.2)}
+.fc-bg-num{position:absolute;bottom:-20px;right:-10px;font-family:'Bebas Neue',sans-serif;font-size:9rem;line-height:1;color:rgba(248,245,255,.03);pointer-events:none;user-select:none}
+.fc-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.fc-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--w);margin-bottom:.6rem;line-height:1.2}
+.fc-title em{color:var(--pl);font-style:italic}
+.fc-body{font-size:.88rem;color:rgba(248,245,255,.55);line-height:1.75}
+.fc-tag{display:inline-block;margin-top:1rem;padding:.25rem .75rem;border-radius:100px;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:rgba(139,61,200,.18);color:var(--pl);border:1px solid rgba(139,61,200,.3)}
+.fc-tag-g{background:rgba(126,200,106,.1);color:var(--g);border-color:rgba(78,158,56,.3)}
+.burgers-bg{background:var(--b)}
+.burgers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.75rem;margin-top:2.5rem}
+.burger-card{background:var(--s1);border:1px solid rgba(139,61,200,.18);border-radius:24px;padding:2rem;position:relative;overflow:hidden;transition:all .35s;display:flex;flex-direction:column}
+.burger-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--p),var(--g));opacity:0;transition:opacity .3s}
+.burger-card:hover{border-color:rgba(139,61,200,.45);transform:translateY(-6px);background:#141422}
+.burger-card:hover::before{opacity:1}
+.burger-card.featured{border-color:rgba(139,61,200,.5);background:linear-gradient(160deg,#0f0f1a,#18102a);box-shadow:0 0 60px rgba(139,61,200,.12)}
+.burger-card.featured::before{opacity:1}
+.card-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.28rem .8rem;border-radius:100px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1.1rem;width:fit-content}
+.chip-star{background:var(--p);color:#fff}
+.card-emoji{font-size:2.5rem;margin-bottom:.8rem;display:block}
+.card-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--w);margin-bottom:.75rem;line-height:1.1}
+.card-name em{color:var(--pl);font-style:italic}
+.award-box{display:flex;align-items:flex-start;gap:.5rem;background:rgba(139,61,200,.1);border:1px solid rgba(139,61,200,.28);border-radius:12px;padding:.65rem .9rem;margin-bottom:.9rem;font-size:.78rem;font-weight:700;color:var(--pl);line-height:1.4}
+.card-desc{font-size:.87rem;color:rgba(248,245,255,.55);line-height:1.75;margin-bottom:1.1rem}
+.card-ings{list-style:none;display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.5rem;flex:1}
+.card-ings li{font-size:.79rem;color:rgba(248,245,255,.45);display:flex;align-items:center;gap:.45rem}
+.card-ings li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g);flex-shrink:0}
+.card-foot{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid rgba(248,245,255,.07);padding-top:1.1rem;margin-top:auto}
+.card-price{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--w);line-height:1}
+.card-price span{font-size:1rem;color:rgba(248,245,255,.45);font-family:'Nunito',sans-serif;font-weight:700}
+.card-note{font-size:.7rem;color:rgba(248,245,255,.35);text-align:right;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.55}
+.carta-bg{background:var(--s2)}
+.menu-cats{display:flex;flex-direction:column;gap:.85rem;margin-top:2.5rem}
+.menu-cat{border:1px solid rgba(139,61,200,.14);border-radius:18px;overflow:hidden;transition:border-color .25s;background:rgba(255,255,255,.015)}
+.menu-cat.open{border-color:rgba(139,61,200,.42);background:rgba(139,61,200,.03)}
+.cat-btn{width:100%;background:transparent;border:none;padding:1.2rem 1.7rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--w);font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;transition:background .2s}
+.cat-btn:hover{background:rgba(139,61,200,.06)}
+.cat-left{display:flex;align-items:center;gap:1rem}
+.cat-icon{font-size:1.35rem;width:32px;text-align:center}
+.cat-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700}
+.cat-sub{font-size:.72rem;color:rgba(248,245,255,.38);font-weight:600;margin-top:.1rem}
+.cat-arrow{font-size:.6rem;color:rgba(248,245,255,.3);transition:transform .3s;display:inline-block}
+.menu-cat.open .cat-arrow{transform:rotate(180deg)}
+.cat-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.menu-cat.open .cat-body{max-height:5000px}
+.cat-inner{padding:0 1.7rem 1.7rem;display:flex;flex-direction:column}
+.menu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:1.25rem;padding:.95rem 0;border-bottom:1px solid rgba(248,245,255,.05)}
+.menu-item:last-child{border-bottom:none}
+.mi-info{flex:1}
+.mi-name{font-weight:800;font-size:.93rem;color:var(--w);margin-bottom:.22rem}
+.mi-desc{font-size:.79rem;color:rgba(248,245,255,.48);line-height:1.65;margin-bottom:.35rem}
+.mi-sub{font-size:.74rem;color:rgba(248,245,255,.35);font-weight:600;margin-bottom:.3rem}
+.allergens{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.35rem}
+.al{font-size:.62rem;font-weight:800;padding:.16rem .52rem;border-radius:100px;border:1px solid;letter-spacing:.03em;text-transform:uppercase}
+.al-gluten{border-color:#c8843d;color:#e8a060;background:rgba(200,132,61,.1)}
+.al-lacteos{border-color:#4a8ec8;color:#7ab8e8;background:rgba(74,142,200,.1)}
+.al-huevos{border-color:#c8b83d;color:#e8d860;background:rgba(200,184,61,.1)}
+.al-pescado{border-color:#3d7ac8;color:#6aA0e8;background:rgba(61,122,200,.1)}
+.al-moluscos{border-color:#5a3dc8;color:#8a6ae8;background:rgba(90,61,200,.1)}
+.al-crustaceos{border-color:#c83d5a;color:#e86a8a;background:rgba(200,61,90,.1)}
+.al-cacahuetes{border-color:#8ac83d;color:#aaE860;background:rgba(138,200,61,.1)}
+.al-mostaza{border-color:#c8a83d;color:#e8c860;background:rgba(200,168,61,.1)}
+.al-soja{border-color:#7ac83d;color:#9aE860;background:rgba(122,200,61,.1)}
+.al-sulfitos{border-color:#c83dc8;color:#e860e8;background:rgba(200,61,200,.1)}
+.al-frutos{border-color:#c8603d;color:#e8803d;background:rgba(200,96,61,.1)}
+.al-sesamo{border-color:#c8c83d;color:#e8e860;background:rgba(200,200,61,.1)}
+.al-fibra{border-color:#5a9e3d;color:#8ade6a;background:rgba(90,158,61,.1)}
+.mi-price{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;color:var(--w);white-space:nowrap;line-height:1;padding-top:2px;min-width:68px;text-align:right}
+.sub-header{font-family:'Bebas Neue',sans-serif;font-size:.78rem;letter-spacing:.2em;color:var(--g);text-transform:uppercase;padding:.85rem 0 .15rem;border-top:1px solid rgba(126,200,106,.12);margin-top:.4rem}
+.sub-header:first-child{border-top:none;margin-top:0}
+.slogan-break{background:var(--b);padding:5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.slogan-break::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 50% 50%,rgba(139,61,200,.1),transparent 70%)}
+.slogan-quote{position:relative;font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,5rem);font-weight:900;font-style:italic;color:var(--pl);text-shadow:0 0 40px rgba(192,126,240,.4),0 0 80px rgba(192,126,240,.15);line-height:1.1}
+.slogan-author{margin-top:1.25rem;font-size:.8rem;letter-spacing:.25em;color:rgba(248,245,255,.28);font-family:'Bebas Neue',sans-serif;text-transform:uppercase}
+.horario-bg{background:var(--s1)}
+.schedule-list{max-width:560px;display:flex;flex-direction:column;gap:.7rem;margin-top:2.5rem}
+.sch-item{border:1px solid rgba(139,61,200,.14);border-radius:14px;overflow:hidden;transition:border-color .25s}
+.sch-item.open{border-color:rgba(139,61,200,.42)}
+.sch-btn{width:100%;background:transparent;border:none;padding:1rem 1.3rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--w);font-family:'Nunito',sans-serif;font-weight:700;font-size:.93rem;transition:background .2s}
+.sch-btn:hover{background:rgba(139,61,200,.06)}
+.sch-left{display:flex;align-items:center;gap:.7rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 6px rgba(126,200,106,.6);flex-shrink:0}
+.dot.off{background:rgba(248,245,255,.15);box-shadow:none}
+.sch-right{display:flex;align-items:center;gap:.7rem}
+.sch-preview{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.06em;color:rgba(248,245,255,.4)}
+.sch-arrow{font-size:.6rem;color:rgba(248,245,255,.3);transition:transform .25s}
+.sch-item.open .sch-arrow{transform:rotate(180deg)}
+.sch-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.sch-item.open .sch-body{max-height:150px}
+.sch-detail{padding:0 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.45rem}
+.time-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem .85rem;background:rgba(139,61,200,.06);border-radius:8px}
+.time-lbl{font-size:.78rem;color:rgba(248,245,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.time-val{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--pl);letter-spacing:.05em}
+.sch-closed{padding:.5rem .85rem;font-size:.8rem;color:rgba(248,245,255,.28);font-style:italic}
+footer{background:#050508;border-top:1px solid rgba(139,61,200,.18);padding:4rem 1.5rem 2.5rem}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.f-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;font-style:italic;color:var(--pl);text-shadow:0 0 20px rgba(192,126,240,.25);margin-bottom:.5rem}
+.f-slogan{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.25em;color:var(--g);margin-bottom:1.25rem}
+.footer-brand p{font-size:.85rem;color:rgba(248,245,255,.35);line-height:1.75}
+.footer-info{display:flex;flex-direction:column;gap:.75rem}
+.fi-row{display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:rgba(248,245,255,.5);font-weight:600}
+.fi-row strong{color:rgba(248,245,255,.75)}
+.footer-bottom{max-width:960px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(248,245,255,.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom span{font-size:.72rem;color:rgba(248,245,255,.18);font-weight:600}
+.fsl{display:flex;gap:1rem}
+.fsl a{font-size:.72rem;color:rgba(248,245,255,.3);text-decoration:none;font-weight:700;transition:color .2s;letter-spacing:.04em}
+.fsl a:hover{color:var(--pl)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+@media(max-width:768px){
+.section-wrap{padding:4rem 1.25rem}
+.nav-links{display:none}
+.about-grid,.footer-inner{grid-template-columns:1fr;gap:2rem}
+.burgers-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;align-items:flex-start}
+.hero-inner{padding:1.5rem 1.25rem}
+.hero-title{font-size:clamp(2.8rem,14vw,4.5rem);letter-spacing:-.01em}
+.award-pill{font-size:.72rem;padding:.45rem 1rem;flex-wrap:wrap;justify-content:center}
+.btn{padding:.8rem 1.6rem;font-size:.85rem}
+.feature-intro{margin-bottom:1.5rem}
+.feature-intro p{font-size:.95rem}
+.feature-scroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;padding-bottom:1.25rem;margin:0 -1.25rem;padding-left:1.25rem;padding-right:1.25rem}
+.feature-scroll-wrap::-webkit-scrollbar{height:3px}
+.feature-scroll-wrap::-webkit-scrollbar-track{background:rgba(248,245,255,.05);border-radius:2px}
+.feature-scroll-wrap::-webkit-scrollbar-thumb{background:var(--p);border-radius:2px}
+.feature-grid{display:flex;gap:1rem;width:max-content}
+.feature-card{width:78vw;max-width:300px;flex-shrink:0;scroll-snap-align:start;padding:1.75rem 1.5rem}
+.feature-card.fc-large{grid-column:unset;width:85vw;max-width:320px}
+.fc-bg-num{font-size:6rem}
+.fc-title{font-size:1.25rem}
+.fc-body{font-size:.84rem}
+.feature-scroll-hint{display:flex;align-items:center;gap:.5rem;justify-content:center;margin-top:1rem;font-size:.72rem;color:rgba(248,245,255,.3);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.about-stats .stat-card:last-child{grid-column:span 2}
+.stat-num{font-size:2.6rem}
+.stat-label{font-size:.78rem}
+.cat-btn{padding:1rem 1.2rem;font-size:.92rem}
+.cat-icon{font-size:1.2rem;width:26px}
+.cat-name{font-size:1rem}
+.cat-inner{padding:0 1.2rem 1.2rem}
+.menu-item{gap:.75rem;padding:.85rem 0}
+.mi-name{font-size:.88rem}
+.mi-desc{font-size:.76rem}
+.mi-price{font-size:1.25rem;min-width:58px}
+.al{font-size:.58rem;padding:.14rem .45rem}
+.schedule-list{max-width:100%}
+.sch-btn{padding:.9rem 1.1rem;font-size:.88rem}
+.f-logo{font-size:1.5rem}
+.fi-row{font-size:.82rem}
+}
+@media(max-width:380px){.feature-card{width:88vw}.feature-card.fc-large{width:90vw}.hero-title{font-size:2.6rem}}
 </style>
 </head>
 <body>
-
-<header class="site-nav">
-  <div class="nav-inner wrap">
-    <a href="#inicio" class="logo-mark">
-      <span class="logo-badge">
-        <span class="bun top"></span>
-        <span class="lettuce">
-          <svg viewBox="0 0 100 20" width="100%" height="100%" preserveAspectRatio="none">
-            <polyline points="0,14 8,4 16,14 24,4 32,14 40,4 48,14 56,4 64,14 72,4 80,14 88,4 96,14 100,10" fill="none" stroke="#94d975" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="bun bottom"></span>
-      </span>
-      <span class="logo-word">PBB<span>Plaza Blanca Burguer</span></span>
-    </a>
-
-    <button class="burger-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1H20M0 7H20M0 13H20" stroke="currentColor" stroke-width="2"/></svg>
-    </button>
-
-    <nav class="links" id="navLinks">
-      <a href="#inicio">Inicio</a>
-      <a href="#premio">El premio</a>
-      <a href="#carta">La carta</a>
-      <a href="#contacto">Cómo llegar</a>
-      <a href="#carta" class="nav-cta">Ver la carta</a>
-    </nav>
+<nav id="nav">
+  <a class="nav-logo" href="#"><div class="nav-logo-icon">🍔</div>Plaza Blanca Burguer</a>
+  <div class="nav-links">
+    <a href="#sobre">Nosotros</a><a href="#local">El local</a>
+    <a href="#carta">Carta</a><a href="#horario">Horario</a>
+    <a href="#carta" class="nav-cta">Ver menú</a>
   </div>
-</header>
+</nav>
 
-<main>
+<section class="hero">
+  <div class="hero-noise"></div><div class="hero-gradient"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Ampuero · Cantabria · España</div>
+    <h1 class="hero-title">Plaza<span class="line-italic">Blanca</span><span class="line-outline">Burguer</span></h1>
+    <div class="hero-slogan">Todo lo rico... ¡Mancha!</div>
+    <p class="hero-desc">Hamburguesas <em>artesanas</em> con alma. Ingredientes locales, recetas propias y ese sabor que solo consigues cuando alguien cocina con ganas de verdad.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#carta">Ver la carta</a>
+      <a class="btn btn-ghost" href="#sobre">Nuestra historia</a>
+    </div>
+    <div class="award-pill">🏆 &nbsp;Mejor hamburguesa de Cantabria 2026 · BestBurgerSpain</div>
+  </div>
 
-  <!-- ---------- HERO ---------- -->
-  <section class="hero" id="inicio">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="script">hecha a la plancha, a tu lado</span>
-        <h1>Hamburguesas con <em>nombre y apellido</em>, en el corazón de Cantabria.</h1>
-        <p class="lede">Carne mechada, jamón ibérico, quesos de cabra y una que ya tiene sitio en el podio: <strong style="color:var(--ink)">La Game Over</strong>, elegida la mejor hamburguesa de Cantabria.</p>
-        <div class="hero-actions">
-          <a href="#carta" class="btn btn-primary">Ver la carta completa</a>
-          <a href="#premio" class="btn btn-ghost">Conoce el premio 🏆</a>
+</section>
+
+<div class="divider"></div>
+
+<div id="sobre" class="about-bg">
+  <div class="section-wrap"><div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-eyebrow">Quiénes somos</div>
+        <h2 class="section-title">Nuestra<br><em>historia</em></h2>
+        <p>Plaza Blanca abrió sus puertas en <strong>2012</strong> como un bar tradicional de pueblo, de esos donde siempre había una cara conocida al otro lado de la barra. Desde el primer día, nuestro objetivo fue sencillo: ofrecer un lugar cercano, familiar y acogedor para la gente de toda la vida.</p>
+        <p>Durante aquellos primeros años, Plaza Blanca fue creciendo gracias a la <strong>confianza de nuestros clientes</strong>, que nos acompañaron día tras día y nos ayudaron a convertirnos en un punto de encuentro para amigos, familias y vecinos.</p>
+        <p>Con el paso del tiempo entendimos que, para seguir creciendo, también teníamos que <strong>evolucionar</strong>. Poco a poco fuimos reinventándonos, incorporando nuevas ideas, ampliando nuestra oferta gastronómica y apostando por una cocina que mantuviera nuestra esencia, pero con un toque más actual y creativo.</p>
+        <p>Ese espíritu de mejora constante nos ha llevado hasta el Plaza Blanca que conocemos hoy: un establecimiento que sigue conservando el <strong>trato cercano y familiar</strong> de sus comienzos, pero que ha sabido adaptarse a los nuevos tiempos.</p>
+        <p>Mirando atrás, nos sentimos orgullosos del camino recorrido. Y mirando hacia delante, seguimos trabajando con la misma ilusión que en 2012, porque <strong>nuestra historia no sería posible sin todas las personas que han formado parte de ella</strong>.</p>
+        <div class="about-badges">
+          <span class="pill pill-p">Desde 2012</span><span class="pill pill-p">Trato familiar</span>
+          <span class="pill pill-g">Siempre evolucionando</span><span class="pill pill-g">Ampuero, Cantabria</span>
         </div>
       </div>
-
-      <div class="hero-art" aria-hidden="true">
-        <div class="stack">
-          <div class="bun-top"></div>
-          <div class="lettuce-layer"></div>
-          <div class="cheese-layer"></div>
-          <div class="patty"></div>
-          <div class="purple-sauce"></div>
-          <div class="bun-bottom"></div>
-        </div>
-        <div class="hero-badge">MEJOR<br>HAMBURG.<br>CANTABRIA</div>
+      <div class="about-stats reveal delay-2">
+        <div class="stat-card"><div class="stat-num">180g</div><div class="stat-label">de carne por hamburguesa, siempre</div></div>
+        <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">salsas y mermeladas hechas en casa</div></div>
+        <div class="stat-card"><div class="stat-num">#1</div><div class="stat-label">Mejor hamburguesa de Cantabria 2026</div></div>
       </div>
     </div>
-  </section>
+  </div></div>
+</div>
 
-  <!-- ---------- AWARD / GAME OVER ---------- -->
-  <section class="award" id="premio">
-    <div class="wrap">
-      <div class="arcade-screen">
-        <div class="arcade-score">HIGH SCORE · PLAZA BLANCA BURGUER</div>
-        <div class="arcade-title">GAME OVER</div>
-        <div class="arcade-sub">
-          PREMIO A LA<br>
-          <span class="arcade-burger-name">MEJOR HAMBURGUESA</span><br>
-          DE CANTABRIA
-        </div>
-        <div class="insert-coin">▸ PULSA "VER LA CARTA" PARA CONTINUAR ▸</div>
-      </div>
-      <p class="award-copy">Se llama <strong>La Game Over</strong> porque, cuando la pruebas, dejas de buscar otra hamburguesa. El jurado estuvo de acuerdo: la coronó como la <strong>mejor hamburguesa de Cantabria</strong>, y desde entonces es la razón por la que la gente cruza la plaza.</p>
+<div class="divider"></div>
+
+<div id="local" class="feature-bg">
+  <div class="section-wrap"><div class="section-inner-wide">
+    <div class="feature-intro reveal">
+      <div class="section-eyebrow">El local</div>
+      <h2 class="section-title">Ven a<br><em>mancharte</em></h2>
+      <p>Un rincón donde el sabor manda, la camiseta paga el precio y cada visita se convierte en historia. Así somos en Plaza Blanca.</p>
     </div>
-  </section>
-
-  <!-- ---------- MENU ---------- -->
-  <section id="carta">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">LA CARTA</span>
-        <h2>Todo lo que sale de nuestra plancha</h2>
-        <p>De la ensalada al postre, pasando por la hamburguesa que nos ha dado más de una alegría. Precios en euros.</p>
+    <div class="feature-scroll-wrap">
+    <div class="feature-grid">
+      <div class="feature-card fc-purple fc-large reveal">
+        <div class="fc-bg-num">01</div>
+        <span class="fc-icon">🏆</span>
+        <div class="fc-title">La <em>burger</em> que ganó</div>
+        <div class="fc-body">La <strong style="color:var(--pl)">Game Over</strong> fue reconocida como la mejor hamburguesa de Cantabria 2026 por BestBurgerSpain. Pan brioche artesano, 180g de vaca rubia gallega y una salsa cremosa secreta que no olvidarás. Empezó el juego y lo ganó.</div>
+        <span class="fc-tag">🥇 Mejor de Cantabria 2026</span>
       </div>
+      <div class="feature-card fc-green reveal delay-1">
+        <div class="fc-bg-num">02</div>
+        <span class="fc-icon">🌿</span>
+        <div class="fc-title">De <em>aquí</em></div>
+        <div class="fc-body">Carne de Carnicería Céspedes, pan de Pastelería Torrente. Todo local, todo fresco.</div>
+        <span class="fc-tag fc-tag-g">Km 0</span>
+      </div>
+      <div class="feature-card fc-dark reveal">
+        <div class="fc-bg-num">03</div>
+        <span class="fc-icon">👨‍🍳</span>
+        <div class="fc-title">Hecho a <em>mano</em></div>
+        <div class="fc-body">Salsas, mermeladas, encurtidos. Todo sale de nuestra cocina, cada día.</div>
+        <span class="fc-tag">Artesano</span>
+      </div>
+      <div class="feature-card fc-dark reveal delay-1">
+        <div class="fc-bg-num">04</div>
+        <span class="fc-icon">🔥</span>
+        <div class="fc-title">Burger <em>del mes</em></div>
+        <div class="fc-body">Cada mes una nueva creación con sabores auténticos y atrevidos. ¡No te la pierdas!</div>
+        <span class="fc-tag">Edición limitada</span>
+      </div>
+      <div class="feature-card fc-gradient reveal delay-2">
+        <div class="fc-bg-num">05</div>
+        <span class="fc-icon">🍷</span>
+        <div class="fc-title">Vinos &amp;<br><em>jarras</em></div>
+        <div class="fc-body">Tintos, rosados, blancos y jarras de cerveza, calimotxo o sangría para brindar como se merece.</div>
+        <span class="fc-tag fc-tag-g">Bodega seleccionada</span>
+      </div>
+    </div><!-- fin feature-grid -->
+    </div><!-- fin feature-scroll-wrap -->
+    <div class="feature-scroll-hint">← desliza para ver más →</div>
+  </div></div>
+</div>
 
-      <div class="menu-tabs" role="tablist" id="menuTabs"></div>
-      <div id="menuPanels"></div>
+<div class="divider"></div>
 
-      <p class="menu-note">Los platos pueden contener alérgenos (gluten, huevo, lácteos, frutos secos, pescado y marisco, entre otros). Pregunta en sala si tienes alguna alergia o intolerancia.</p>
+<div id="burgers" class="burgers-bg">
+  <div class="section-wrap"><div class="section-inner-wide">
+    <div class="reveal">
+      <div class="section-eyebrow">Nuestras estrellas</div>
+      <h2 class="section-title">Elige tu<br><em>aventura</em></h2>
     </div>
-  </section>
-
-</main>
-
-<footer id="contacto">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h3>Plaza Blanca Burguer</h3>
-        <p>Hamburguesería y bocatería en Cantabria. Ganadora del premio a la Mejor Hamburguesa de Cantabria con La Game Over.</p>
-      </div>
-      <div>
-        <h3>Horario</h3>
-        <ul>
-          <li>Martes a domingo: 13:00–16:30</li>
-          <li>Jueves a sábado: 20:00–23:30</li>
-          <li>Lunes: cerrado</li>
+    <div class="burgers-grid">
+      <div class="burger-card featured reveal">
+        <div class="card-chip chip-star">⭐ Estrella de la casa</div>
+        <span class="card-emoji">🏆</span>
+        <div class="card-name"><em>Game Over</em></div>
+        <div class="award-box"><span>🥇</span> Mejor hamburguesa de Cantabria 2026 · BestBurgerSpain</div>
+        <p class="card-desc">La que empieza el juego. Galardonada como mejor hamburguesa de Cantabria 2026. Una experiencia que no vas a olvidar.</p>
+        <ul class="card-ings">
+          <li>Pan brioche artesano</li><li>180g medallón de vaca rubia gallega</li>
+          <li>Salsa cremosa secreta</li><li>Queso ahumado</li>
+          <li>Mermelada de bacon casera</li><li>Pepinillo encurtido en casa</li>
+          <li>Mayo a base de jugo de carne</li>
         </ul>
+        <div class="allergens" style="margin-bottom:1.1rem">
+          <span class="al al-gluten">Gluten</span>
+          <span class="al al-lacteos">Lácteos</span>
+          <span class="al al-huevos">Huevos</span>
+          <span class="al al-frutos">Frutos cáscara</span>
+          <span class="al al-cacahuetes">Frutos secos</span>
+          <span class="al al-sulfitos">Sulfitos</span>
+          <span class="al al-mostaza">Mostaza</span>
+          <span class="al al-fibra">Fibra guisante</span>
+        </div>
+        <div class="card-foot"><div class="card-price">16<span>,00 €</span></div><div class="card-note">Con patatas<br>fritas caseras</div></div>
       </div>
-      <div>
-        <h3>Encuéntranos</h3>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Cómo llegar (Google Maps)</a></li>
+      <div class="burger-card reveal delay-1">
+        <span class="card-emoji">🔥</span>
+        <div class="card-name"><em>Exoti-K</em></div>
+        <p class="card-desc">Atrevida, diferente y totalmente adictiva. Con ese punto exótico que la hace única.</p>
+        <ul class="card-ings">
+          <li>Pan brioche artesano "Pastelería Torrente"</li><li>180g carne de vaca madurada "Carnicería Céspedes"</li>
+          <li>Mermelada de bacon casera</li><li>Queso ahumado</li>
+          <li>Relish de pepinillo</li><li>Salsa Emmy casera</li><li>Crujiente de Kikos</li>
         </ul>
+        <div class="allergens" style="margin-bottom:1.1rem">
+          <span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span>
+          <span class="al al-frutos">Frutos cáscara</span><span class="al al-sesamo">Sésamo</span>
+          <span class="al al-pescado">Pescado</span><span class="al al-cacahuetes">Cacahuetes</span>
+        </div>
+        <div class="card-foot"><div class="card-price">14<span>,00 €</span></div><div class="card-note">Con patatas<br>fritas caseras</div></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> Plaza Blanca Burguer</span>
-      <span>Dirección, teléfono y enlaces de ejemplo — sustitúyelos por los reales.</span>
+  </div></div>
+</div>
+
+<div class="divider"></div>
+
+<div id="carta" class="carta-bg">
+  <div class="section-wrap"><div class="section-inner-wide">
+    <div class="reveal">
+      <div class="section-eyebrow">La carta completa</div>
+      <h2 class="section-title">Todo lo<br><em>rico</em></h2>
+      <p style="color:rgba(248,245,255,.42);margin-bottom:2.5rem;font-size:.95rem;font-weight:600">Pulsa cada categoría para ver todos los platos y alérgenos.</p>
     </div>
+    <div class="menu-cats reveal">
+
+      <div class="menu-cat" id="cat-burgers">
+        <button class="cat-btn" onclick="toggleCat('cat-burgers')">
+          <div class="cat-left"><span class="cat-icon">🍔</span><div><div class="cat-name">Hamburguesas</div><div class="cat-sub">9 opciones · desde 9,00 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Plaza</div><div class="mi-desc">Pan rústico, 180g de carne de vaca madurada, lechuga, tomate, queso Cheddar, jamón york y huevo.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-huevos">Huevos</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">9,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La de Cabra</div><div class="mi-desc">Pan rústico, 180g de carne de vaca, lechuga, bacon, medallón de queso de cabra, cebolla caramelizada y mermelada de tomate.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">10,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Ibérica</div><div class="mi-desc">Pan rústico, 180g de carne de vaca madurada, lechuga, tomate, salsa de foie, paleta ibérica y cebolla caramelizada.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">11,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Baby</div><div class="mi-desc">Pan brioche artesano, 180g de carne de vaca madurada, doble de queso Cheddar, nuestra salsa BBQ y aros de cebolla.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">11,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Winnie</div><div class="mi-desc">Pan brioche artesano, 180g de carne de vaca madurada, lechuga, tomate, bacon, queso Cheddar, cebolla caramelizada, huevo, salsa de miel y mostaza. Con patatas fritas.</div><div class="allergens"><span class="al al-huevos">Huevos</span><span class="al al-mostaza">Mostaza</span><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">13,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Pista-Roll</div><div class="mi-desc">Pan de croissant artesano, 180g de carne de vaca madurada, doble queso Cheddar, bacon crujiente y salsa de pistacho y su crumble. Con patatas fritas.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Vegana</div><div class="mi-desc">Pan brioche, carne vegana "Beyond", lechuga, tomate, cebolla plancha, pimiento rojo caramelizado y crema de setas. Con patatas fritas.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-soja">Soja</span></div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Tentación</div><div class="mi-desc">Pan brioche artesano, 180g de carne de vaca madurada, queso Cheddar, cebolla caramelizada, huevo, queso parmesano rallado y mahonesa trufada. Con patatas fritas.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-huevos">Huevos</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">15,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">La Mr. Olympia</div><div class="mi-desc">Pan brioche, contramuslo de pollo rebozado estilo "Kentuky", lechuga, tomate, queso Cheddar, relish de pepinillo y nuestra salsa "estilo americano". Con patatas fritas.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-mostaza">Mostaza</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item" style="border-top:1px solid rgba(126,200,106,.12);margin-top:.5rem"><div class="mi-info"><div class="mi-name" style="color:var(--g)">Extras</div><div class="mi-desc">Guarnición de patatas: 2,50 € · Doble de carne: 3,00 €</div><div class="mi-desc" style="color:var(--pl);font-style:italic;margin-top:.3rem">¡Cada mes una nueva Burger del mes! Pregunta por ella.</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-entrantes">
+        <button class="cat-btn" onclick="toggleCat('cat-entrantes')">
+          <div class="cat-left"><span class="cat-icon">🦑</span><div><div class="cat-name">Entrantes</div><div class="cat-sub">9 opciones · desde 8,00 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Rabas</div><div class="mi-desc">Calamar patagónico, limpiados y cortados a mano, rebozados en una combinación de harinas de maíz y trigo.</div><div class="mi-sub">½ ración: 6,50 €</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-moluscos">Moluscos</span></div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Torreznos</div><div class="mi-desc">Ración de 10 torreznos de Soria crujientes y dorados.</div><div class="mi-sub">½ ración: 6,00 €</div></div><div class="mi-price">10,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Croquetas Caseras</div><div class="mi-desc">De paleta ibérica o cecina con queso de cabra (8 unid.).</div><div class="mi-sub">½ ración: 7,50 €</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Alitas Koreanas</div><div class="mi-desc">6 unidades de jugosas y crujientes alitas, bañadas en salsa casera al estilo "Teriyaki" y finalizadas con un toque de polvo de Kikos.</div><div class="allergens"><span class="al al-soja">Soja</span><span class="al al-sulfitos">Sulfitos</span><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">9,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Patatas Carbonara Trufadas</div><div class="mi-desc">Patatas caseras bañadas en una cremosa salsa carbonara con trufa y rematadas con queso parmesano.</div><div class="allergens"><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">9,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Patatas Cheddar – Bacon</div><div class="mi-desc">Patatas caseras bañadas en salsa de queso cheddar con crujiente de bacon.</div><div class="allergens"><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">8,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Patatas Bravas</div><div class="mi-desc">Patatas caseras con salsa brava y mahonesa.</div><div class="allergens"><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">8,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Mejillones Plaza / Tomate</div><div class="mi-desc">Bañados en nuestra salsa casera con un toque picante o con nuestra salsa brava.</div><div class="allergens"><span class="al al-moluscos">Moluscos</span><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">11,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Fingers de Pollo</div><div class="mi-desc">Tiras de pollo acompañadas con salsa sweet chilly y curry-cacahuete.</div><div class="allergens"><span class="al al-lacteos">Lácteos</span><span class="al al-gluten">Gluten</span><span class="al al-mostaza">Mostaza</span><span class="al al-cacahuetes">Cacahuetes</span></div></div><div class="mi-price">9,50€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-clasicos">
+        <button class="cat-btn" onclick="toggleCat('cat-clasicos')">
+          <div class="cat-left"><span class="cat-icon">🏛️</span><div><div class="cat-name">Los Clásicos del Plaza</div><div class="cat-sub">Si algo funciona, ¿para qué cambiarlo?</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Bacalao con Tomate y Pimientos</div><div class="mi-desc">Bacalao frito con salsa de tomate casera y pimientos del piquillo.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-pescado">Pescado</span></div></div><div class="mi-price">19,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Pimientos Caseros Rellenos de Marisco</div><div class="mi-desc">Pimientos del piquillo rellenos con nuestra bechamel casera de marisco.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-pescado">Pescado</span><span class="al al-lacteos">Lácteos</span><span class="al al-moluscos">Moluscos</span><span class="al al-soja">Soja</span><span class="al al-sulfitos">Sulfitos</span></div></div><div class="mi-price">11,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Jibiones Encebollados</div><div class="mi-desc">Jibiones guisados con cebolla y un toque de vino blanco.</div><div class="allergens"><span class="al al-moluscos">Moluscos</span></div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Albóndigas</div><div class="mi-desc">Albóndigas tradicionales como las de la abuela, acompañadas de patatas fritas caseras.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-huevos">Huevos</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">11,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Morros y Callos</div><div class="mi-desc">Guisados al estilo tradicional.</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Entrecot de Vaca con Patatas Fritas y Pimientos de Piquillo</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">21,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-embutidos">
+        <button class="cat-btn" onclick="toggleCat('cat-embutidos')">
+          <div class="cat-left"><span class="cat-icon">🥩</span><div><div class="cat-name">Embutidos</div><div class="cat-sub">2 opciones</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Paleta Ibérica</div></div><div class="mi-price">15,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cecina</div></div><div class="mi-price">14,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-ensaladas">
+        <button class="cat-btn" onclick="toggleCat('cat-ensaladas')">
+          <div class="cat-left"><span class="cat-icon">🥗</span><div><div class="cat-name">Ensaladas</div><div class="cat-sub">3 opciones · desde 12,00 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ensalada Plaza</div><div class="mi-desc">Lechuga fresca, tomate, cebolla, pimientos del piquillo caramelizados, atún, queso de las Garmillas, huevo cocido y aceitunas, terminada con una crema de vinagre de módena.</div><div class="allergens"><span class="al al-huevos">Huevos</span><span class="al al-sulfitos">Sulfitos</span><span class="al al-soja">Soja</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">12,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ensalada de Queso de Cabra</div><div class="mi-desc">Brotes de lechuga con tomate cherry, frutos secos, orejones, queso de cabra y finas láminas de cecina, todo bañado en nuestra vinagreta casera.</div><div class="allergens"><span class="al al-lacteos">Lácteos</span><span class="al al-soja">Soja</span><span class="al al-sulfitos">Sulfitos</span><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ensalada de Ventresca</div><div class="mi-desc">Pimientos de piquillo, ventresca, cebolla caramelizada, anchoas y crema de módena.</div><div class="allergens"><span class="al al-pescado">Pescado</span><span class="al al-sulfitos">Sulfitos</span></div></div><div class="mi-price">12,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-sartenadas">
+        <button class="cat-btn" onclick="toggleCat('cat-sartenadas')">
+          <div class="cat-left"><span class="cat-icon">🍳</span><div><div class="cat-name">Sartenadas</div><div class="cat-sub">Huevos, patatas caseras y… · 4 opciones</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Salchichas</div><div class="allergens"><span class="al al-soja">Soja</span><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">9,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Paleta Ibérica</div><div class="allergens"><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">12,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Gulas y Gambas</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-crustaceos">Crustáceos</span><span class="al al-huevos">Huevos</span><span class="al al-pescado">Pescado</span><span class="al al-lacteos">Lácteos</span><span class="al al-moluscos">Moluscos</span><span class="al al-soja">Soja</span><span class="al al-sulfitos">Sulfitos</span></div></div><div class="mi-price">11,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Setas</div><div class="allergens"><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">11,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-revueltos">
+        <button class="cat-btn" onclick="toggleCat('cat-revueltos')">
+          <div class="cat-left"><span class="cat-icon">🥚</span><div><div class="cat-name">Revueltos</div><div class="cat-sub">Huevos con… · 3 opciones</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Setas</div><div class="allergens"><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">8,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Gulas y Gambas</div><div class="allergens"><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">9,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">con Bacalao</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-huevos">Huevos</span><span class="al al-pescado">Pescado</span><span class="al al-moluscos">Moluscos</span><span class="al al-soja">Soja</span><span class="al al-sulfitos">Sulfitos</span></div></div><div class="mi-price">9,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-bocadillos">
+        <button class="cat-btn" onclick="toggleCat('cat-bocadillos')">
+          <div class="cat-left"><span class="cat-icon">🥖</span><div><div class="cat-name">Bocadillos</div><div class="cat-sub">6 opciones · desde 6,50 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ibérico</div><div class="mi-desc">Paleta ibérica + pan tumaca.</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">8,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Rabas</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-moluscos">Moluscos</span></div></div><div class="mi-price">7,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Plaza</div><div class="mi-desc">Pechuga o lomo, queso Havarti, jamón york y salsa ali-oli.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">6,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Pepipollo</div><div class="mi-desc">Pechuga, lechuga, tomate, mahonesa y salsa picante.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-huevos">Huevos</span></div></div><div class="mi-price">7,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ternera Queso Azul</div><div class="mi-desc">Ternera, salsa de queso azul casera y cebolla caramelizada.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">7,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Pollo Trufado</div><div class="mi-desc">Pollo, queso Havarti, cebolla caramelizada y mahonesa trufada.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">8,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-sandwiches">
+        <button class="cat-btn" onclick="toggleCat('cat-sandwiches')">
+          <div class="cat-left"><span class="cat-icon">🥪</span><div><div class="cat-name">Sandwiches</div><div class="cat-sub">3 opciones · desde 4,00 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Mixto</div><div class="mi-desc">Jamón york y queso Havarti.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">4,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Vegetal</div><div class="mi-desc">Lechuga, tomate, mahonesa, huevo, jamón york y queso Havarti.</div><div class="allergens"><span class="al al-huevos">Huevos</span><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">5,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Mixto + Huevo + Bacon + Salsa Rosa</div><div class="allergens"><span class="al al-huevos">Huevos</span><span class="al al-gluten">Gluten</span><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">5,50€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-pan">
+        <button class="cat-btn" onclick="toggleCat('cat-pan')">
+          <div class="cat-left"><span class="cat-icon">🧺</span><div><div class="cat-name">Pan</div><div class="cat-sub">2 opciones</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cesto Pequeño</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">1,40€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cesto Grande</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">1,80€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-postres">
+        <button class="cat-btn" onclick="toggleCat('cat-postres')">
+          <div class="cat-left"><span class="cat-icon">🍰</span><div><div class="cat-name">Postres</div><div class="cat-sub">7 opciones · desde 2,00 €</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Tarta de Queso al Horno</div><div class="mi-desc">Para compartir 2 ó 3 personas. Sabores: Lotus, Kinder, Clásica, sabor del mes.</div><div class="allergens"><span class="al al-gluten">Gluten</span></div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Porción de Tarta de Queso al Horno Clásica</div><div class="allergens"><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">6,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Arroz con Leche</div><div class="allergens"><span class="al al-lacteos">Lácteos</span></div></div><div class="mi-price">4,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Helado Almendrado</div><div class="allergens"><span class="al al-lacteos">Lácteos</span><span class="al al-frutos">Frutos cáscara</span></div></div><div class="mi-price">2,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Bañadito</div><div class="mi-desc">Donuts artesano con salsas chocolate blanco, negro o pistacho y sus topping cookies, oreo o pistacho.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-huevos">Huevos</span><span class="al al-soja">Soja</span><span class="al al-lacteos">Lácteos</span><span class="al al-sesamo">Sésamo</span></div></div><div class="mi-price">5,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Gofre</div><div class="mi-desc">Con salsa chocolate blanco, negro o pistacho y sus topping cookies, oreo o pistacho.</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-huevos">Huevos</span><span class="al al-soja">Soja</span><span class="al al-lacteos">Lácteos</span><span class="al al-sesamo">Sésamo</span></div></div><div class="mi-price">6,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Gofre + Salsas + Topping + Helado</div><div class="allergens"><span class="al al-gluten">Gluten</span><span class="al al-frutos">Frutos cáscara</span><span class="al al-huevos">Huevos</span><span class="al al-soja">Soja</span><span class="al al-lacteos">Lácteos</span><span class="al al-sesamo">Sésamo</span></div></div><div class="mi-price">7,00€</div></div>
+        </div></div>
+      </div>
+
+      <div class="menu-cat" id="cat-vinos">
+        <button class="cat-btn" onclick="toggleCat('cat-vinos')">
+          <div class="cat-left"><span class="cat-icon">🍷</span><div><div class="cat-name">Vinos y Jarras</div><div class="cat-sub">¡Es hora de brindar!</div></div></div>
+          <span class="cat-arrow">▼</span>
+        </button>
+        <div class="cat-body"><div class="cat-inner">
+          <div class="sub-header">Tintos</div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cosechero Morenitos</div></div><div class="mi-price">6,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cosechero Casa Dinastía</div></div><div class="mi-price">9,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Bordón</div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Medievo</div></div><div class="mi-price">14,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Ramón Bilbao</div></div><div class="mi-price">17,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Resalso</div></div><div class="mi-price">18,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Campillo</div></div><div class="mi-price">20,00€</div></div>
+          <div class="sub-header">Rosados</div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cosechero</div></div><div class="mi-price">6,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Lambrusco</div></div><div class="mi-price">8,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Cordovín</div></div><div class="mi-price">9,50€</div></div>
+          <div class="sub-header">Blancos</div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Verdejo – Pastor</div></div><div class="mi-price">10,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Verdejo – Garedo</div></div><div class="mi-price">11,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Moscato</div></div><div class="mi-price">12,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Albariño</div></div><div class="mi-price">16,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Mikaela</div></div><div class="mi-price">18,00€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">José Pariente</div></div><div class="mi-price">19,00€</div></div>
+          <div class="sub-header">Jarras</div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Jarra de Cerveza</div></div><div class="mi-price">9,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Jarra de Calimotxo</div></div><div class="mi-price">8,50€</div></div>
+          <div class="menu-item"><div class="mi-info"><div class="mi-name">Jarra de Sangría</div></div><div class="mi-price">10,00€</div></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="slogan-break">
+  <div class="slogan-quote">"Todo lo rico...<br>¡Mancha!"</div>
+  <div class="slogan-author">Plaza Blanca Burguer · Ampuero, Cantabria</div>
+</div>
+
+<div class="divider"></div>
+
+<div id="horario" class="horario-bg">
+  <div class="section-wrap"><div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Cuándo nos encuentras</div>
+      <h2 class="section-title">Horario<br><em>semanal</em></h2>
+      <p style="color:rgba(248,245,255,.42);margin-bottom:0;font-size:.95rem;font-weight:600">Pulsa cada día para ver el horario.</p>
+    </div>
+    <div class="schedule-list reveal">
+      <div class="sch-item" id="lunes"><button class="sch-btn" onclick="toggleDay('lunes')"><div class="sch-left"><div class="dot"></div><span>Lunes</span></div><div class="sch-right"><span class="sch-preview">9:00 – 23:00</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="time-row"><span class="time-lbl">Horario</span><span class="time-val">9:00 – 23:00</span></div></div></div></div>
+      <div class="sch-item" id="martes"><button class="sch-btn" onclick="toggleDay('martes')"><div class="sch-left"><div class="dot off"></div><span>Martes</span></div><div class="sch-right"><span class="sch-preview" style="color:rgba(248,245,255,.22)">Cerrado</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="sch-closed">Descansamos los martes 💜</div></div></div></div>
+      <div class="sch-item" id="miercoles"><button class="sch-btn" onclick="toggleDay('miercoles')"><div class="sch-left"><div class="dot off"></div><span>Miércoles</span></div><div class="sch-right"><span class="sch-preview" style="color:rgba(248,245,255,.22)">Cerrado</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="sch-closed">Descansamos los miércoles 💜</div></div></div></div>
+      <div class="sch-item" id="jueves"><button class="sch-btn" onclick="toggleDay('jueves')"><div class="sch-left"><div class="dot"></div><span>Jueves</span></div><div class="sch-right"><span class="sch-preview">9:00 – 24:00</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="time-row"><span class="time-lbl">Horario</span><span class="time-val">9:00 – 24:00</span></div></div></div></div>
+      <div class="sch-item" id="viernes"><button class="sch-btn" onclick="toggleDay('viernes')"><div class="sch-left"><div class="dot"></div><span>Viernes</span></div><div class="sch-right"><span class="sch-preview">9:00 – 24:00</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="time-row"><span class="time-lbl">Horario</span><span class="time-val">9:00 – 24:00</span></div></div></div></div>
+      <div class="sch-item" id="sabado"><button class="sch-btn" onclick="toggleDay('sabado')"><div class="sch-left"><div class="dot"></div><span>Sábado</span></div><div class="sch-right"><span class="sch-preview">9:00 – 24:00</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="time-row"><span class="time-lbl">Horario</span><span class="time-val">9:00 – 24:00</span></div></div></div></div>
+      <div class="sch-item" id="domingo"><button class="sch-btn" onclick="toggleDay('domingo')"><div class="sch-left"><div class="dot"></div><span>Domingo</span></div><div class="sch-right"><span class="sch-preview">9:00 – 23:00</span><span class="sch-arrow">▼</span></div></button><div class="sch-body"><div class="sch-detail"><div class="time-row"><span class="time-lbl">Horario</span><span class="time-val">9:00 – 23:00</span></div></div></div></div>
+    </div>
+  </div></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="f-logo">Plaza Blanca Burguer</div>
+      <div class="f-slogan">Todo lo rico... ¡Mancha!</div>
+      <p>Un bar con alma en Ampuero, Cantabria. Donde las hamburguesas son artesanas, los ingredientes son locales y cada visita se convierte en historia.</p>
+    </div>
+    <div class="footer-info">
+      <div class="fi-row">📍 <strong>Ampuero, Cantabria</strong></div>
+      <div class="fi-row">📞 <strong>942 682 286</strong></div>
+      <div class="fi-row">📸 <strong>@plazablanca_ampuero</strong></div>
+      <div class="fi-row">📘 <strong>Plaza Blanca Ampuero</strong></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Plaza Blanca Burguer © 2026 · Ampuero, Cantabria</span>
+    <div class="fsl"><a href="#">Instagram</a><a href="#">Facebook</a></div>
   </div>
 </footer>
 
 <script>
-(function(){
-  // Mobile nav toggle
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  toggle.addEventListener('click', function(){
-    var open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  links.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // ---------- Menu data ----------
-  var menu = [
-    {
-      id: 'hamburguesas',
-      label: 'Hamburguesas',
-      items: [
-        { name: 'La Game Over', desc: 'Nuestra premiada: mejor hamburguesa de Cantabria', price: 'Pregunta en sala', featured: true },
-        { name: 'La Plaza', desc: 'Lechuga, tomate, jamón york, queso cheddar y huevo', price: '7,00' },
-        { name: 'La de Cabra', desc: 'Lechuga, cebolla caramelizada, bacon, queso de cabra, mermelada de tomate', price: '8,00' },
-        { name: 'La de Curry', desc: 'Lechuga, tomate, cebolla cruda, bacon y salsa de curry', price: '8,50' },
-        { name: 'La Ibérica', desc: 'Lechuga, tomate, cebolla caramelizada, jamón ibérico, salsa de foie', price: '9,00' },
-        { name: 'La Mechada', desc: 'Lechuga, queso cheddar, salsa brava, cebolla a la plancha y carne mechada', price: '9,00' },
-        { name: 'La Clásica', desc: 'Lechuga, tomate, cebolla y pepinillo', price: '6,00' }
-      ]
-    },
-    {
-      id: 'bocatas',
-      label: 'Bocatas',
-      items: [
-        { name: 'Bacon', price: '4,50' },
-        { name: 'Lomo', price: '4,50' },
-        { name: 'Pechuga', price: '4,50' },
-        { name: 'Ternera', price: '5,00' },
-        { name: 'Rabas', price: '5,00' },
-        { name: 'Ibérico', desc: 'Jamón ibérico + tumaca', price: '5,00' },
-        { name: 'Plaza', desc: 'Pechuga o lomo, jamón ibérico, queso, ali oli', price: '8,00' },
-        { name: 'Pechuga curry', desc: 'Pechuga, lechuga, tomate, cebolla, salsa curry', price: '6,50' },
-        { name: 'Pepipollo', desc: 'Pechuga, lechuga, tomate, mahonesa, salsa picante', price: '5,00' },
-        { name: 'Bacon completo', desc: 'Bacon, tomate en rodaja, mahonesa', price: '5,00' },
-        { name: 'Ternera y queso azul', desc: 'Ternera, salsa de queso azul, cebolla caramelizada', price: '6,50' }
-      ]
-    },
-    {
-      id: 'sandwich',
-      label: 'Sandwich',
-      items: [
-        { name: 'Mixto', desc: 'Jamón york y queso', price: '3,00' },
-        { name: 'Mixto + huevo', price: '3,50' },
-        { name: 'Mixto + huevo + bacon', desc: 'Con salsa rosa', price: '5,00' },
-        { name: 'Vegetal', desc: 'Lechuga, tomate, mahonesa, huevo, jamón york, queso', price: '4,50' },
-        { name: 'Vegetal completo', desc: 'Vegetal + espárragos y bonito', price: '5,00' },
-        { name: 'Vegetal de pollo', desc: 'Pechuga, lechuga, tomate, jamón york, queso, huevo y mahonesa', price: '5,50' }
-      ]
-    },
-    {
-      id: 'ensaladas',
-      label: 'Ensaladas',
-      items: [
-        { name: 'Ensalada Plaza', desc: 'Completa', price: '9,50' },
-        { name: 'Ensalada normal', desc: 'Lechuga, tomate, cebolla', price: '5,00' },
-        { name: 'Tomate Plaza Blanca', price: '7,50' },
-        { name: 'Ventresca Plaza Blanca', price: '9,50' },
-        { name: 'Ensalada de queso de cabra', price: '10,60' }
-      ]
-    },
-    {
-      id: 'embutidos',
-      label: 'Embutidos y quesos',
-      items: [
-        { name: 'Paleta ibérica', price: '12,50' },
-        { name: 'Cecina de León', price: '10,50' },
-        { name: 'Tabla de ibéricos', price: '14,50' },
-        { name: 'Tabla de quesos', price: '9,50' }
-      ]
-    },
-    {
-      id: 'huevos',
-      label: 'Revueltos y sartenadas',
-      items: [
-        { name: 'Revuelto de setas', price: '8,50' },
-        { name: 'Revuelto de bacalao', price: '8,50' },
-        { name: 'Revuelto de gulas y gambas', price: '9,00' },
-        { name: 'Huevos, patatas y salchichas', price: '8,00' },
-        { name: 'Huevos, patatas y morcilla', price: '8,50' },
-        { name: 'Huevos, patatas y jijas', price: '8,50' },
-        { name: 'Huevos, patatas y jamón', price: '8,50' },
-        { name: 'Huevos, patatas y torreznos de Soria', price: '9,00' },
-        { name: 'Huevos, patatas, gulas y gambas', price: '9,50' },
-        { name: 'Huevos, patatas y callos', price: '9,50' },
-        { name: 'Huevos, patatas y morros', price: '9,50' },
-        { name: 'Huevos, patatas y setas', price: '9,50' }
-      ]
-    },
-    {
-      id: 'raciones',
-      label: 'Raciones',
-      items: [
-        { name: 'Patatas cheddar-bacon', price: '6,50' },
-        { name: 'Patatas bravas caseras', price: '5,50' },
-        { name: 'Patatas 3 salsas', price: '5,00' },
-        { name: 'Ensaladilla rusa', desc: 'De temporada', price: '7,50' },
-        { name: 'Croquetas caseras', desc: 'Jamón ibérico, o cecina con queso de cabra (5 uds.)', price: '7,50' },
-        { name: 'Rabas de jibión', price: '9,50' },
-        { name: 'Jibiones encebollados', price: '7,50' },
-        { name: 'Mejillones al vapor', price: '8,50' },
-        { name: 'Mejillones en tomate', price: '8,50' },
-        { name: 'Mejillones Plaza', price: '8,50' },
-        { name: 'Bacalao casero', desc: 'Con tomate y pimientos', price: '11,50' },
-        { name: 'Nuggets de pollo', price: '5,00' },
-        { name: 'Anchoas de la casa', price: '9,50' },
-        { name: 'Pimientos caseros de marisco', price: '8,50' },
-        { name: 'Alitas barbacoa', price: '6,00' },
-        { name: 'Morcilla frita', price: '5,00' },
-        { name: 'Morcilla encebollada', price: '5,50' },
-        { name: 'Torreznos de Soria', price: '8,00' },
-        { name: 'Albóndigas caseras', desc: 'Con patatas', price: '8,50' },
-        { name: 'Callos', price: '10,50' },
-        { name: 'Morros', price: '10,50' },
-        { name: 'Pimientos de la Miés', price: '7,50' }
-      ]
-    },
-    {
-      id: 'postres',
-      label: 'Postres y pan',
-      items: [
-        { name: 'Arroz con leche', price: '3,50' },
-        { name: 'Almendrado', desc: 'Helado', price: '1,80' },
-        { name: 'Tartas caseras', price: 'Consultar' },
-        { name: 'Cesto de pan pequeño', price: '1,20' },
-        { name: 'Cesto de pan grande', price: '1,80' }
-      ]
-    }
-  ];
-
-  var tabsEl = document.getElementById('menuTabs');
-  var panelsEl = document.getElementById('menuPanels');
-
-  menu.forEach(function(cat, i){
-    var tab = document.createElement('button');
-    tab.className = 'menu-tab' + (i === 0 ? ' active' : '');
-    tab.textContent = cat.label;
-    tab.setAttribute('role','tab');
-    tab.setAttribute('data-target', cat.id);
-    tab.addEventListener('click', function(){ showPanel(cat.id); });
-    tabsEl.appendChild(tab);
-
-    var panel = document.createElement('div');
-    panel.className = 'menu-panel' + (i === 0 ? ' active' : '');
-    panel.id = 'panel-' + cat.id;
-
-    var list = document.createElement('div');
-    list.className = 'menu-list';
-
-    cat.items.forEach(function(item){
-      var row = document.createElement('div');
-      row.className = 'menu-item' + (item.featured ? ' featured' : '');
-
-      var textWrap = document.createElement('div');
-      textWrap.className = 'item-text';
-
-      var nameEl = document.createElement('span');
-      nameEl.className = 'name';
-      if (item.featured) {
-        var tag = document.createElement('span');
-        tag.className = 'featured-tag';
-        tag.textContent = '🏆 PREMIO';
-        nameEl.appendChild(tag);
-      }
-      nameEl.appendChild(document.createTextNode(item.name));
-      textWrap.appendChild(nameEl);
-
-      if (item.desc) {
-        var descEl = document.createElement('span');
-        descEl.className = 'desc';
-        descEl.textContent = item.desc;
-        textWrap.appendChild(descEl);
-      }
-
-      var leader = document.createElement('span');
-      leader.className = 'leader';
-
-      var price = document.createElement('span');
-      price.className = 'price';
-      price.textContent = item.price + (item.price.match(/^\d/) ? ' €' : '');
-
-      row.appendChild(textWrap);
-      row.appendChild(leader);
-      row.appendChild(price);
-      list.appendChild(row);
-    });
-
-    panel.appendChild(list);
-    panelsEl.appendChild(panel);
-  });
-
-  function showPanel(id){
-    tabsEl.querySelectorAll('.menu-tab').forEach(function(t){
-      t.classList.toggle('active', t.getAttribute('data-target') === id);
-    });
-    panelsEl.querySelectorAll('.menu-panel').forEach(function(p){
-      p.classList.toggle('active', p.id === 'panel-' + id);
-    });
-  }
-})();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+function toggleCat(id){document.getElementById(id).classList.toggle('open')}
+function toggleDay(id){document.getElementById(id).classList.toggle('open')}
+const obs=new IntersectionObserver((e)=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
-
 </body>
 </html>
