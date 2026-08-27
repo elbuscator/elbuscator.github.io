@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plaza Blanca Burguer — Hamburguesería en Cantabria</title>
+<meta name="description" content="Plaza Blanca Burguer. Hamburguesas, bocatas y raciones caseras. Ganadora del premio a la Mejor Hamburguesa de Cantabria con La Game Over.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Caveat:wght@600;700&family=Press+Start+2P&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ---------- Tokens ---------- */
+  :root{
+    --bg: #0c0b0f;
+    --bg-alt: #141218;
+    --surface: #1a1720;
+    --surface-2: #221e29;
+    --purple: #a644bb;
+    --purple-deep: #6e2c82;
+    --purple-light: #dd9bea;
+    --green: #94d975;
+    --green-deep: #5da33f;
+    --gold: #e8b94b;
+    --ink: #f6f1ec;
+    --muted: #b6acc4;
+    --line: rgba(246,241,236,0.12);
+
+    --font-display: 'Baloo 2', sans-serif;
+    --font-script: 'Caveat', cursive;
+    --font-arcade: 'Press Start 2P', monospace;
+    --font-body: 'Work Sans', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; line-height:1.05; }
+  p{ margin:0; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family: inherit; }
+
+  :focus-visible{
+    outline: 3px solid var(--green);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow{
+    font-family: var(--font-arcade);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    display:inline-block;
+    margin-bottom: 14px;
+  }
+
+  /* ---------- Background texture ---------- */
+  body{
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(166,68,187,0.16), transparent 42%),
+      radial-gradient(circle at 88% 4%, rgba(148,217,117,0.10), transparent 38%),
+      var(--bg);
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(12,11,15,0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 14px 24px;
+  }
+  .logo-mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color: var(--ink);
+  }
+  .logo-badge{
+    width:40px; height:40px;
+    border-radius: 11px;
+    background: var(--ink);
+    position: relative;
+    flex: none;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px var(--line);
+  }
+  .logo-badge .bun{
+    position:absolute; left:6px; right:6px;
+    height:9px;
+    background: var(--purple);
+    border-radius: 5px;
+  }
+  .logo-badge .bun.top{ top:7px; }
+  .logo-badge .bun.bottom{ bottom:7px; }
+  .logo-badge .lettuce{
+    position:absolute; left:5px; right:5px; top:18px; height:6px;
+  }
+  .logo-word{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size:1.2rem;
+    letter-spacing: 0.01em;
+  }
+  .logo-word span{
+    display:block;
+    font-family: var(--font-script);
+    font-weight:600;
+    font-size: 0.85rem;
+    color: var(--purple-light);
+    margin-top:-4px;
+  }
+
+  nav.links{
+    display:flex;
+    gap: 28px;
+    align-items:center;
+  }
+  nav.links a{
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.92rem;
+    color: var(--muted);
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  nav.links a:hover{ color: var(--ink); border-color: var(--green); }
+
+  .nav-cta{
+    background: var(--purple);
+    color: var(--ink) !important;
+    padding: 9px 18px !important;
+    border-radius: 999px;
+    border-bottom: none !important;
+    font-weight:700 !important;
+  }
+  .nav-cta:hover{ background: var(--purple-deep); border-color: transparent !important; }
+
+  .burger-toggle{
+    display:none;
+    background:none;
+    border: 1px solid var(--line);
+    border-radius:8px;
+    width:42px; height:38px;
+    color: var(--ink);
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding: 92px 0 110px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+    font-weight:800;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color: var(--purple-light);
+  }
+  .hero .script{
+    font-family: var(--font-script);
+    color: var(--green);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight:700;
+    display:inline-block;
+    margin-bottom: 8px;
+    transform: rotate(-2deg);
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 46ch;
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+  .hero-actions{
+    margin-top: 34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight:700;
+    font-size:0.98rem;
+    text-decoration:none;
+    cursor:pointer;
+    border: 2px solid transparent;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--purple); color:var(--ink); }
+  .btn-primary:hover{ background: var(--purple-deep); }
+  .btn-ghost{ border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover{ border-color: var(--green); color: var(--green); }
+
+  /* Hero illustration: stacked burger built from CSS */
+  .hero-art{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 360px;
+  }
+  .stack{
+    width: 280px;
+    filter: drop-shadow(0 30px 40px rgba(0,0,0,0.55));
+  }
+  .stack > div{ border-radius: 999px; margin: 0 auto; position:relative; }
+  .bun-top{
+    width: 260px; height: 120px;
+    background: linear-gradient(180deg, #e2c07a, #c99a4c);
+    border-radius: 140px 140px 30px 30px;
+  }
+  .bun-top::after{
+    content:"";
+    position:absolute; inset: 14px 22px auto 22px; height:6px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 999px;
+  }
+  .lettuce-layer{
+    width: 292px; height: 34px;
+    margin-top: -14px;
+    background: var(--green);
+    clip-path: polygon(0% 40%,5% 10%,12% 45%,20% 5%,28% 45%,36% 8%,44% 45%,52% 10%,60% 45%,68% 6%,76% 45%,84% 10%,92% 45%,100% 15%,100% 100%,0% 100%);
+  }
+  .cheese-layer{
+    width: 250px; height: 26px;
+    margin-top: -10px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+  }
+  .patty{
+    width: 258px; height: 40px;
+    margin-top: -6px;
+    background: linear-gradient(180deg, #5a3624, #3f2417);
+    border-radius: 20px;
+  }
+  .purple-sauce{
+    width: 250px; height: 22px;
+    margin-top: -6px;
+    background: var(--purple);
+    border-radius: 14px;
+  }
+  .bun-bottom{
+    width: 268px; height: 60px;
+    margin-top: -4px;
+    background: linear-gradient(180deg, #d9ac5e, #b3813b);
+    border-radius: 22px 22px 60px 60px;
+  }
+  .hero-badge{
+    position:absolute;
+    top: -6px; right: -18px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-arcade);
+    font-size: 0.55rem;
+    line-height:1.6;
+    text-align:center;
+    padding: 12px;
+    border-radius: 50%;
+    width: 92px; height: 92px;
+    display:flex; align-items:center; justify-content:center;
+    transform: rotate(8deg);
+    box-shadow: 0 0 0 4px var(--green);
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+  .section-head h2{
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight:800;
+  }
+  .section-head p{
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+
+  /* ---------- Award / Game Over section ---------- */
+  .award{
+    background: var(--bg-alt);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .arcade-screen{
+    background: #0a0a0a;
+    border: 3px solid var(--purple);
+    border-radius: 18px;
+    padding: 56px 32px;
+    text-align:center;
+    position:relative;
+    box-shadow:
+      0 0 0 6px rgba(166,68,187,0.12),
+      inset 0 0 60px rgba(166,68,187,0.14);
+    overflow:hidden;
+  }
+  .arcade-screen::before{
+    content:"";
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events:none;
+  }
+  .arcade-score{
+    font-family: var(--font-arcade);
+    font-size: 0.62rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    margin-bottom: 26px;
+  }
+  .arcade-title{
+    font-family: var(--font-arcade);
+    color: var(--purple-light);
+    font-size: clamp(1.7rem, 6vw, 3.4rem);
+    text-shadow: 0 0 18px rgba(166,68,187,0.9), 0 0 44px rgba(166,68,187,0.5);
+    letter-spacing: 0.04em;
+    margin-bottom: 22px;
+  }
+  .arcade-sub{
+    font-family: var(--font-arcade);
+    color: var(--gold);
+    font-size: clamp(0.72rem, 1.8vw, 0.95rem);
+    line-height: 2;
+  }
+  .arcade-burger-name{
+    color: var(--ink);
+  }
+  .insert-coin{
+    margin-top: 30px;
+    font-family: var(--font-arcade);
+    font-size: 0.6rem;
+    color: var(--muted);
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity: 0.15; } }
+
+  .award-copy{
+    max-width: 620px;
+    margin: 34px auto 0;
+    text-align:center;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+  .award-copy strong{ color: var(--ink); }
+
+  /* ---------- Menu ---------- */
+  .menu-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .menu-tab{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size: 0.9rem;
+    cursor:pointer;
+    transition: all .18s ease;
+  }
+  .menu-tab:hover{ color: var(--ink); border-color: var(--purple-light); }
+  .menu-tab.active{
+    background: var(--purple);
+    color: var(--ink);
+    border-color: var(--purple);
+  }
+
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:block; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform:none; } }
+
+  .menu-list{ display:grid; gap: 4px; }
+  .menu-item{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    padding: 16px 4px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .menu-item .name{
+    font-weight:700;
+    font-size: 1.02rem;
+    white-space: nowrap;
+  }
+  .menu-item .desc{
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .menu-item .leader{
+    flex: 1;
+    border-bottom: 2px dotted var(--line);
+    transform: translateY(-5px);
+    min-width: 20px;
+  }
+  .menu-item .price{
+    font-family: var(--font-display);
+    font-weight:700;
+    color: var(--gold);
+    white-space: nowrap;
+    font-size: 1.02rem;
+  }
+  .menu-item .item-text{ display:flex; flex-direction:column; gap:2px; }
+
+  .menu-item.featured{
+    background: linear-gradient(90deg, rgba(166,68,187,0.14), transparent);
+    border-radius: 12px;
+    border-bottom: 1px solid var(--purple);
+    padding: 18px 16px;
+  }
+  .featured-tag{
+    font-family: var(--font-arcade);
+    font-size: 0.5rem;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 4px 8px;
+    border-radius: 5px;
+    margin-right: 8px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+
+  .menu-note{
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    padding: 56px 0 32px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+  }
+  footer h3{
+    font-size: 1rem;
+    color: var(--green);
+    margin-bottom: 14px;
+    font-family: var(--font-body);
+    font-weight:700;
+  }
+  footer p, footer a{
+    color: var(--muted);
+    font-size: 0.94rem;
+    text-decoration:none;
+  }
+  footer a:hover{ color: var(--purple-light); }
+  footer li{ margin-bottom: 8px; }
+  .footer-bottom{
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-art{ order:-1; min-height: 260px; }
+    .stack{ width: 220px; }
+    nav.links{
+      position:fixed; top:66px; left:0; right:0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--line);
+      flex-direction:column;
+      align-items:flex-start;
+      padding: 20px 24px 26px;
+      gap: 18px;
+      transform: translateY(-140%);
+      transition: transform .25s ease;
+    }
+    nav.links.open{ transform: translateY(0); }
+    .burger-toggle{ display:flex; }
+    .footer-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .menu-item .name{ white-space: normal; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner wrap">
+    <a href="#inicio" class="logo-mark">
+      <span class="logo-badge">
+        <span class="bun top"></span>
+        <span class="lettuce">
+          <svg viewBox="0 0 100 20" width="100%" height="100%" preserveAspectRatio="none">
+            <polyline points="0,14 8,4 16,14 24,4 32,14 40,4 48,14 56,4 64,14 72,4 80,14 88,4 96,14 100,10" fill="none" stroke="#94d975" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="bun bottom"></span>
+      </span>
+      <span class="logo-word">PBB<span>Plaza Blanca Burguer</span></span>
+    </a>
+
+    <button class="burger-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1H20M0 7H20M0 13H20" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#premio">El premio</a>
+      <a href="#carta">La carta</a>
+      <a href="#contacto">Cómo llegar</a>
+      <a href="#carta" class="nav-cta">Ver la carta</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="script">hecha a la plancha, a tu lado</span>
+        <h1>Hamburguesas con <em>nombre y apellido</em>, en el corazón de Cantabria.</h1>
+        <p class="lede">Carne mechada, jamón ibérico, quesos de cabra y una que ya tiene sitio en el podio: <strong style="color:var(--ink)">La Game Over</strong>, elegida la mejor hamburguesa de Cantabria.</p>
+        <div class="hero-actions">
+          <a href="#carta" class="btn btn-primary">Ver la carta completa</a>
+          <a href="#premio" class="btn btn-ghost">Conoce el premio 🏆</a>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="stack">
+          <div class="bun-top"></div>
+          <div class="lettuce-layer"></div>
+          <div class="cheese-layer"></div>
+          <div class="patty"></div>
+          <div class="purple-sauce"></div>
+          <div class="bun-bottom"></div>
+        </div>
+        <div class="hero-badge">MEJOR<br>HAMBURG.<br>CANTABRIA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- AWARD / GAME OVER ---------- -->
+  <section class="award" id="premio">
+    <div class="wrap">
+      <div class="arcade-screen">
+        <div class="arcade-score">HIGH SCORE · PLAZA BLANCA BURGUER</div>
+        <div class="arcade-title">GAME OVER</div>
+        <div class="arcade-sub">
+          PREMIO A LA<br>
+          <span class="arcade-burger-name">MEJOR HAMBURGUESA</span><br>
+          DE CANTABRIA
+        </div>
+        <div class="insert-coin">▸ PULSA "VER LA CARTA" PARA CONTINUAR ▸</div>
+      </div>
+      <p class="award-copy">Se llama <strong>La Game Over</strong> porque, cuando la pruebas, dejas de buscar otra hamburguesa. El jurado estuvo de acuerdo: la coronó como la <strong>mejor hamburguesa de Cantabria</strong>, y desde entonces es la razón por la que la gente cruza la plaza.</p>
+    </div>
+  </section>
+
+  <!-- ---------- MENU ---------- -->
+  <section id="carta">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">LA CARTA</span>
+        <h2>Todo lo que sale de nuestra plancha</h2>
+        <p>De la ensalada al postre, pasando por la hamburguesa que nos ha dado más de una alegría. Precios en euros.</p>
+      </div>
+
+      <div class="menu-tabs" role="tablist" id="menuTabs"></div>
+      <div id="menuPanels"></div>
+
+      <p class="menu-note">Los platos pueden contener alérgenos (gluten, huevo, lácteos, frutos secos, pescado y marisco, entre otros). Pregunta en sala si tienes alguna alergia o intolerancia.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>Plaza Blanca Burguer</h3>
+        <p>Hamburguesería y bocatería en Cantabria. Ganadora del premio a la Mejor Hamburguesa de Cantabria con La Game Over.</p>
+      </div>
+      <div>
+        <h3>Horario</h3>
+        <ul>
+          <li>Martes a domingo: 13:00–16:30</li>
+          <li>Jueves a sábado: 20:00–23:30</li>
+          <li>Lunes: cerrado</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Encuéntranos</h3>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Cómo llegar (Google Maps)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Plaza Blanca Burguer</span>
+      <span>Dirección, teléfono y enlaces de ejemplo — sustitúyelos por los reales.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Mobile nav toggle
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- Menu data ----------
+  var menu = [
+    {
+      id: 'hamburguesas',
+      label: 'Hamburguesas',
+      items: [
+        { name: 'La Game Over', desc: 'Nuestra premiada: mejor hamburguesa de Cantabria', price: 'Pregunta en sala', featured: true },
+        { name: 'La Plaza', desc: 'Lechuga, tomate, jamón york, queso cheddar y huevo', price: '7,00' },
+        { name: 'La de Cabra', desc: 'Lechuga, cebolla caramelizada, bacon, queso de cabra, mermelada de tomate', price: '8,00' },
+        { name: 'La de Curry', desc: 'Lechuga, tomate, cebolla cruda, bacon y salsa de curry', price: '8,50' },
+        { name: 'La Ibérica', desc: 'Lechuga, tomate, cebolla caramelizada, jamón ibérico, salsa de foie', price: '9,00' },
+        { name: 'La Mechada', desc: 'Lechuga, queso cheddar, salsa brava, cebolla a la plancha y carne mechada', price: '9,00' },
+        { name: 'La Clásica', desc: 'Lechuga, tomate, cebolla y pepinillo', price: '6,00' }
+      ]
+    },
+    {
+      id: 'bocatas',
+      label: 'Bocatas',
+      items: [
+        { name: 'Bacon', price: '4,50' },
+        { name: 'Lomo', price: '4,50' },
+        { name: 'Pechuga', price: '4,50' },
+        { name: 'Ternera', price: '5,00' },
+        { name: 'Rabas', price: '5,00' },
+        { name: 'Ibérico', desc: 'Jamón ibérico + tumaca', price: '5,00' },
+        { name: 'Plaza', desc: 'Pechuga o lomo, jamón ibérico, queso, ali oli', price: '8,00' },
+        { name: 'Pechuga curry', desc: 'Pechuga, lechuga, tomate, cebolla, salsa curry', price: '6,50' },
+        { name: 'Pepipollo', desc: 'Pechuga, lechuga, tomate, mahonesa, salsa picante', price: '5,00' },
+        { name: 'Bacon completo', desc: 'Bacon, tomate en rodaja, mahonesa', price: '5,00' },
+        { name: 'Ternera y queso azul', desc: 'Ternera, salsa de queso azul, cebolla caramelizada', price: '6,50' }
+      ]
+    },
+    {
+      id: 'sandwich',
+      label: 'Sandwich',
+      items: [
+        { name: 'Mixto', desc: 'Jamón york y queso', price: '3,00' },
+        { name: 'Mixto + huevo', price: '3,50' },
+        { name: 'Mixto + huevo + bacon', desc: 'Con salsa rosa', price: '5,00' },
+        { name: 'Vegetal', desc: 'Lechuga, tomate, mahonesa, huevo, jamón york, queso', price: '4,50' },
+        { name: 'Vegetal completo', desc: 'Vegetal + espárragos y bonito', price: '5,00' },
+        { name: 'Vegetal de pollo', desc: 'Pechuga, lechuga, tomate, jamón york, queso, huevo y mahonesa', price: '5,50' }
+      ]
+    },
+    {
+      id: 'ensaladas',
+      label: 'Ensaladas',
+      items: [
+        { name: 'Ensalada Plaza', desc: 'Completa', price: '9,50' },
+        { name: 'Ensalada normal', desc: 'Lechuga, tomate, cebolla', price: '5,00' },
+        { name: 'Tomate Plaza Blanca', price: '7,50' },
+        { name: 'Ventresca Plaza Blanca', price: '9,50' },
+        { name: 'Ensalada de queso de cabra', price: '10,60' }
+      ]
+    },
+    {
+      id: 'embutidos',
+      label: 'Embutidos y quesos',
+      items: [
+        { name: 'Paleta ibérica', price: '12,50' },
+        { name: 'Cecina de León', price: '10,50' },
+        { name: 'Tabla de ibéricos', price: '14,50' },
+        { name: 'Tabla de quesos', price: '9,50' }
+      ]
+    },
+    {
+      id: 'huevos',
+      label: 'Revueltos y sartenadas',
+      items: [
+        { name: 'Revuelto de setas', price: '8,50' },
+        { name: 'Revuelto de bacalao', price: '8,50' },
+        { name: 'Revuelto de gulas y gambas', price: '9,00' },
+        { name: 'Huevos, patatas y salchichas', price: '8,00' },
+        { name: 'Huevos, patatas y morcilla', price: '8,50' },
+        { name: 'Huevos, patatas y jijas', price: '8,50' },
+        { name: 'Huevos, patatas y jamón', price: '8,50' },
+        { name: 'Huevos, patatas y torreznos de Soria', price: '9,00' },
+        { name: 'Huevos, patatas, gulas y gambas', price: '9,50' },
+        { name: 'Huevos, patatas y callos', price: '9,50' },
+        { name: 'Huevos, patatas y morros', price: '9,50' },
+        { name: 'Huevos, patatas y setas', price: '9,50' }
+      ]
+    },
+    {
+      id: 'raciones',
+      label: 'Raciones',
+      items: [
+        { name: 'Patatas cheddar-bacon', price: '6,50' },
+        { name: 'Patatas bravas caseras', price: '5,50' },
+        { name: 'Patatas 3 salsas', price: '5,00' },
+        { name: 'Ensaladilla rusa', desc: 'De temporada', price: '7,50' },
+        { name: 'Croquetas caseras', desc: 'Jamón ibérico, o cecina con queso de cabra (5 uds.)', price: '7,50' },
+        { name: 'Rabas de jibión', price: '9,50' },
+        { name: 'Jibiones encebollados', price: '7,50' },
+        { name: 'Mejillones al vapor', price: '8,50' },
+        { name: 'Mejillones en tomate', price: '8,50' },
+        { name: 'Mejillones Plaza', price: '8,50' },
+        { name: 'Bacalao casero', desc: 'Con tomate y pimientos', price: '11,50' },
+        { name: 'Nuggets de pollo', price: '5,00' },
+        { name: 'Anchoas de la casa', price: '9,50' },
+        { name: 'Pimientos caseros de marisco', price: '8,50' },
+        { name: 'Alitas barbacoa', price: '6,00' },
+        { name: 'Morcilla frita', price: '5,00' },
+        { name: 'Morcilla encebollada', price: '5,50' },
+        { name: 'Torreznos de Soria', price: '8,00' },
+        { name: 'Albóndigas caseras', desc: 'Con patatas', price: '8,50' },
+        { name: 'Callos', price: '10,50' },
+        { name: 'Morros', price: '10,50' },
+        { name: 'Pimientos de la Miés', price: '7,50' }
+      ]
+    },
+    {
+      id: 'postres',
+      label: 'Postres y pan',
+      items: [
+        { name: 'Arroz con leche', price: '3,50' },
+        { name: 'Almendrado', desc: 'Helado', price: '1,80' },
+        { name: 'Tartas caseras', price: 'Consultar' },
+        { name: 'Cesto de pan pequeño', price: '1,20' },
+        { name: 'Cesto de pan grande', price: '1,80' }
+      ]
+    }
+  ];
+
+  var tabsEl = document.getElementById('menuTabs');
+  var panelsEl = document.getElementById('menuPanels');
+
+  menu.forEach(function(cat, i){
+    var tab = document.createElement('button');
+    tab.className = 'menu-tab' + (i === 0 ? ' active' : '');
+    tab.textContent = cat.label;
+    tab.setAttribute('role','tab');
+    tab.setAttribute('data-target', cat.id);
+    tab.addEventListener('click', function(){ showPanel(cat.id); });
+    tabsEl.appendChild(tab);
+
+    var panel = document.createElement('div');
+    panel.className = 'menu-panel' + (i === 0 ? ' active' : '');
+    panel.id = 'panel-' + cat.id;
+
+    var list = document.createElement('div');
+    list.className = 'menu-list';
+
+    cat.items.forEach(function(item){
+      var row = document.createElement('div');
+      row.className = 'menu-item' + (item.featured ? ' featured' : '');
+
+      var textWrap = document.createElement('div');
+      textWrap.className = 'item-text';
+
+      var nameEl = document.createElement('span');
+      nameEl.className = 'name';
+      if (item.featured) {
+        var tag = document.createElement('span');
+        tag.className = 'featured-tag';
+        tag.textContent = '🏆 PREMIO';
+        nameEl.appendChild(tag);
+      }
+      nameEl.appendChild(document.createTextNode(item.name));
+      textWrap.appendChild(nameEl);
+
+      if (item.desc) {
+        var descEl = document.createElement('span');
+        descEl.className = 'desc';
+        descEl.textContent = item.desc;
+        textWrap.appendChild(descEl);
+      }
+
+      var leader = document.createElement('span');
+      leader.className = 'leader';
+
+      var price = document.createElement('span');
+      price.className = 'price';
+      price.textContent = item.price + (item.price.match(/^\d/) ? ' €' : '');
+
+      row.appendChild(textWrap);
+      row.appendChild(leader);
+      row.appendChild(price);
+      list.appendChild(row);
+    });
+
+    panel.appendChild(list);
+    panelsEl.appendChild(panel);
+  });
+
+  function showPanel(id){
+    tabsEl.querySelectorAll('.menu-tab').forEach(function(t){
+      t.classList.toggle('active', t.getAttribute('data-target') === id);
+    });
+    panelsEl.querySelectorAll('.menu-panel').forEach(function(p){
+      p.classList.toggle('active', p.id === 'panel-' + id);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
