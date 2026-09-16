@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escapar de Sonic EXE · Juego de terror para Android</title>
+<meta name="description" content="Escapa del erizo maldito EXE en este runner de terror inspirado en las creepypastas. Corre, salta y sobrevive. Descárgalo gratis en Google Play.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0a0d;
+    --panel:#17141a;
+    --blood:#b5222b;
+    --blood-bright:#e8323c;
+    --scan-cyan:#2ad9cb;
+    --bone:#e9e3d8;
+    --ash:#948e97;
+    --line:#332a2d;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    mix-blend-mode:overlay;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+  }
+  h1,h2,h3{font-family:'VT323',monospace; font-weight:400; letter-spacing:0.02em;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(10,10,13,0.9); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .brand{font-family:'VT323',monospace; font-size:1.5rem; text-decoration:none; display:flex; align-items:center; gap:8px;}
+  .brand .eye{color:var(--blood-bright);}
+  nav.links{display:flex; gap:26px; align-items:center;}
+  nav.links a{text-decoration:none; color:var(--ash); font-size:0.95rem; transition:color .15s ease;}
+  nav.links a:hover{color:var(--bone);}
+  .nav-cta{background:var(--blood); color:var(--bone) !important; padding:9px 18px; border:1px solid var(--blood-bright); font-weight:600; font-size:0.9rem !important;}
+  .nav-cta:hover{background:var(--blood-bright); color:var(--void) !important;}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--bone); padding:8px 12px; font-size:1.1rem;}
+
+  /* HERO */
+  .hero{padding:64px 0 76px; text-align:center; background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(181,34,43,0.14), transparent 70%), var(--void); border-bottom:1px solid var(--line);}
+  .flourish{font-size:1.3rem; opacity:0.7; letter-spacing:0.3em; margin-bottom:18px;}
+  .badge{display:inline-block; border:1px solid var(--line); color:var(--ash); font-size:0.85rem; padding:6px 14px; margin-bottom:22px;}
+  .glitch-title{font-size:clamp(2.6rem, 7vw, 5rem); line-height:1.02; margin:0 0 20px; position:relative; display:inline-block;}
+  .glitch-title span{position:relative; display:inline-block;}
+  .glitch-title span::before,.glitch-title span::after{content:attr(data-text); position:absolute; left:0; top:0; width:100%; overflow:hidden; background:var(--void);}
+  .glitch-title span::before{color:var(--blood-bright); animation:glitchTop 5.5s infinite linear; clip-path:inset(0 0 60% 0);}
+  .glitch-title span::after{color:var(--scan-cyan); animation:glitchBottom 5.5s infinite linear; clip-path:inset(60% 0 0 0);}
+  @keyframes glitchTop{0%,88%,100%{transform:translate(0,0); opacity:0;} 89%{transform:translate(-3px,-1px); opacity:1;} 90%{transform:translate(2px,1px); opacity:1;} 91%{transform:translate(-2px,0); opacity:0.8;} 92%{opacity:0;}}
+  @keyframes glitchBottom{0%,88%,100%{transform:translate(0,0); opacity:0;} 89%{transform:translate(3px,1px); opacity:1;} 90%{transform:translate(-2px,-1px); opacity:1;} 91%{transform:translate(2px,0); opacity:0.8;} 92%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){.glitch-title span::before,.glitch-title span::after{animation:none; display:none;}}
+  .hero p.lead{max-width:620px; margin:0 auto 34px; color:var(--ash); font-size:1.08rem;}
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:40px;}
+  .btn{display:inline-block; padding:14px 28px; text-decoration:none; font-weight:700; font-size:1rem; border:1px solid transparent; transition:transform .12s ease, background .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--blood); color:var(--bone); border-color:var(--blood-bright);}
+  .btn-primary:hover{background:var(--blood-bright);}
+  .btn-ghost{background:transparent; color:var(--bone); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--scan-cyan); color:var(--scan-cyan);}
+  .mood-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .mood-row span{width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; background:var(--panel); border:1px solid var(--line); border-radius:50%;}
+
+  /* SECTION SHELL */
+  section{padding:76px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .eyebrow{color:var(--blood-bright); font-size:0.95rem; margin-bottom:10px;}
+  .section-head{max-width:620px; margin:0 0 44px;}
+  .section-head h2{font-size:2.3rem; margin:0 0 12px;}
+  .section-head p{color:var(--ash); margin:0; font-size:1.02rem;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* FEATURES */
+  .feat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .feat-card{background:var(--panel); padding:32px 28px;}
+  .feat-card .icon{font-size:1.8rem; margin-bottom:14px; display:block;}
+  .feat-card h3{font-size:1.5rem; margin:0 0 10px;}
+  .feat-card p{margin:0; color:var(--ash); font-size:0.95rem;}
+
+  /* BENEFITS */
+  .benefit-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 40px;}
+  .benefit-item{display:flex; gap:14px; align-items:flex-start;}
+  .benefit-item .check{color:var(--blood-bright); font-size:1.2rem; flex-shrink:0; line-height:1.5;}
+  .benefit-item p{margin:0; color:var(--ash);}
+
+  /* HOW IT WORKS */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .step{border-top:2px solid var(--blood); padding-top:20px;}
+  .step .n{font-family:'VT323',monospace; font-size:2.6rem; color:var(--blood-bright); line-height:1;}
+  .step h3{font-size:1.4rem; margin:10px 0 10px;}
+  .step p{margin:0; color:var(--ash); font-size:0.95rem;}
+
+  /* SCREENSHOTS */
+  .shots{display:flex; gap:16px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory;}
+  .shots img{scroll-snap-align:start; flex:0 0 auto; height:300px; width:auto; border:1px solid var(--line);}
+  .shots::-webkit-scrollbar{height:8px;}
+  .shots::-webkit-scrollbar-thumb{background:var(--line);}
+  .shots::-webkit-scrollbar-track{background:transparent;}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center; background:linear-gradient(180deg, var(--void), #150708 60%, var(--void));}
+  .final-cta h2{font-size:2.6rem; margin:0 0 16px;}
+  .final-cta p{color:var(--ash); margin:0 0 30px;}
+  .fine-print{margin-top:18px; color:var(--ash); font-size:0.85rem;}
+
+  /* FOOTER */
+  footer{padding:40px 0; color:var(--ash); font-size:0.9rem;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .flinks{display:flex; gap:20px;}
+  footer .flinks a{color:var(--ash); text-decoration:none;}
+  footer .flinks a:hover{color:var(--bone);}
+  footer .copy{width:100%; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-size:0.82rem;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .feat-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="eye">👁</span> Escapar de Sonic EXE</a>
+    <nav class="links">
+      <a href="#caracteristicas">Características</a>
+      <a href="#por-que">¿Por qué?</a>
+      <a href="#como">Cómo jugar</a>
+      <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.elbuscator.escapefromsoniicexe">Descargar</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="flourish">💀 🌑 👁 ⚡ 🩸</div>      
+      <h1 class="glitch-title"><span data-text="Escapa de Sonic EXE">Escapa de Sonic EXE</span></h1>
+      <p class="lead">Una niña ha quedado atrapada en una dimensión corrupta, perseguida por un erizo de mirada carmesí que nunca deja de sonreír. Corre, salta y esquiva en este runner de terror con estética retro, inspirado en las creepypastas más oscuras de internet.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.escapefromsoniicexe">Descargar gratis</a>
+        <a class="btn btn-ghost" href="#como">Ver cómo jugar ↓</a>
+      </div>
+      <div class="mood-row">
+        <span>😱</span><span>🥶</span><span>😨</span><span>👁</span><span>💀</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow center">✨ Características</div>
+        <h2>Todo lo que necesitas para no  quedarte atrás</h2>
+        <p>Pensado para poner a prueba tus reflejos partida tras partida.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="feat-grid">
+        <div class="feat-card">
+          <span class="icon">🌀</span>
+          <h3>Terror en desplazamiento lateral</h3>
+          <p>Vive la tensión de un runner clásico envuelto en una atmósfera macabra que no da tregua.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🕹️</span>
+          <h3>Controles de un toque</h3>
+          <p>Salta obstáculos con precisión quirúrgica tocando la pantalla. Fácil de aprender, imposible de dominar.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">💀</span>
+          <h3>Estética creepypasta</h3>
+          <p>Inspirado en los relatos de terror más famosos de internet y en la leyenda del erizo maldito.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">⚡</span>
+          <h3>Ritmo desafiante</h3>
+          <p>La velocidad aumenta cuanto más tiempo logras sobrevivir. Cada segundo pesa más que el anterior.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🎮</span>
+          <h3>Gráficos retro</h3>
+          <p>Un estilo visual que evoca los juegos malditos de las consolas antiguas.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🩸</span>
+          <h3>Historia inquietante</h3>
+          <p>Guía a la niña en su huida desesperada por un mundo distorsionado donde el peligro acecha en cada rincón.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">💡 ¿Por qué jugarlo?</div>
+        <h2>Pensado para  engancharte de verdad</h2>
+        <p>Partidas cortas, tensión constante y ganas de intentarlo una vez más.</p>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-item"><span class="check">✓</span><p>Partidas rápidas de pura adrenalina, ideales para esos ratos muertos con el corazón en un puño.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Una premisa inquietante que engancha desde el primer segundo de persecución.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Estética creepypasta fiel a la legendaria leyenda del erizo maldito.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Dificultad progresiva: cuanto más aguantas, más te exige el juego.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Controles simples pero exigentes que ponen a prueba tus nervios de acero.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Cada intento es una nueva oportunidad de batir tu propio récord.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">📖 Cómo jugar</div>
+        <h2>3 pasos para  sobrevivir</h2>
+        <p>Así de simple es empezar a huir del erizo EXE.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Corre sin parar 🏃</h3>
+          <p>El escenario avanza solo por un mundo distorsionado. Tú solo tienes que mantenerte con vida.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Salta y esquiva 🕹️</h3>
+          <p>Toca la pantalla en el momento justo para saltar cada obstáculo con precisión quirúrgica.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Escapa del erizo EXE 👁</h3>
+          <p>Cuanto más tiempo sobrevivas, más rápido y peligroso se vuelve todo a tu alrededor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capturas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Un vistazo a la pesadilla</h2>
+        <p>Así es el mundo distorsionado que tendrás que atravesar.</p>
+      </div>
+      <div class="shots">
+        <img src="https://play-lh.googleusercontent.com/kHYDIQQ5CwfkkUbr17N5K0fA0RZqF8tDI4ofK70pIT5D64ryh_1gVehT7yuJL5AySr8ndqMMY0XyQJr8cUEa=w526-h296" alt="Captura 1 del juego">
+        <img src="https://play-lh.googleusercontent.com/HPbUJjKGBChPFEXB1dY1My8Z_iiiB39Lp0glml8Us-qzoB_V3Ag-ZLgf20f9kj1dtySARybMyKd4aPXD4tAkwQ=w526-h296" alt="Captura 2 del juego">
+        <img src="https://play-lh.googleusercontent.com/ThxtsD3QOdS47i07-C4P-rB6xBWQRhj-cxNCrE3aoRU8ey5tinVt6Z3537HuF31WqSWcaD_qFNqi7qO1_U0T=w526-h296" alt="Captura 3 del juego">
+        <img src="https://play-lh.googleusercontent.com/_F_Vc8HWfvLQSJYJC3eIv8tKWvrXCE5d7PzJ0cKGmuQkKDj8eSFk0PgpW2sUmcclh8G1eUgVCXOCtlbVA8j1zA=w526-h296" alt="Captura 4 del juego">
+        <img src="https://play-lh.googleusercontent.com/IfQqKUDOFwfU19jgNT-csuGaYVDhnnvjzPaK4_gZ3qsaDLXZvJ-Yh4s_8U71U63iOgX1sGx74X5nR5etNu_0Zg=w526-h296" alt="Captura 5 del juego">
+        <img src="https://play-lh.googleusercontent.com/7AuWTt77EOGM1zn0Cs8gJZLZ7uj-beSWkN7z2Jh2zlY_DitzWohYlatgGtxQjBYwXEoWletGYJpEFDqY8UKOwg=w526-h296" alt="Captura 6 del juego">
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>¿Te atreves a escapar? 😈</h2>
+      <p>Descarga el juego y comprueba si tienes los nervios para sobrevivir al erizo EXE.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.escapefromsoniicexe">Descargar en Google Play</a>
+      <div class="fine-print">Gratis · Contiene anuncios · Para mayores de 7 años</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand" style="font-size:1.2rem;">👁 Escapar de Sonic EXE</span>
+    <div class="flinks">
+      <a href="https://elbuscator.github.io">← Inicio</a>
+      <a href="https://elbuscatorapps.blogspot.com/p/politica-de-privacidad-ese.html">Privacidad</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.escapefromsoniicexe">Google Play</a>
+    </div>
+    <div class="copy">© 2026 elbuscator · Todos los derechos reservados</div>
+  </div>
+</footer>
+
+</body>
+</html>
