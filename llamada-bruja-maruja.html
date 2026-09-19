@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llamada de Bruja Maruja · Bromas para niños</title>
+<meta name="description" content="¿No te hacen caso? Logra que se porten bien con la llamada de la Bruja Maruja. Una herramienta divertida para padres y cuidadores. Descárgala gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#120a1f;
+    --panel:#1c1330;
+    --panel-2:#241a3c;
+    --purple:#8b5cf6;
+    --purple-bright:#a78bfa;
+    --green:#4ade80;
+    --bone:#efe9f7;
+    --ash:#9a93b8;
+    --line:#2c2145;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2{font-family:'UnifrakturMaguntia',cursive; font-weight:400; letter-spacing:0.01em;}
+  h3{font-family:'Inter',sans-serif; font-weight:700;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(18,10,31,0.9); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .brand{font-family:'UnifrakturMaguntia',cursive; font-size:1.7rem; text-decoration:none; display:flex; align-items:center; gap:8px; color:var(--purple-bright);}
+  nav.links{display:flex; gap:26px; align-items:center;}
+  nav.links a{text-decoration:none; color:var(--ash); font-size:0.95rem; transition:color .15s ease;}
+  nav.links a:hover{color:var(--bone);}
+  .nav-cta{background:var(--purple); color:#150a24 !important; padding:9px 18px; border-radius:6px; font-weight:700; font-size:0.9rem !important;}
+  .nav-cta:hover{background:var(--purple-bright);}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--bone); padding:8px 12px; border-radius:6px; font-size:1.1rem;}
+
+  /* HERO */
+  .hero{
+    padding:64px 0 56px; text-align:center;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,92,246,0.16), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 85% 100%, rgba(74,222,128,0.10), transparent 70%),
+      var(--void);
+    border-bottom:1px solid var(--line);
+  }
+  .flourish{font-size:1.4rem; opacity:0.8; letter-spacing:0.3em; margin-bottom:18px;}
+  .badge{display:inline-block; border:1px solid var(--line); color:var(--ash); font-size:0.85rem; padding:6px 14px; border-radius:6px; margin-bottom:22px;}
+  .hero h1{font-size:clamp(2.6rem, 7vw, 4.6rem); line-height:1.1; margin:0 0 20px; color:var(--purple-bright); text-shadow:0 0 20px rgba(139,92,246,0.35);}
+  .hero p.lead{max-width:620px; margin:0 auto 34px; color:var(--ash); font-size:1.08rem;}
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{display:inline-block; padding:14px 28px; text-decoration:none; font-weight:700; font-size:1rem; border-radius:8px; border:1px solid transparent; transition:transform .12s ease, background .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--purple); color:#150a24;}
+  .btn-primary:hover{background:var(--purple-bright);}
+  .btn-ghost{background:transparent; color:var(--bone); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--green); color:var(--green);}
+  .mood-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .mood-row span{width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; background:var(--panel); border:1px solid var(--line); border-radius:50%;}
+
+  /* WARNING CALLOUT */
+  .warning{background:var(--void); border-bottom:1px solid var(--line);}
+  .warning .box{
+    display:flex; gap:16px; align-items:flex-start;
+    border:1px solid var(--green);
+    background:rgba(74,222,128,0.06);
+    padding:20px 24px; border-radius:10px;
+  }
+  .warning .box .ico{font-size:1.5rem; flex-shrink:0;}
+  .warning .box p{margin:0; color:var(--ash); font-size:0.95rem;}
+  .warning .box strong{color:var(--green);}
+
+  /* SECTION SHELL */
+  section{padding:76px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .eyebrow{color:var(--purple-bright); font-size:0.95rem; margin-bottom:10px; font-weight:600;}
+  .section-head{max-width:620px; margin:0 0 44px;}
+  .section-head h2{font-size:2.3rem; margin:0 0 12px; color:var(--bone);}
+  .section-head p{color:var(--ash); margin:0; font-size:1.02rem;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* FEATURES */
+  .feat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .feat-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:30px 26px;}
+  .feat-card .icon{font-size:1.8rem; margin-bottom:14px; display:block;}
+  .feat-card h3{font-size:1.15rem; margin:0 0 10px;}
+  .feat-card p{margin:0; color:var(--ash); font-size:0.95rem;}
+
+  /* BENEFITS */
+  #por-que{background:var(--panel-2);}
+  .benefit-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 40px;}
+  .benefit-item{display:flex; gap:14px; align-items:flex-start;}
+  .benefit-item .check{color:var(--green); font-size:1.2rem; flex-shrink:0; line-height:1.5;}
+  .benefit-item p{margin:0; color:var(--ash);}
+
+  /* HOW IT WORKS */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .step{border-top:2px solid var(--purple); padding-top:20px;}
+  .step .n{font-family:'UnifrakturMaguntia',cursive; font-size:2.8rem; color:var(--purple-bright); line-height:1;}
+  .step h3{font-size:1.25rem; margin:8px 0 10px;}
+  .step p{margin:0; color:var(--ash); font-size:0.95rem;}
+
+  /* SCREENSHOTS */
+  .shots{display:flex; gap:16px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory;}
+  .shots img{scroll-snap-align:start; flex:0 0 auto; height:300px; width:auto; border-radius:12px; border:1px solid var(--line);}
+  .shots::-webkit-scrollbar{height:8px;}
+  .shots::-webkit-scrollbar-thumb{background:var(--line); border-radius:8px;}
+  .shots::-webkit-scrollbar-track{background:transparent;}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center; background:radial-gradient(ellipse 60% 80% at 50% 100%, rgba(139,92,246,0.14), transparent 70%), var(--void);}
+  .final-cta h2{font-size:2.8rem; margin:0 0 16px; color:var(--purple-bright);}
+  .final-cta p{color:var(--ash); margin:0 0 30px;}
+  .fine-print{margin-top:18px; color:var(--ash); font-size:0.85rem; max-width:540px; margin-left:auto; margin-right:auto;}
+
+  /* FOOTER */
+  footer{padding:40px 0; color:var(--ash); font-size:0.9rem;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .flinks{display:flex; gap:20px;}
+  footer .flinks a{color:var(--ash); text-decoration:none;}
+  footer .flinks a:hover{color:var(--bone);}
+  footer .copy{width:100%; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-size:0.82rem;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .feat-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">🧙‍♀️ Bruja Maruja</a>
+    <nav class="links">
+      <a href="#caracteristicas">Características</a>
+      <a href="#por-que">¿Por qué?</a>
+      <a href="#como">Cómo funciona</a>
+      <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadebrujaparaninos">Descargar</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="flourish">🧹 🔮 🐈‍⬛ ✨ 🧹</div>
+      <span class="badge">📞 Descarga gratis en Google Play</span>
+      <h1>Llamada de Bruja Maruja</h1>
+      <p class="lead">¿Cansado de repetir las cosas mil veces? La Bruja Maruja ha llegado para echarte una mano. Activa su hechizo y logra que el comportamiento cambie al instante ante la sorpresa de una llamada muy especial.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadebrujaparaninos">Descargar gratis</a>
+        <a class="btn btn-ghost" href="#como">Ver cómo funciona ↓</a>
+      </div>
+      <div class="mood-row">
+        <span>🧙‍♀️</span><span>📞</span><span>😱</span><span>🔮</span><span>🐈‍⬛</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="warning">
+    <div class="wrap" style="padding:32px 24px;">
+      <div class="box">
+        <span class="ico">⚠️</span>
+        <p><strong>Nota de uso responsable:</strong> esta app es una herramienta de entretenimiento y broma. Recomendamos usarla con amor, explicando siempre después que la Bruja Maruja es un personaje de ficción que solo quiere ayudar a los niños a portarse mejor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow center">✨ Características</div>
+        <h2>El hechizo perfecto para el buen comportamiento</h2>
+        <p>Todo lo necesario para convertir un mal momento en una lección con sorpresa incluida.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <span class="icon">📞</span>
+          <h3>Llamadas realistas</h3>
+          <p>Audio de alta calidad y una interfaz que imita una llamada de verdad, para una sorpresa muy convincente.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🎯</span>
+          <h3>Efectividad instantánea</h3>
+          <p>Perfecta para esos momentos en los que necesitas un apoyo extra en la disciplina diaria.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">👨‍👩‍👧</span>
+          <h3>Control total</h3>
+          <p>Tú decides cuándo ocurre la magia: nada se activa sin que tú lo actives primero.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🎨</span>
+          <h3>Interfaz amigable</h3>
+          <p>Diseñada para que la uses en segundos, sin configuraciones complicadas.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🧙‍♀️</span>
+          <h3>Personaje entrañable</h3>
+          <p>La Bruja Maruja mantiene un tono cercano, pensado para sorprender sin resultar excesivo.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">📱</span>
+          <h3>Sin configuración</h3>
+          <p>Ábrela y actívala al instante, justo quando la necesites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">💡 ¿Por qué usarla?</div>
+        <h2>Berrinches convertidos en buen comportamiento</h2>
+        <p>Un recurso puntual, pensado para esos momentos en los que las palabras ya no bastan.</p>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-item"><span class="check">✓</span><p>Convierte los berrinches en buen comportamiento de forma sorprendente.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Un recurso puntual para esos momentos en los que las palabras ya no bastan.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Control total: decides tú cuándo y cómo se usa el hechizo.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Pensada para mayores de 7 años, con clasificación de contenido de miedo.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Interfaz sencilla, lista para usar en cuestión de segundos.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Miles de familias ya confían en la magia de la Bruja Maruja.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">📖 Cómo funciona</div>
+        <h2>3 pasos para el hechizo</h2>
+        <p>Así de fácil es pedirle ayuda a la Bruja Maruja.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Activa el hechizo 🔮</h3>
+          <p>Abre la app en el momento en que el comportamiento no sea el adecuado.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Recibe la llamada 📞</h3>
+          <p>El teléfono suena y la misteriosa Bruja Maruja aparece en pantalla.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Observa la magia 🧙‍♀️</h3>
+          <p>La actitud cambia al instante ante la sorpresa de la llamada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capturas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Un vistazo al hechizo</h2>
+        <p>Así es la experiencia que vivirán los más pequeños con cada llamada.</p>
+      </div>
+      <div class="shots">
+        <img src="https://play-lh.googleusercontent.com/0Wj0B2fvO4tBrHcvn1cp9ZmqJ1zzy29ZSAO3HURDDZL_A2mezElm25XEzhIRgOQBQJ5HE9cKBRjiJTmKLqhzkYY=w526-h296" alt="Captura 1 de la app">
+        <img src="https://play-lh.googleusercontent.com/kwxaf1xx8dLotT4ylLmv3O59sS4zyopq4lwqca4rlNX4qGZKU9x6UqbOinCg_Ffoyv-RCKfeTv23VSXNcwyXbw=w526-h296" alt="Captura 2 de la app">
+        <img src="https://play-lh.googleusercontent.com/cCQVPIqh3e1UphuJ3ZfUlxfiko5uEwKnzrZNKSmGSjZ933_wmvMp1EkA-ZSDWKuzphMSLMJYcH2QczBf3NOnUw=w526-h296" alt="Captura 3 de la app">
+        <img src="https://play-lh.googleusercontent.com/rcaaPEbUptZkSG2RAdQysXYJFTi8Tqbn46Q6SFE6sAR9rwxAneyBV0ZPRFSvJqmKjlQfkVqdbJHnap9arI9H0g=w526-h296" alt="Captura 4 de la app">
+        <img src="https://play-lh.googleusercontent.com/old-02_G3l3wAZ4Jo7P-fY_N51QTvmXYcgwZZpohod2LCBveU8ekbZtSLaQ2iWmQoGLEi-A6EJ8R82wznT4MmqA=w526-h296" alt="Captura 5 de la app">
+        <img src="https://play-lh.googleusercontent.com/XmlaPbo5o0i7RSmXhFl4-TTwRtDdwU3VOAMb0n2j2nZtkllyM7-qXKPve1fovrO4Gav2jl331tFvDuQY_efqUQ=w526-h296" alt="Captura 6 de la app">
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>¿Lista para lanzar el hechizo? 🔮</h2>
+      <p>Descarga la app y convierte los berrinches en buen comportamiento.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadebrujaparaninos">Descargar en Google Play</a>
+      <div class="fine-print">Gratis · Contiene anuncios · Para mayores de 7 años (miedo) · La llamada es simulada, con fines de entretenimiento. Úsala con amor y responsabilidad.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand" style="font-size:1.3rem;">🧙‍♀️ Bruja Maruja</span>
+    <div class="flinks">
+      <a href="https://elbuscator.github.io">← Inicio</a>
+      <a href="https://elbuscator.github.io/privacy.html">Privacidad</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadebrujaparaninos">Google Play</a>
+    </div>
+    <div class="copy">© 2026 elbuscator · Todos los derechos reservados</div>
+  </div>
+</footer>
+
+</body>
+</html>
