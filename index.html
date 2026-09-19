@@ -1,597 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>elbuscator · Innovación en cada línea de código</title>
-  <meta name="description" content="elbuscator - Estudio indie de apps. Desarrollamos aplicaciones útiles, educativas y divertidas para Android.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:       #0e0e12;
-      --bg-2:     #13131a;
-      --bg-3:     #1a1a24;
-      --border:   rgba(255,255,255,.07);
-      --white:    #f0eee8;
-      --mid:      #8a8898;
-      --dim:      #4a4a5a;
-      --accent:   #7c6af7;       /* violet */
-      --accent2:  #f76a6a;       /* coral-red */
-      --accent3:  #f7c26a;       /* amber */
-      --green:    #5ecf8a;
-      --r:        16px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>elbuscator · Innovación en cada línea de código</title>
+<meta name="description" content="elbuscator - Estudio indie de apps. Desarrollamos aplicaciones útiles, educativas y divertidas para Android.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117;
+    --panel:#151b23;
+    --panel-2:#1c232d;
+    --border:#2a323d;
+    --text:#e6edf3;
+    --muted:#8b949e;
+    --blue:#58a6ff;
+    --green:#3fb950;
+    --purple:#bc8cff;
+    --orange:#ff9a4d;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Inter',sans-serif; font-weight:800; margin:0;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  code, .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+  /* NAV */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(13,17,23,0.9); backdrop-filter:blur(6px); border-bottom:1px solid var(--border);}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{font-family:'JetBrains Mono',monospace; font-size:1.15rem; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:8px; color:var(--text);}
+  .brand .bracket{color:var(--blue);}
+  nav.links{display:flex; gap:28px; align-items:center;}
+  nav.links a{text-decoration:none; color:var(--muted); font-size:0.95rem; transition:color .15s ease;}
+  nav.links a:hover{color:var(--text);}
+  .nav-cta{background:var(--blue); color:#0d1117 !important; padding:9px 18px; border-radius:6px; font-weight:700; font-size:0.9rem !important;}
+  .nav-cta:hover{background:#79b8ff;}
+  .menu-btn{display:none; background:none; border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; font-size:1.1rem;}
 
-    body {
-      font-family:'DM Sans',sans-serif;
-      background:var(--bg);
-      color:var(--white);
-      overflow-x:hidden;
-    }
+  /* HERO */
+  .hero{padding:88px 0 70px; text-align:center; background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(88,166,255,0.10), transparent 70%), var(--bg); border-bottom:1px solid var(--border);}
+  .kicker{display:inline-block; color:var(--green); font-family:'JetBrains Mono',monospace; font-size:0.95rem; margin-bottom:20px;}
+  .kicker::before{content:"// ";}
+  .hero h1{font-size:clamp(2.6rem, 6.5vw, 4.4rem); line-height:1.05; margin:0 0 20px;}
+  .hero h1 .accent{color:var(--blue);}
+  .hero p.lead{max-width:600px; margin:0 auto 34px; color:var(--muted); font-size:1.1rem;}
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:48px;}
+  .btn{display:inline-block; padding:14px 28px; text-decoration:none; font-weight:700; font-size:1rem; border-radius:8px; border:1px solid transparent; transition:transform .12s ease, background .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--blue); color:#0d1117;}
+  .btn-primary:hover{background:#79b8ff;}
+  .btn-ghost{background:transparent; color:var(--text); border-color:var(--border);}
+  .btn-ghost:hover{border-color:var(--blue);}
+  .stats{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .stat{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px 26px; min-width:140px;}
+  .stat .n{font-family:'JetBrains Mono',monospace; font-size:1.6rem; font-weight:700; color:var(--blue);}
+  .stat .l{color:var(--muted); font-size:0.85rem;}
 
-    /* ── NAV ── */
-    nav {
-      position:fixed; top:0; left:0; right:0; z-index:100;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px 48px;
-      background:rgba(14,14,18,.85);
-      backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--border);
-    }
-    .nav-logo {
-      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
-      color:var(--white); text-decoration:none; letter-spacing:-.5px;
-    }
-    .nav-logo span { color:var(--accent); }
-    .nav-links { display:flex; gap:32px; list-style:none; }
-    .nav-links a {
-      font-size:14px; font-weight:500; color:var(--mid);
-      text-decoration:none; transition:color .2s;
-    }
-    .nav-links a:hover { color:var(--white); }
-    .nav-gp {
-      display:inline-flex; align-items:center; gap:8px;
-      background:var(--accent); color:white;
-      font-size:13px; font-weight:600; padding:9px 22px;
-      border-radius:100px; text-decoration:none;
-      transition:all .2s; box-shadow:0 0 24px rgba(124,106,247,.3);
-    }
-    .nav-gp:hover { background:#6a58e8; transform:translateY(-1px); }
-    .nav-gp svg { width:16px; height:16px; fill:white; }
+  /* SECTION SHELL */
+  section{padding:80px 0;}
+  section + section{border-top:1px solid var(--border);}
+  .section-head{max-width:640px; margin:0 0 44px;}
+  .section-head h2{font-size:2.2rem; margin:8px 0 12px;}
+  .section-head p{color:var(--muted); margin:0; font-size:1.02rem;}
 
-    /* ── HERO ── */
-    .hero {
-      min-height:100vh;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      text-align:center;
-      padding:130px 24px 100px;
-      position:relative; overflow:hidden;
-    }
-    /* animated grid bg */
-    .hero::before {
-      content:'';
-      position:absolute; inset:0;
-      background-image:
-        linear-gradient(rgba(124,106,247,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,106,247,.05) 1px, transparent 1px);
-      background-size:60px 60px;
-      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-    }
-    /* glow orbs */
-    .orb {
-      position:absolute; border-radius:50%; filter:blur(80px);
-      pointer-events:none; animation:orbPulse 8s ease-in-out infinite;
-    }
-    .orb1 { width:500px;height:500px; background:rgba(124,106,247,.12); top:-100px; left:-100px; animation-delay:0s; }
-    .orb2 { width:400px;height:400px; background:rgba(247,106,106,.08); bottom:-80px; right:-80px; animation-delay:3s; }
-    .orb3 { width:300px;height:300px; background:rgba(94,207,138,.07); top:40%; left:60%; animation-delay:6s; }
-    @keyframes orbPulse {
-      0%,100% { transform:scale(1); opacity:.8; }
-      50%      { transform:scale(1.15); opacity:1; }
-    }
+  /* CATEGORY FILTER */
+  .filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;}
+  .filter-btn{
+    font-family:'JetBrains Mono',monospace; font-size:0.85rem;
+    background:var(--panel); border:1px solid var(--border); color:var(--muted);
+    padding:9px 16px; border-radius:999px; cursor:pointer; transition:all .15s ease;
+  }
+  .filter-btn:hover{color:var(--text); border-color:var(--blue);}
+  .filter-btn.active{background:var(--blue); color:#0d1117; border-color:var(--blue);}
 
-    .hero-eyebrow {
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--border); border-radius:100px;
-      padding:6px 16px; font-size:13px; font-weight:500; color:var(--mid);
-      margin-bottom:28px; position:relative; z-index:2;
-      background:rgba(255,255,255,.03);
-    }
-    .hero-eyebrow .dot {
-      width:7px; height:7px; border-radius:50%; background:var(--green);
-      box-shadow:0 0 8px var(--green); animation:blink 2s infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+  /* APPS GRID */
+  .cat-group{margin-bottom:48px;}
+  .cat-group:last-child{margin-bottom:0;}
+  .cat-label{font-family:'JetBrains Mono',monospace; font-size:0.9rem; color:var(--purple); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
+  .app-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .app-card{
+    background:var(--panel); border:1px solid var(--border); border-radius:14px;
+    padding:26px; text-decoration:none; color:var(--text); display:block;
+    transition:border-color .15s ease, transform .12s ease;
+  }
+  .app-card:hover{border-color:var(--blue); transform:translateY(-3px);}
+  .app-card .icon{font-size:1.9rem; margin-bottom:14px; display:block;}
+  .app-card h3{font-size:1.2rem; margin:0 0 8px; font-weight:700;}
+  .app-card p{margin:0 0 16px; color:var(--muted); font-size:0.92rem;}
+  .app-card .meta{display:flex; justify-content:space-between; align-items:center; font-size:0.8rem;}
+  .app-card .tag{font-family:'JetBrains Mono',monospace; color:var(--green);}
+  .app-card .go{color:var(--blue); font-weight:700;}
 
-    .hero h1 {
-      font-family:'Syne',sans-serif;
-      font-size:clamp(52px,8vw,100px); font-weight:800; line-height:.95;
-      letter-spacing:-3px; margin-bottom:24px; position:relative; z-index:2;
-    }
-    .hero h1 .line2 { color:var(--accent); }
-    .hero h1 .line3 { color:var(--mid); font-weight:700; }
+  .more-link{display:inline-block; margin-top:32px; color:var(--blue); text-decoration:none; font-weight:600; border-bottom:1px solid var(--blue); padding-bottom:2px;}
 
-    .hero-sub {
-      font-size:18px; font-weight:400; color:var(--mid);
-      max-width:480px; line-height:1.7; margin-bottom:48px;
-      position:relative; z-index:2;
-    }
+  /* COMUNIDAD */
+  #comunidad{background:var(--panel-2);}
+  .comm-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;}
+  .comm-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:24px;}
+  .comm-card .icon{font-size:1.7rem; margin-bottom:12px; display:block;}
+  .comm-card h3{font-size:1.05rem; margin:0 0 4px;}
+  .comm-card .sub{color:var(--muted); font-size:0.82rem; margin-bottom:12px;}
+  .comm-card p{margin:0 0 16px; color:var(--muted); font-size:0.9rem;}
+  .comm-card a.link{color:var(--blue); text-decoration:none; font-weight:600; font-size:0.9rem;}
 
-    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
-    .btn-primary {
-      display:inline-flex; align-items:center; gap:10px;
-      background:var(--accent); color:white;
-      font-weight:600; font-size:15px; padding:14px 32px;
-      border-radius:100px; text-decoration:none;
-      box-shadow:0 0 30px rgba(124,106,247,.35);
-      transition:all .2s;
-    }
-    .btn-primary:hover { background:#6a58e8; transform:translateY(-2px); box-shadow:0 0 40px rgba(124,106,247,.5); }
-    .btn-primary svg { width:18px;height:18px;fill:white; }
-    .btn-ghost {
-      display:inline-flex; align-items:center; gap:8px;
-      background:transparent; color:var(--white);
-      font-weight:600; font-size:15px; padding:14px 28px;
-      border-radius:100px; text-decoration:none;
-      border:1px solid var(--border); transition:all .2s;
-    }
-    .btn-ghost:hover { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.15); }
+  /* APOYANOS */
+  .support-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .support-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:28px; text-align:center;}
+  .support-card .icon{font-size:2rem; margin-bottom:14px; display:block;}
+  .support-card h3{font-size:1.1rem; margin:0 0 10px;}
+  .support-card p{margin:0 0 20px; color:var(--muted); font-size:0.92rem;}
 
-    /* stats strip */
-    .stats-strip {
-      display:flex; gap:0; margin-top:80px; position:relative; z-index:2;
-      border:1px solid var(--border); border-radius:var(--r);
-      background:rgba(255,255,255,.02); overflow:hidden;
-    }
-    .stat-item {
-      flex:1; padding:22px 32px; text-align:center;
-      border-right:1px solid var(--border);
-    }
-    .stat-item:last-child { border-right:none; }
-    .stat-num {
-      font-family:'Syne',sans-serif; font-size:32px; font-weight:800;
-      color:var(--white); display:block; line-height:1;
-    }
-    .stat-num span { color:var(--accent); }
-    .stat-label { font-size:12px; color:var(--dim); margin-top:6px; display:block; letter-spacing:.5px; }
+  .privacy-box{
+    margin-top:48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+    background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:24px 28px;
+  }
+  .privacy-box h3{font-size:1.05rem; margin:0 0 4px;}
+  .privacy-box p{margin:0; color:var(--muted); font-size:0.9rem;}
+  .privacy-box a{color:var(--blue); text-decoration:none; font-weight:600;}
 
-    /* ── SECTION BASE ── */
-    .sec { padding:100px 24px; }
-    .inner { max-width:1080px; margin:0 auto; }
-    .sec-label {
-      font-size:11px; font-weight:600; letter-spacing:3px;
-      text-transform:uppercase; color:var(--accent);
-      margin-bottom:14px; display:block;
-    }
-    .sec-title {
-      font-family:'Syne',sans-serif;
-      font-size:clamp(30px,4vw,48px); font-weight:800; line-height:1.1;
-      letter-spacing:-1px; margin-bottom:14px;
-    }
-    .sec-desc { font-size:16px; color:var(--mid); line-height:1.75; max-width:500px; margin-bottom:56px; }
+  /* FOOTER */
+  footer{padding:44px 0; color:var(--muted); font-size:0.9rem;}
+  footer .top-row{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; margin-bottom:28px;}
+  footer .flinks{display:flex; flex-wrap:wrap; gap:14px 22px; max-width:600px;}
+  footer .flinks a{color:var(--muted); text-decoration:none; font-size:0.88rem;}
+  footer .flinks a:hover{color:var(--text);}
+  footer .copy{padding-top:20px; border-top:1px solid var(--border); text-align:center; font-size:0.82rem;}
 
-    /* ── APPS ── */
-    .apps-bg { background:var(--bg); }
-    .apps-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:2px; background:var(--border);
-      border:1px solid var(--border); border-radius:var(--r); overflow:hidden;
-    }
-    .app-card {
-      background:var(--bg-2); padding:40px 36px;
-      text-decoration:none; color:inherit;
-      transition:background .25s;
-      position:relative; overflow:hidden;
-      display:flex; flex-direction:column;
-    }
-    .app-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:2px;
-      background:var(--c,var(--accent)); transform:scaleX(0); transform-origin:left;
-      transition:transform .35s ease;
-    }
-    .app-card:hover { background:var(--bg-3); }
-    .app-card:hover::before { transform:scaleX(1); }
-    .app-card:hover .app-arrow { transform:translate(3px,-3px); }
-
-    .app-card.c-violet { --c:var(--accent); }
-    .app-card.c-coral   { --c:var(--accent2); }
-    .app-card.c-amber   { --c:var(--accent3); }
-
-    .app-emoji { font-size:44px; margin-bottom:20px; display:block; }
-    .app-name {
-      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
-      margin-bottom:10px; letter-spacing:-.5px;
-    }
-    .app-desc { font-size:14px; color:var(--mid); line-height:1.65; flex:1; margin-bottom:24px; }
-    .app-footer { display:flex; align-items:center; justify-content:space-between; }
-    .app-tag {
-      font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
-      color:var(--c,var(--accent)); background:rgba(124,106,247,.08);
-      padding:4px 12px; border-radius:100px;
-    }
-    .app-card.c-coral .app-tag { background:rgba(247,106,106,.08); }
-    .app-card.c-amber .app-tag { background:rgba(247,194,106,.08); }
-    .app-arrow {
-      color:var(--mid); font-size:20px; transition:transform .2s;
-    }
-
-    /* ── SUPPORT ── */
-    .support-bg { background:var(--bg-2); }
-    .support-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:16px;
-    }
-    .support-card {
-      border:1px solid var(--border); border-radius:var(--r);
-      padding:32px 28px; text-decoration:none; color:inherit;
-      transition:all .25s; display:flex; flex-direction:column; gap:0;
-      background:var(--bg);
-    }
-    .support-card:hover { border-color:rgba(255,255,255,.18); transform:translateY(-4px); background:var(--bg-3); }
-    .support-icon { font-size:28px; margin-bottom:16px; display:block; }
-    .support-name {
-      font-family:'Syne',sans-serif; font-size:17px; font-weight:800;
-      margin-bottom:8px;
-    }
-    .support-desc { font-size:14px; color:var(--mid); line-height:1.6; flex:1; margin-bottom:20px; }
-    .support-link {
-      display:inline-flex; align-items:center; gap:6px;
-      font-size:13px; font-weight:600; padding:9px 20px;
-      border-radius:100px; text-decoration:none; transition:all .2s;
-    }
-
-    /* coffee */
-    .s-coffee .support-link { background:#FFD700; color:#1a1200; }
-    .s-coffee .support-link:hover { background:#ffe040; }
-    /* amazon */
-    .s-amazon .support-link { background:#FF9900; color:white; }
-    .s-amazon .support-link:hover { background:#e08800; }
-    /* aliexpress */
-    .s-aliexpress .support-link { background:#E62E04; color:white; }
-    .s-aliexpress .support-link:hover { background:#c92803; }
-
-    /* ── COMMUNITY ── */
-    .community-bg { background:var(--bg); }
-    .platforms-row {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-    }
-    .platform-card {
-      border:1px solid var(--border); border-radius:var(--r); padding:28px;
-      display:flex; flex-direction:column; gap:12px;
-      background:var(--bg-2); text-decoration:none; color:inherit;
-      transition:all .25s;
-    }
-    .platform-card:hover { border-color:rgba(255,255,255,.15); background:var(--bg-3); transform:translateY(-3px); }
-    .platform-head { display:flex; align-items:center; gap:12px; }
-    .platform-ico {
-      width:44px;height:44px;border-radius:14px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:22px;flex-shrink:0;
-    }
-    .pi-gp    { background:rgba(124,106,247,.15); }
-    .pi-itch  { background:rgba(247,106,106,.15); }
-    .pi-tg1   { background:rgba(38,169,224,.15); }
-    .pi-tg2   { background:rgba(94,207,138,.15); }
-    .platform-name {
-      font-family:'Syne',sans-serif; font-size:16px; font-weight:800;
-    }
-    .platform-sub { font-size:12px; color:var(--dim); }
-    .platform-desc { font-size:13px; color:var(--mid); line-height:1.6; }
-    .platform-cta {
-      font-size:12px; font-weight:600; color:var(--accent);
-      display:inline-flex; align-items:center; gap:4px; margin-top:4px;
-    }
-
-    /* ── PRIVACY ── */
-    .privacy-strip {
-      padding:60px 24px;
-      background:var(--bg-2);
-      border-top:1px solid var(--border);
-    }
-    .privacy-inner {
-      max-width:1080px; margin:0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:32px; flex-wrap:wrap;
-    }
-    .privacy-text h3 {
-      font-family:'Syne',sans-serif; font-size:22px; font-weight:800;
-      margin-bottom:8px;
-    }
-    .privacy-text p { font-size:15px; color:var(--mid); }
-    .btn-privacy {
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--border); color:var(--white);
-      font-weight:600; font-size:14px; padding:12px 28px;
-      border-radius:100px; text-decoration:none;
-      transition:all .2s; white-space:nowrap;
-      background:rgba(255,255,255,.03);
-    }
-    .btn-privacy:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.2); }
-
-    /* ── FOOTER ── */
-    footer {
-      background:var(--bg); border-top:1px solid var(--border);
-      padding:48px 24px;
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:24px;
-    }
-    .footer-brand { display:flex; flex-direction:column; gap:6px; }
-    .footer-logo {
-      font-family:'Syne',sans-serif; font-size:20px; font-weight:800;
-      color:var(--white); letter-spacing:-.5px;
-    }
-    .footer-logo span { color:var(--accent); }
-    .footer-tagline { font-size:13px; color:var(--dim); }
-    .footer-links { display:flex; gap:24px; flex-wrap:wrap; }
-    .footer-links a {
-      font-size:13px; font-weight:500; color:var(--dim);
-      text-decoration:none; transition:color .2s;
-    }
-    .footer-links a:hover { color:var(--white); }
-    .footer-copy { font-size:12px; color:var(--dim); }
-
-    /* ── FADE ── */
-    .fade { opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
-    .fade.on { opacity:1; transform:translateY(0); }
-
-    @media(max-width:700px){
-      nav { padding:14px 20px; }
-      .nav-links { display:none; }
-      .stats-strip { flex-direction:column; }
-      .stat-item { border-right:none; border-bottom:1px solid var(--border); }
-      .stat-item:last-child { border-bottom:none; }
-      footer { flex-direction:column; text-align:center; }
-    }
-  </style>
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .app-grid{grid-template-columns:1fr;}
+    .comm-grid{grid-template-columns:1fr 1fr;}
+    .support-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .comm-grid{grid-template-columns:1fr;}
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">el<span>buscator</span></a>
-  <ul class="nav-links">
-    <li><a href="#apps">Apps</a></li>
-    <li><a href="#comunidad">Comunidad</a></li>
-    <li><a href="#apoyanos">Apóyanos</a></li>
-  </ul>
-  <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="nav-gp" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
-    Google Play
-  </a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-
-  <div class="hero-eyebrow">
-    <span class="dot"></span>
-    Estudio indie · Apps para Android
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="bracket">&lt;/&gt;</span> elbuscator</a>
+    <nav class="links">
+      <a href="#apps">Apps</a>
+      <a href="#comunidad">Comunidad</a>
+      <a href="#apoyanos">Apóyanos</a>
+      <a class="nav-cta" href="https://play.google.com/store/apps/dev?id=9106952322187766274">Google Play</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
   </div>
+</header>
 
-  <h1>
-    <div>el</div>
-    <div class="line2">buscator</div>
-    <div class="line3">studio</div>
-  </h1>
+<main id="top">
 
-  <p class="hero-sub">Desarrollamos aplicaciones útiles, educativas y divertidas. Innovación en cada línea de código.</p>
-
-  <div class="hero-btns">
-    <a href="#apps" class="btn-primary">
-      Ver nuestras apps →
-    </a>
-    <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="btn-ghost" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="opacity:.6"><path d="M3.18 23.76a2 2 0 0 0 2.09-.22l12.53-7.42-3.16-3.16-11.46 10.8zM20.7 9.37l-2.9-1.71-3.54 3.54 3.54 3.54 2.92-1.73a2 2 0 0 0 0-3.64zM1.28.28A2 2 0 0 0 1 1.2v21.6a2 2 0 0 0 .28.92l.1.1 12.1-12.1v-.29L1.38.18l-.1.1zM14.08 8.08l-3.16-3.16L1.27.28l11.46 10.8 3.35-3z"/></svg>
-      Google Play
-    </a>
-  </div>
-
-  <div class="stats-strip">
-    <div class="stat-item">
-      <span class="stat-num">30<span>+</span></span>
-      <span class="stat-label">Apps publicadas</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">100<span>%</span></span>
-      <span class="stat-label">Android</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">∞</span>
-      <span class="stat-label">Café consumido</span>
-    </div>
-  </div>
-</section>
-
-<!-- APPS -->
-<section class="sec apps-bg" id="apps">
-  <div class="inner">
-    <div class="fade">
-      <span class="sec-label">// nuestras apps</span>
-      <h2 class="sec-title">Lo que hemos<br>construido</h2>
-      <p class="sec-desc">Aplicaciones pensadas para resolver problemas reales. Cada una con su propia personalidad.</p>
-    </div>
-    <div class="apps-grid fade">
-      <a href="gestion-emocional-mascotas.html" class="app-card c-coral">
-        <span class="app-emoji">🐾</span>
-        <div class="app-name">Petfeel</div>
-        <p class="app-desc">Gestión completa del cuidado de tu mascota. Rutinas personalizadas, recordatorios diarios y seguimiento de salud para perros, gatos y más.</p>
-        <div class="app-footer">
-          <span class="app-tag">Mascotas · Salud</span>
-          <span class="app-arrow">↗</span>
-        </div>
-      </a>
-
-      <a href="monstruo-come-miedos.html" class="app-card c-violet">
-        <span class="app-emoji">👹</span>
-        <div class="app-name">El Monstruo Come-Miedos</div>
-        <p class="app-desc">Ayuda a los niños a gestionar sus miedos de forma divertida. El adorable monstruo verde transforma los temores en emociones positivas.</p>
-        <div class="app-footer">
-          <span class="app-tag">Infantil · Educativa</span>
-          <span class="app-arrow">↗</span>
-        </div>
-      </a>
-
-      <a href="viviendas-turisticas-cv.html" class="app-card c-amber">
-        <span class="app-emoji">🏠</span>
-        <div class="app-name">Viviendas Turísticas CV</div>
-        <p class="app-desc">Busca y analiza los 88.000+ pisos turísticos registrados en la Comunitat Valenciana con datos oficiales actualizados de la GVA.</p>
-        <div class="app-footer">
-          <span class="app-tag">Datos · Turismo</span>
-          <span class="app-arrow">↗</span>
-        </div>
-      </a>
-    </div>
-
-    <div style="margin-top:24px; text-align:center;" class="fade">
-      <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="btn-ghost" target="_blank" style="font-size:14px;">
-        Ver todas en Google Play →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- COMMUNITY -->
-<section class="sec community-bg" id="comunidad">
-  <div class="inner">
-    <div class="fade">
-      <span class="sec-label">// comunidad</span>
-      <h2 class="sec-title">Únete a nuestra<br>comunidad</h2>
-      <p class="sec-desc">Síguenos en nuestras plataformas y mantente al día con todo lo que hacemos.</p>
-    </div>
-    <div class="platforms-row fade">
-      <a href="https://play.google.com/store/apps/dev?id=9106952322187766274" class="platform-card" target="_blank">
-        <div class="platform-head">
-          <div class="platform-ico pi-gp">📱</div>
-          <div>
-            <div class="platform-name">Google Play</div>
-            <div class="platform-sub">Todas nuestras apps</div>
-          </div>
-        </div>
-        <p class="platform-desc">Descarga y valora nuestras aplicaciones. Tu opinión nos ayuda a mejorar.</p>
-        <span class="platform-cta">Visitar perfil →</span>
-      </a>
-
-      <a href="https://elbuscator.itch.io/" class="platform-card" target="_blank">
-        <div class="platform-head">
-          <div class="platform-ico pi-itch">🎮</div>
-          <div>
-            <div class="platform-name">itch.io</div>
-            <div class="platform-sub">Juegos indie</div>
-          </div>
-        </div>
-        <p class="platform-desc">¿Fan de los indies? Accede a nuestros proyectos y contenido extra en itch.io.</p>
-        <span class="platform-cta">Ver perfil →</span>
-      </a>
-
-      <a href="https://t.me/gamingaldia" class="platform-card" target="_blank">
-        <div class="platform-head">
-          <div class="platform-ico pi-tg1">🎮</div>
-          <div>
-            <div class="platform-name">Gaming Al Día</div>
-            <div class="platform-sub">Telegram</div>
-          </div>
-        </div>
-        <p class="platform-desc">Nuevos lanzamientos, tráilers oficiales de Nintendo, PlayStation y Xbox cada día.</p>
-        <span class="platform-cta">Unirse al canal →</span>
-      </a>
-
-      <a href="https://t.me/librosentendencia" class="platform-card" target="_blank">
-        <div class="platform-head">
-          <div class="platform-ico pi-tg2">📚</div>
-          <div>
-            <div class="platform-name">Libros en Tendencia</div>
-            <div class="platform-sub">Telegram</div>
-          </div>
-        </div>
-        <p class="platform-desc">Las lecturas más populares del momento, seleccionadas entre los más vendidos.</p>
-        <span class="platform-cta">Unirse al canal →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- SUPPORT -->
-<section class="sec support-bg" id="apoyanos">
-  <div class="inner">
-    <div class="fade">
-      <span class="sec-label">// apóyanos</span>
-      <h2 class="sec-title">¿Te gustan<br>nuestras apps?</h2>
-      <p class="sec-desc">Si quieres apoyar nuestro trabajo, invítanos a un café o compra a través de nuestros enlaces. Cada pequeño gesto nos ayuda a seguir creando.</p>
-    </div>
-    <div class="support-grid fade">
-      <div class="support-card s-coffee">
-        <span class="support-icon">☕</span>
-        <div class="support-name">Buy Me a Coffee</div>
-        <p class="support-desc">La forma más directa de apoyarnos. Invítanos un café y nos alegras el día (y el código).</p>
-        <a href="https://buymeacoffee.com/elbuscator" target="_blank" class="support-link">
-          ☕ Invitar un café
-        </a>
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">estudio indie · apps para android</span>
+      <h1>elbuscator<span class="accent">studio</span></h1>
+      <p class="lead">Desarrollamos aplicaciones útiles, educativas y divertidas. Innovación en cada línea de código.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#apps">Ver nuestras apps →</a>
+        <a class="btn btn-ghost" href="https://play.google.com/store/apps/dev?id=9106952322187766274">Google Play</a>
       </div>
-
-      <div class="support-card s-amazon">
-        <span class="support-icon">📦</span>
-        <div class="support-name">Amazon</div>
-        <p class="support-desc">¿Ibas a comprar en Amazon de todas formas? Hazlo a través de nuestro enlace de afiliado sin coste extra para ti.</p>
-        <a href="https://amzn.to/4hk1ZeR" target="_blank" class="support-link">
-          Ir a Amazon →
-        </a>
-      </div>
-
-      <div class="support-card s-aliexpress">
-        <span class="support-icon">🛍️</span>
-        <div class="support-name">AliExpress</div>
-        <p class="support-desc">Compra en AliExpress usando nuestro enlace de afiliado. Mismo precio, mismo producto, un pequeño empujón para nosotros.</p>
-        <a href="https://s.click.aliexpress.com/e/_c3O9DWyX" target="_blank" class="support-link">
-          Ir a AliExpress →
-        </a>
+      <div class="stats">
+        <div class="stat"><div class="n">30+</div><div class="l">Apps publicadas</div></div>
+        <div class="stat"><div class="n">100%</div><div class="l">Android</div></div>
+        <div class="stat"><div class="n">∞</div><div class="l">Café consumido</div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PRIVACY STRIP -->
-<div class="privacy-strip">
-  <div class="privacy-inner">
-    <div class="privacy-text">
-      <h3>🔒 Tu privacidad, primero</h3>
-      <p>Nos tomamos tu privacidad en serio. Consulta nuestra política para saber cómo protegemos tus datos.</p>
+  <section id="apps">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">nuestras apps</span>
+        <h2>Lo que hemos  construido</h2>
+        <p>Aplicaciones pensadas para resolver problemas reales, entretener o simplemente dar un buen susto. Cada una con su propia personalidad.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="terror">🎃 Terror</button>
+        <button class="filter-btn" data-filter="familia">👨‍👩‍👧 Familia e infantil</button>
+        <button class="filter-btn" data-filter="mascotas">🐾 Mascotas y salud</button>
+        <button class="filter-btn" data-filter="datos">🏠 Datos y utilidades</button>
+      </div>
+
+      <div class="cat-group" data-cat="terror">
+        <div class="cat-label">🎃 Terror</div>
+        <div class="app-grid">
+          <a class="app-card" href="https://elbuscator.github.io/escapar-de-sonic-exe.html">
+            <span class="icon">🦔</span>
+            <h3>Escapar de Sonic EXE</h3>
+            <p>Runner de terror inspirado en las creepypastas. Corre, salta y esquiva al erizo maldito.</p>
+            <div class="meta"><span class="tag">Terror · Juego</span><span class="go">↗</span></div>
+          </a>
+          <a class="app-card" href="https://elbuscator.github.io/llamada-payaso-asesino.html">
+            <span class="icon">🤡</span>
+            <h3>Llamada de Payaso Asesino</h3>
+            <p>Una llamada falsa y aterradora, pensada como broma para corregir el comportamiento de los peques.</p>
+            <div class="meta"><span class="tag">Terror · Broma</span><span class="go">↗</span></div>
+          </a>
+          <a class="app-card" href="https://elbuscator.github.io/sonidos-de-terror-para-asustar.html">
+            <span class="icon">🎃</span>
+            <h3>Sonidos de Terror para Asustar</h3>
+            <p>Aullidos, risas diabólicas y susurros inquietantes para asustar a tus amigos o ambientar tu fiesta.</p>
+            <div class="meta"><span class="tag">Terror · Sonidos</span><span class="go">↗</span></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat-group" data-cat="familia">
+        <div class="cat-label">👨‍👩‍👧 Familia e infantil</div>
+        <div class="app-grid">
+          <a class="app-card" href="https://elbuscator.github.io/monstruo-come-miedos.html">
+            <span class="icon">👹</span>
+            <h3>El Monstruo Come-Miedos</h3>
+            <p>Ayuda a los niños a gestionar sus miedos de forma divertida con un adorable monstruo verde.</p>
+            <div class="meta"><span class="tag">Infantil · Educativa</span><span class="go">↗</span></div>
+          </a>
+          <a class="app-card" href="https://elbuscator.github.io/llamada-ratoncito-perez.html">
+            <span class="icon">🦷</span>
+            <h3>Llamada del Ratoncito Pérez</h3>
+            <p>Sorprende a tus hijos con una llamada mágica cuando se les cae un diente de leche.</p>
+            <div class="meta"><span class="tag">Infantil · Magia</span><span class="go">↗</span></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat-group" data-cat="mascotas">
+        <div class="cat-label">🐾 Mascotas y salud</div>
+        <div class="app-grid">
+          <a class="app-card" href="https://elbuscator.github.io/gestion-emocional-mascotas.html">
+            <span class="icon">🐾</span>
+            <h3>Petfeel</h3>
+            <p>Gestión completa del cuidado de tu mascota. Rutinas, recordatorios y seguimiento de salud.</p>
+            <div class="meta"><span class="tag">Mascotas · Salud</span><span class="go">↗</span></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cat-group" data-cat="datos">
+        <div class="cat-label">🏠 Datos y utilidades</div>
+        <div class="app-grid">
+          <a class="app-card" href="https://elbuscator.github.io/viviendas-turisticas-cv.html">
+            <span class="icon">🏠</span>
+            <h3>Viviendas Turísticas CV</h3>
+            <p>Busca y analiza los 88.000+ pisos turísticos registrados en la Comunitat Valenciana.</p>
+            <div class="meta"><span class="tag">Datos · Turismo</span><span class="go">↗</span></div>
+          </a>
+        </div>
+      </div>
+
+      <a class="more-link" href="https://play.google.com/store/apps/dev?id=9106952322187766274">Ver todas en Google Play →</a>
     </div>
-    <a href="privacy.html" class="btn-privacy">
-      Política de Privacidad →
-    </a>
-  </div>
-</div>
+  </section>
 
-<!-- FOOTER -->
+  <section id="comunidad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">comunidad</span>
+        <h2>Únete a nuestra  comunidad</h2>
+        <p>Síguenos en nuestras plataformas y mantente al día con todo lo que hacemos.</p>
+      </div>
+      <div class="comm-grid">
+        <div class="comm-card">
+          <span class="icon">📱</span>
+          <h3>Google Play</h3>
+          <div class="sub">Todas nuestras apps</div>
+          <p>Descarga y valora nuestras aplicaciones. Tu opinión nos ayuda a mejorar.</p>
+          <a class="link" href="https://play.google.com/store/apps/dev?id=9106952322187766274">Visitar perfil →</a>
+        </div>
+        <div class="comm-card">
+          <span class="icon">🎮</span>
+          <h3>itch.io</h3>
+          <div class="sub">Juegos indie</div>
+          <p>¿Fan de los indies? Accede a nuestros proyectos y contenido extra.</p>
+          <a class="link" href="https://elbuscator.itch.io/">Ver perfil →</a>
+        </div>
+        <div class="comm-card">
+          <span class="icon">🎮</span>
+          <h3>Gaming Al Día</h3>
+          <div class="sub">Telegram</div>
+          <p>Nuevos lanzamientos y tráilers oficiales de Nintendo, PlayStation y Xbox cada día.</p>
+          <a class="link" href="https://t.me/gamingaldia">Unirse al canal →</a>
+        </div>
+        <div class="comm-card">
+          <span class="icon">📚</span>
+          <h3>Libros en Tendencia</h3>
+          <div class="sub">Telegram</div>
+          <p>Las lecturas más populares del momento, seleccionadas entre los más vendidos.</p>
+          <a class="link" href="https://t.me/librosentendencia">Unirse al canal →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apoyanos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">apóyanos</span>
+        <h2>¿Te gustan  nuestras apps?</h2>
+        <p>Si quieres apoyar nuestro trabajo, invítanos a un café o compra a través de nuestros enlaces. Cada pequeño gesto nos ayuda a seguir creando.</p>
+      </div>
+      <div class="support-grid">
+        <div class="support-card">
+          <span class="icon">☕</span>
+          <h3>Buy Me a Coffee</h3>
+          <p>La forma más directa de apoyarnos. Invítanos un café y nos alegras el día (y el código).</p>
+          <a class="btn btn-primary" href="https://buymeacoffee.com/elbuscator">☕ Invitar un café</a>
+        </div>
+        <div class="support-card">
+          <span class="icon">📦</span>
+          <h3>Amazon</h3>
+          <p>¿Ibas a comprar en Amazon de todas formas? Hazlo a través de nuestro enlace de afiliado sin coste extra para ti.</p>
+          <a class="btn btn-ghost" href="https://amzn.to/4hk1ZeR">Ir a Amazon →</a>
+        </div>
+        <div class="support-card">
+          <span class="icon">🛍️</span>
+          <h3>AliExpress</h3>
+          <p>Compra en AliExpress usando nuestro enlace de afiliado. Mismo precio, mismo producto, un pequeño empujón para nosotros.</p>
+          <a class="btn btn-ghost" href="https://s.click.aliexpress.com/e/_c3O9DWyX">Ir a AliExpress →</a>
+        </div>
+      </div>
+
+      <div class="privacy-box">
+        <div>
+          <h3>🔒 Tu privacidad, primero</h3>
+          <p>Nos tomamos tu privacidad en serio. Consulta nuestra política para saber cómo protegemos tus datos.</p>
+        </div>
+        <a href="https://elbuscator.github.io/privacy.html">Política de Privacidad →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
 <footer>
-  <div class="footer-brand">
-    <span class="footer-logo">el<span>buscator</span></span>
-    <span class="footer-tagline">Innovación en cada línea de código</span>
+  <div class="wrap">
+    <div class="top-row">
+      <a class="brand" href="#top"><span class="bracket">&lt;/&gt;</span> elbuscator</a>
+      <div class="flinks">
+        <a href="https://elbuscator.github.io/index.html">Inicio</a>
+        <a href="https://elbuscator.github.io/escapar-de-sonic-exe.html">Escapar de Sonic EXE</a>
+        <a href="https://elbuscator.github.io/llamada-payaso-asesino.html">Payaso Asesino</a>
+        <a href="https://elbuscator.github.io/sonidos-de-terror-para-asustar.html">Sonidos de Terror</a>
+        <a href="https://elbuscator.github.io/monstruo-come-miedos.html">Come-Miedos</a>
+        <a href="https://elbuscator.github.io/llamada-ratoncito-perez.html">Ratoncito Pérez</a>
+        <a href="https://elbuscator.github.io/gestion-emocional-mascotas.html">Petfeel</a>
+        <a href="https://elbuscator.github.io/viviendas-turisticas-cv.html">Viviendas CV</a>
+        <a href="https://elbuscator.github.io/privacy.html">Privacidad</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 elbuscator · Todos los derechos reservados</div>
   </div>
-  <div class="footer-links">
-    <a href="index.html">Inicio</a>
-    <a href="gestion-emocional-mascotas.html">Petfeel</a>
-    <a href="monstruo-come-miedos.html">Come-Miedos</a>
-    <a href="viviendas-turisticas-cv.html">Viviendas CV</a>
-    <a href="privacy.html">Privacidad</a>
-  </div>
-  <span class="footer-copy">© 2026 elbuscator · Todos los derechos reservados</span>
 </footer>
 
 <script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  const buttons = document.querySelectorAll('.filter-btn');
+  const groups = document.querySelectorAll('.cat-group');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      groups.forEach(g => {
+        g.style.display = (f === 'all' || g.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
 </script>
+
 </body>
 </html>
