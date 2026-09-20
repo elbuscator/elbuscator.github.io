@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llamada de Dios en Español · Un momento de paz</title>
+<meta name="description" content="Encuentra un momento de paz con una llamada simulada de Dios. Mensajes de sabiduría, calma y guía espiritual. Muy realista. Descárgala gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf5;
+    --panel:#f4f6fb;
+    --panel-2:#eef2f9;
+    --sky:#5b8dd9;
+    --sky-dark:#3f6fb8;
+    --gold:#c99a4a;
+    --gold-bright:#dcb46b;
+    --ink:#2c2a26;
+    --muted:#726d63;
+    --line:#e7e2d5;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2{font-family:'Cormorant Garamond',serif; font-weight:700; margin:0;}
+  h3{font-family:'Inter',sans-serif; font-weight:700;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(251,250,245,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .brand{font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:8px; color:var(--ink);}
+  nav.links{display:flex; gap:26px; align-items:center;}
+  nav.links a{text-decoration:none; color:var(--muted); font-size:0.95rem; font-weight:500; transition:color .15s ease;}
+  nav.links a:hover{color:var(--sky-dark);}
+  .nav-cta{background:var(--sky); color:#fff !important; padding:10px 20px; border-radius:999px; font-weight:700; font-size:0.9rem !important;}
+  .nav-cta:hover{background:var(--sky-dark);}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:10px; color:var(--ink); padding:8px 12px; font-size:1.1rem;}
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:76px 0 64px; text-align:center;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(220,180,107,0.25), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(91,141,217,0.14), transparent 70%),
+      var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .flourish{font-size:1.3rem; opacity:0.8; letter-spacing:0.3em; margin-bottom:18px;}
+  .badge{display:inline-block; border:1px solid var(--line); background:#fff; color:var(--muted); font-size:0.85rem; padding:7px 16px; border-radius:999px; margin-bottom:22px;}
+  .hero h1{font-size:clamp(2.6rem, 6.5vw, 4.2rem); line-height:1.1; margin:0 0 20px; color:var(--sky-dark);}
+  .hero p.lead{max-width:600px; margin:0 auto 34px; color:var(--muted); font-size:1.1rem;}
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:40px;}
+  .btn{display:inline-block; padding:14px 30px; text-decoration:none; font-weight:700; font-size:1rem; border-radius:999px; border:1px solid transparent; transition:transform .12s ease, background .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--gold); color:#3a2a09;}
+  .btn-primary:hover{background:var(--gold-bright);}
+  .btn-ghost{background:transparent; color:var(--sky-dark); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--sky);}
+  .mood-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .mood-row span{width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; background:#fff; border:1px solid var(--line); border-radius:50%;}
+
+  /* NOTE CALLOUT */
+  .note{background:var(--bg); border-bottom:1px solid var(--line);}
+  .note .box{
+    display:flex; gap:16px; align-items:flex-start;
+    border:1px solid var(--gold-bright);
+    background:rgba(220,180,107,0.08);
+    padding:20px 24px; border-radius:14px;
+  }
+  .note .box .ico{font-size:1.5rem; flex-shrink:0;}
+  .note .box p{margin:0; color:var(--muted); font-size:0.95rem;}
+  .note .box strong{color:var(--gold);}
+
+  /* SIBLING APP CALLOUT */
+  .sibling{background:var(--bg); border-bottom:1px solid var(--line);}
+  .sibling .box{
+    display:flex; gap:18px; align-items:center; flex-wrap:wrap; justify-content:space-between;
+    border:1px solid var(--sky);
+    background:rgba(91,141,217,0.06);
+    padding:20px 24px; border-radius:14px;
+  }
+  .sibling .box p{margin:0; color:var(--muted); font-size:0.95rem;}
+  .sibling .box strong{color:var(--sky-dark);}
+  .sibling .box a{color:var(--sky-dark); text-decoration:none; font-weight:700; white-space:nowrap;}
+  .sibling .box a:hover{color:var(--ink);}
+
+  /* SECTION SHELL */
+  section{padding:76px 0;}
+  .eyebrow{color:var(--gold); font-weight:700; font-size:0.95rem; margin-bottom:10px;}
+  .section-head{max-width:600px; margin:0 0 44px;}
+  .section-head h2{font-size:2.2rem; margin:0 0 12px; color:var(--ink);}
+  .section-head p{color:var(--muted); margin:0; font-size:1.02rem;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* FEATURES */
+  .feat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .feat-card{background:#fff; border:1px solid var(--line); border-radius:16px; padding:30px 26px;}
+  .feat-card .icon{font-size:1.9rem; margin-bottom:14px; display:block;}
+  .feat-card h3{font-size:1.15rem; margin:0 0 10px; font-weight:600;}
+  .feat-card p{margin:0; color:var(--muted); font-size:0.95rem;}
+
+  /* BENEFITS */
+  #por-que{background:var(--panel); border-radius:28px; margin:0 24px;}
+  #por-que .wrap{padding:56px 24px;}
+  .benefit-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 40px;}
+  .benefit-item{display:flex; gap:14px; align-items:flex-start;}
+  .benefit-item .check{color:var(--sky-dark); font-size:1.2rem; flex-shrink:0; line-height:1.5;}
+  .benefit-item p{margin:0; color:var(--muted);}
+
+  /* HOW IT WORKS */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .step{background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px;}
+  .step .n{font-family:'Cormorant Garamond',serif; font-size:2.4rem; color:var(--gold); line-height:1; font-weight:700;}
+  .step h3{font-size:1.2rem; margin:12px 0 10px; font-weight:600;}
+  .step p{margin:0; color:var(--muted); font-size:0.95rem;}
+
+  /* SCREENSHOTS */
+  .shots{display:flex; gap:16px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory; justify-content:center; flex-wrap:wrap;}
+  .shots img{scroll-snap-align:start; flex:0 0 auto; height:340px; width:auto; border-radius:18px; border:1px solid var(--line);}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center; background:linear-gradient(160deg, #eef2f9, #fbfaf5); border-radius:28px; margin:0 24px; padding:64px 24px;}
+  .final-cta h2{font-size:2.4rem; margin:0 0 16px; color:var(--sky-dark);}
+  .final-cta p{color:var(--muted); margin:0 0 30px;}
+  .fine-print{margin-top:18px; color:var(--muted); font-size:0.85rem; max-width:520px; margin-left:auto; margin-right:auto;}
+
+  /* FOOTER */
+  footer{padding:40px 0; color:var(--muted); font-size:0.9rem;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .flinks{display:flex; gap:20px;}
+  footer .flinks a{color:var(--muted); text-decoration:none;}
+  footer .flinks a:hover{color:var(--ink);}
+  footer .copy{width:100%; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-size:0.82rem;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .feat-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    #por-que{margin:0 12px;}
+    .final-cta{margin:0 12px;}
+    .sibling .box{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">🕊️ Llamada de Dios</a>
+    <nav class="links">
+      <a href="#caracteristicas">Características</a>
+      <a href="#por-que">¿Por qué?</a>
+      <a href="#como">Cómo funciona</a>
+      <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadediosenespanol">Descargar</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="flourish">🕊️ ✨ ☁️ ✨ 🕊️</div>
+      <span class="badge">📞 Descarga gratis en Google Play</span>
+      <h1>Llamada de Dios  en Español</h1>
+      <p class="lead">Encuentra un momento de paz con una llamada simulada que te acompaña con mensajes de sabiduría, calma y guía espiritual. Perfecta para fortalecer tu fe o sorprender a tus seres queridos con una bonita sorpresa celestial.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadediosenespanol">Descargar gratis</a>
+        <a class="btn btn-ghost" href="#como">Ver cómo funciona ↓</a>
+      </div>
+      <div class="mood-row">
+        <span>🙏</span><span>🕊️</span><span>✨</span><span>☁️</span><span>💛</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="wrap" style="padding:32px 24px;">
+      <div class="box">
+        <span class="ico">📢</span>
+        <p><strong>Nota importante:</strong> esta es una app de entretenimiento. Las llamadas son simulaciones y no ofrecen comunicación real con ninguna entidad. Úsala con responsabilidad, para inspiración y disfrute.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sibling">
+    <div class="wrap" style="padding:28px 24px;">
+      <div class="box">
+        <p>📖 Si buscas seguir cultivando tu fe cada día, prueba también <strong>Mi Diario de Oración y Fe</strong>, otra app de elbuscator.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.elbuscator.midiariodeoracion">Ver la app →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow center">✨ Características</div>
+        <h2>Un momento de conexión espiritual</h2>
+        <p>Todo lo necesario para crear ese espacio de calma que a veces tanto necesitamos.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <span class="icon">✨</span>
+          <h3>Simulación realista</h3>
+          <p>Una interfaz de llamada de alta calidad que resulta completamente auténtica al recibirla.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🙏</span>
+          <h3>Mensajes inspiradores</h3>
+          <p>Una selección de audios diseñados para aportar consuelo, esperanza y reflexión.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🌈</span>
+          <h3>Fácil de usar</h3>
+          <p>Configura la llamada en segundos. Responder y colgar es tan natural como una llamada real.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🕊️</span>
+          <h3>Ideal para todos</h3>
+          <p>Perfecta para momentos de meditación personal o para compartir una sonrisa con amigos y familia.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">☁️</span>
+          <h3>Un momento de calma</h3>
+          <p>Crea un espacio de pausa y reflexión en medio del estrés diario.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">💛</span>
+          <h3>Sorpresa espiritual</h3>
+          <p>Una forma original y bonita de recordarle a alguien que no está solo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">💡 ¿Por qué usarla?</div>
+        <h2>Un recordatorio de fe cuando más lo necesitas</h2>
+        <p>Pensada para acompañarte en los momentos de calma y también en los de sorpresa.</p>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-item"><span class="check">✓</span><p>Un recordatorio de fe que llega de la forma más creativa.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Perfecta para esos días donde solo necesitas un momento de paz.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Configuración instantánea, sin esperas ni complicaciones.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Apta para todos los públicos, desde los 3 años.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Una bonita forma de sorprender con cariño a tus seres queridos.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Miles de personas ya han encontrado un momento de calma con esta llamada.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">📖 Cómo funciona</div>
+        <h2>3 pasos para tu momento de paz</h2>
+        <p>Así de sencillo es crear ese espacio de calma cuando lo necesites.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Configura la llamada 📱</h3>
+          <p>Elige el momento en el que quieres recibir la llamada.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Responde cuando estés listo 📞</h3>
+          <p>La llamada entra con una interfaz que parece completamente real.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Escucha el mensaje 🙏</h3>
+          <p>Un mensaje de calma, esperanza y reflexión te acompaña en tu día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capturas">
+    <div class="wrap">
+      <div class="section-head center">
+        <h2>Un vistazo a la app</h2>
+        <p>Así es la experiencia de recibir la llamada.</p>
+      </div>
+      <div class="shots">
+        <img src="https://play-lh.googleusercontent.com/bUDT1smcuAxx2gydD4H8xn4PyNH1npV_DZTdEsm2gXpgxpTj4g91v1q08HJkwlZUU7UG8BVac8a8e2V8YuuL9A=w526-h296" alt="Captura 1 de la app">
+        <img src="https://play-lh.googleusercontent.com/JEDxdAtCyNyJp4S3Fkx7dqhgZHRj6-sHk22gFjT1PAicHYdIQfmnl-2GpykDbDLVn1VsqTYOylPxZBxmXLu-1w=w526-h296" alt="Captura 2 de la app">
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Encuentra tu momento de paz 🕊️</h2>
+      <p>Descarga la app y deja que un mensaje de calma llegue a tu día.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadediosenespanol">Descargar en Google Play</a>
+      <div class="fine-print">Gratis · Contiene anuncios · Apta para todos los públicos (+3) · Las llamadas son simuladas, con fines de entretenimiento.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand" style="font-size:1.2rem;">🕊️ Llamada de Dios</span>
+    <div class="flinks">
+      <a href="https://elbuscator.github.io">← Inicio</a>
+      <a href="https://elbuscator.github.io/privacy.html">Privacidad</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.llamadadediosenespanol">Google Play</a>
+    </div>
+    <div class="copy">© 2026 elbuscator · Todos los derechos reservados</div>
+  </div>
+</footer>
+
+</body>
+</html>
