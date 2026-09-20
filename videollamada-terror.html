@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videollamada de Terror Español · Bromas de miedo</title>
+<meta name="description" content="Asusta a tus amigos con la videollamada de terror más realista. Fantasmas, espíritus y entes del más allá. Bromas de miedo 100% en español.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#050705;
+    --panel:#0e130f;
+    --panel-2:#141b16;
+    --green:#3ddc6f;
+    --green-bright:#6bffa0;
+    --green-dim:#1f6b3a;
+    --bone:#d9f2df;
+    --ash:#7c9c84;
+    --line:#233028;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    mix-blend-mode:overlay;
+    background:repeating-linear-gradient(to bottom, rgba(61,220,111,0.04) 0px, rgba(61,220,111,0.04) 1px, transparent 1px, transparent 3px);
+  }
+  h1,h2,h3,.mono{font-family:'Share Tech Mono',monospace; font-weight:400; letter-spacing:0.02em;}
+  a{color:inherit;}
+  img{max-width:100%; display:block; filter:grayscale(15%);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(5,7,5,0.9); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .brand{font-family:'Share Tech Mono',monospace; font-size:1.35rem; text-decoration:none; display:flex; align-items:center; gap:8px; color:var(--green-bright);}
+  nav.links{display:flex; gap:26px; align-items:center;}
+  nav.links a{text-decoration:none; color:var(--ash); font-size:0.95rem; font-family:'Inter',sans-serif; transition:color .15s ease;}
+  nav.links a:hover{color:var(--bone);}
+  .nav-cta{background:var(--green-dim); color:var(--bone) !important; padding:9px 18px; border:1px solid var(--green); font-weight:600; font-size:0.9rem !important; font-family:'Inter',sans-serif !important;}
+  .nav-cta:hover{background:var(--green); color:var(--void) !important;}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--bone); padding:8px 12px; font-size:1.1rem;}
+
+  /* HERO */
+  .hero{padding:60px 0 56px; text-align:center; background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(61,220,111,0.09), transparent 70%), var(--void); border-bottom:1px solid var(--line);}
+  .rec{display:inline-flex; align-items:center; gap:8px; font-family:'Share Tech Mono',monospace; color:var(--green-bright); font-size:0.9rem; margin-bottom:18px;}
+  .rec .dot{width:9px; height:9px; border-radius:50%; background:#ff3b3b; animation:blink 1.2s infinite;}
+  @keyframes blink{0%,49%{opacity:1;} 50%,100%{opacity:0.15;}}
+  @media (prefers-reduced-motion: reduce){.rec .dot{animation:none;}}
+  .badge{display:inline-block; border:1px solid var(--line); color:var(--ash); font-size:0.85rem; padding:6px 14px; margin-bottom:22px; font-family:'Inter',sans-serif;}
+  .hero h1{font-size:clamp(2.3rem, 6vw, 4rem); line-height:1.15; margin:0 0 20px; color:var(--green-bright); text-shadow:0 0 16px rgba(61,220,111,0.35);}
+  .hero p.lead{max-width:620px; margin:0 auto 34px; color:var(--ash); font-size:1.08rem; font-family:'Inter',sans-serif;}
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{display:inline-block; padding:14px 28px; text-decoration:none; font-weight:700; font-size:1rem; border:1px solid transparent; transition:transform .12s ease, background .15s ease; font-family:'Inter',sans-serif;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--green-dim); color:var(--bone); border-color:var(--green);}
+  .btn-primary:hover{background:var(--green); color:var(--void);}
+  .btn-ghost{background:transparent; color:var(--bone); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--green-bright); color:var(--green-bright);}
+  .mood-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .mood-row span{width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; background:var(--panel); border:1px solid var(--line); border-radius:50%;}
+
+  /* WARNING CALLOUT */
+  .warning{background:var(--void); border-bottom:1px solid var(--line);}
+  .warning .box{display:flex; gap:16px; align-items:flex-start; border:1px solid var(--green); background:rgba(61,220,111,0.05); padding:20px 24px;}
+  .warning .box .ico{font-size:1.5rem; flex-shrink:0;}
+  .warning .box p{margin:0; color:var(--ash); font-size:0.95rem; font-family:'Inter',sans-serif;}
+  .warning .box strong{color:var(--green-bright);}
+
+  /* SECTION SHELL */
+  section{padding:76px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .eyebrow{color:var(--green-bright); font-size:0.95rem; margin-bottom:10px; font-family:'Share Tech Mono',monospace;}
+  .section-head{max-width:620px; margin:0 0 44px;}
+  .section-head h2{font-size:2.1rem; margin:0 0 12px; font-family:'Inter',sans-serif; font-weight:800; color:var(--bone);}
+  .section-head p{color:var(--ash); margin:0; font-size:1.02rem; font-family:'Inter',sans-serif;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* FEATURES */
+  .feat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .feat-card{background:var(--panel); padding:32px 28px;}
+  .feat-card .icon{font-size:1.8rem; margin-bottom:14px; display:block;}
+  .feat-card h3{font-size:1.15rem; margin:0 0 10px; font-family:'Inter',sans-serif; font-weight:700;}
+  .feat-card p{margin:0; color:var(--ash); font-size:0.95rem; font-family:'Inter',sans-serif;}
+
+  /* QUOTE */
+  .quote-box{border-left:3px solid var(--green); background:var(--panel); padding:26px 30px; font-family:'Share Tech Mono',monospace; color:var(--ash); font-size:1.02rem;}
+
+  /* BENEFITS */
+  .benefit-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 40px;}
+  .benefit-item{display:flex; gap:14px; align-items:flex-start;}
+  .benefit-item .check{color:var(--green-bright); font-size:1.2rem; flex-shrink:0; line-height:1.5;}
+  .benefit-item p{margin:0; color:var(--ash); font-family:'Inter',sans-serif;}
+
+  /* HOW IT WORKS */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .step{border-top:2px solid var(--green-dim); padding-top:20px;}
+  .step .n{font-family:'Share Tech Mono',monospace; font-size:2.4rem; color:var(--green-bright); line-height:1;}
+  .step h3{font-size:1.2rem; margin:10px 0 10px; font-family:'Inter',sans-serif; font-weight:700;}
+  .step p{margin:0; color:var(--ash); font-size:0.95rem; font-family:'Inter',sans-serif;}
+
+  /* SCREENSHOTS */
+  .shots{display:flex; gap:16px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory;}
+  .shots img{scroll-snap-align:start; flex:0 0 auto; height:300px; width:auto; border:1px solid var(--line);}
+  .shots::-webkit-scrollbar{height:8px;}
+  .shots::-webkit-scrollbar-thumb{background:var(--line);}
+  .shots::-webkit-scrollbar-track{background:transparent;}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center; background:linear-gradient(180deg, var(--void), #081008 60%, var(--void));}
+  .final-cta h2{font-size:2.4rem; margin:0 0 16px; font-family:'Inter',sans-serif; font-weight:800; color:var(--green-bright);}
+  .final-cta p{color:var(--ash); margin:0 0 30px; font-family:'Inter',sans-serif;}
+  .fine-print{margin-top:18px; color:var(--ash); font-size:0.85rem; max-width:540px; margin-left:auto; margin-right:auto; font-family:'Inter',sans-serif;}
+
+  /* FOOTER */
+  footer{padding:40px 0; color:var(--ash); font-size:0.9rem; font-family:'Inter',sans-serif;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .flinks{display:flex; gap:20px;}
+  footer .flinks a{color:var(--ash); text-decoration:none;}
+  footer .flinks a:hover{color:var(--bone);}
+  footer .copy{width:100%; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-size:0.82rem;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .feat-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">👻 VDT_ES</a>
+    <nav class="links">
+      <a href="#caracteristicas">Características</a>
+      <a href="#por-que">¿Por qué?</a>
+      <a href="#como">Cómo funciona</a>
+      <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.elbuscator.videollamadadeterror">Descargar</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="rec"><span class="dot"></span> REC · LLAMADA_ENTRANTE.mp4</div>
+      <span class="badge">📹 Descarga gratis en Google Play</span>
+      <h1>Videollamada de Terror Español</h1>
+      <p class="lead">Con la videollamada de terror más realista, podrás gastar bromas telefónicas con fantasmas, espíritus y entes del más allá. La herramienta perfecta para los amantes de las historias de miedo y los sustos entre amigos.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.videollamadadeterror">Descargar gratis</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=_B-_fnvnoAw" target="_blank" rel="noopener">▶ Ver tráiler</a>
+      </div>
+      <div class="mood-row">
+        <span>👻</span><span>📹</span><span>🕯️</span><span>💀</span><span>🌫️</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="warning">
+    <div class="wrap" style="padding:32px 24px;">
+      <div class="box">
+        <span class="ico">⚠️</span>
+        <p><strong>Contenido para mayores de 16 años.</strong> Esta app tiene exclusivamente fines de entretenimiento. La videollamada es una simulación (llamada falsa) y no proporciona funciones reales de comunicación. Ideal para bromas de terror entre amigos, siempre con responsabilidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow center">// características</div>
+        <h2>Terror con la máxima calidad de imagen y sonido</h2>
+        <p>Todo lo necesario para una broma que nadie se espera.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <span class="icon">📹</span>
+          <h3>Realismo total</h3>
+          <p>Simulación de videollamada de alta calidad que engañará a cualquiera que la reciba.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">👻</span>
+          <h3>Audio de terror</h3>
+          <p>Escucha las voces más escalofriantes de espíritus y fantasmas del más allá.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🇪🇸</span>
+          <h3>100% en español</h3>
+          <p>Todo el contenido y las voces están localizados para un susto mayor.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">⚡</span>
+          <h3>Fácil de usar</h3>
+          <p>Interfaz sencilla e intuitiva para gastar bromas al instante, sin complicaciones.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🌫️</span>
+          <h3>Ambientación inquietante</h3>
+          <p>Efectos visuales y sonoros pensados para generar una tensión muy real.</p>
+        </div>
+        <div class="feat-card">
+          <span class="icon">🎯</span>
+          <h3>Ideal para grupos</h3>
+          <p>Perfecta para asustar a amigos en la oscuridad o en lugares con fama de encantados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">// el espíritu te está observando</div>
+        <h2>¿Tienes el valor suficiente para contestar?</h2>
+        <p>Durante la llamada, un espíritu asegura llevar años observando a quien contesta, y promete aparecer en sus sueños y susurrarle en la oscuridad hasta dejarlo bajo su hechizo.</p>
+      </div>
+      <div class="quote-box">"...te perseguiré en tus sueños, te susurraré en la oscuridad... ya has caído bajo mi hechizo."</div>
+    </div>
+  </section>
+
+  <section id="beneficios" style="background:var(--panel-2); border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">// ¿por qué usarla?</div>
+        <h2>La broma perfecta, siempre a mano</h2>
+        <p>Pensada para quienes disfrutan de un buen susto de vez en cuando.</p>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-item"><span class="check">✓</span><p>Bromas de miedo con un nivel de realismo difícil de igualar.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Perfecta para noches de terror, cámaras ocultas o retos entre amigos.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Voces y contenido totalmente en español, sin traducciones forzadas.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Configuración instantánea: pulsa y espera a que suene el teléfono.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Pensada para mayores de 16 años, con clasificación de terror.</p></div>
+        <div class="benefit-item"><span class="check">✓</span><p>Miles de personas ya han caído bajo su hechizo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">// cómo funciona la broma</div>
+        <h2>3 pasos para el susto perfecto</h2>
+        <p>Así de simple es dejar que el fantasma haga el resto.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Pulsa "Recibir Llamada" 📞</h3>
+          <p>Prepara el teléfono de la víctima para la videollamada entrante.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Espera a que suene ⏳</h3>
+          <p>El teléfono empieza a sonar como si fuera una llamada real.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Acepta y observa 👻</h3>
+          <p>Deja que el fantasma haga el resto del trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capturas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Un vistazo a la grabación</h2>
+        <p>Así es la experiencia que vivirá quien conteste la llamada.</p>
+      </div>
+      <div class="shots">
+        <img src="https://play-lh.googleusercontent.com/IvYFlLE8Uk94Bi0ZgSEdr_JA4fF-Y2kBcjXnJIHCTmVy5ChW8mmjVl_tZOOGlIaaXZleUmkpmL7J9Pjc5WjQ=w526-h296" alt="Captura 1 de la app">
+        <img src="https://play-lh.googleusercontent.com/7HilN2bdA1i8XdQABdvW3ngKW7A-ax2tQ0OUJfyysY6Zz9BMqUa3sNyD2m-e8mrmida1XMXHaO3ULjPrzmR_=w526-h296" alt="Captura 2 de la app">
+        <img src="https://play-lh.googleusercontent.com/2EBzbxaqxhgNlm2ZeOCf7zD1RHDvoJMSuQ6HDxucW20vwXJlhnGdXQLIUlmNHWSnzcladBHe3-uWB12oEfhsyg=w526-h296" alt="Captura 3 de la app">
+        <img src="https://play-lh.googleusercontent.com/oJ6TXOIW9TCXyWy493KQ27DbbnvaithSRH_iaZaHknUkgOtxlMq1jrvNix-OdGXiZZhVAyTSFmliU8vtAFZubQ=w526-h296" alt="Captura 4 de la app">
+        <img src="https://play-lh.googleusercontent.com/luWA3Q3jS0Os092bXWc-HwF-l6p4o7S0ZF4_emPE42OiXw__ibVyZbz5x4L_lSuSTxK43BAjxgETJPEFTcFn4XE=w526-h296" alt="Captura 5 de la app">
+        <img src="https://play-lh.googleusercontent.com/cJdAsXxzhYdic3ZzR_VNVdjSTxgpMqKX2gpg5A-jcu9Ig57K58Y2ZZuGiTEhMQwnyRSMWlJa-EiZ4ubrMAOsbw=w526-h296" alt="Captura 6 de la app">
+        <img src="https://play-lh.googleusercontent.com/GGMlglq-myPYG4eicRtF18wXUWQpd4Araa8rOdU9stFd1shjHSQgVOPc2gZRo6UIBgvA6dTw5y0ZtJ0kB6PG=w526-h296" alt="Captura 7 de la app">
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>¿Te atreves a contestar? 👻</h2>
+      <p>Descarga la app y prepárate para dar el susto de sus vidas.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.videollamadadeterror">Descargar en Google Play</a>
+      <div class="fine-print">Gratis · Contiene anuncios · Para mayores de 16 años (terror) · La videollamada es simulada, con fines de entretenimiento.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand" style="font-size:1.15rem;">👻 Videollamada de Terror</span>
+    <div class="flinks">
+      <a href="https://elbuscator.github.io">← Inicio</a>
+      <a href="https://elbuscator.github.io/privacy.html">Privacidad</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.videollamadadeterror">Google Play</a>
+    </div>
+    <div class="copy">© 2026 elbuscator · Todos los derechos reservados</div>
+  </div>
+</footer>
+
+</body>
+</html>
