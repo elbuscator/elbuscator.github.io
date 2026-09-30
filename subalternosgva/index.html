@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oposiciones Subalternos GVA: guía, temario y test</title>
+  <meta name="description" content="Información sobre las oposiciones de Subalternos de la Generalitat Valenciana: requisitos, fases, temario, calendario y recursos para preparar el examen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#inicio">Subalternos<span>GVA</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav id="nav" class="nav">
+      <a href="#oposicion">La oposición</a>
+      <a href="#requisitos">Requisitos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#recursos">Preparación</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Prepara las oposiciones de Subalterno de la Generalitat Valenciana</h1>
+        <p class="lead">Toda la información de la convocatoria en un mismo sitio, más un temario y un test con el que practicar cada día.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#recursos">Ver recursos de preparación</a>
+          <a class="btn btn-ghost" href="#oposicion">Leer la guía</a>
+        </div>
+      </div>
+      <aside class="countdown" aria-live="polite">
+        <p class="cd-title" id="cdTitle">Próximo hito</p>
+        <p class="cd-number" id="cdNumber">—</p>
+        <p class="cd-label" id="cdLabel">Fecha por confirmar</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="oposicion" class="section">
+    <div class="wrap narrow">
+      <h2>¿Qué es la oposición de Subalternos GVA?</h2>
+      <p>Es el proceso selectivo para acceder como personal funcionario a puestos de subalterno en la Administración de la Generalitat Valenciana. Sus funciones habituales son de atención al público, información, custodia y apoyo en las dependencias administrativas.</p>
+      <div class="facts">
+        <div><strong>Plazas</strong><span data-edit>[COMPLETAR según convocatoria]</span></div>
+        <div><strong>Grupo / Agrupación</strong><span data-edit>[COMPLETAR]</span></div>
+        <div><strong>Sistema</strong><span data-edit>Oposición (turno libre)</span></div>
+        <div><strong>Convocatoria</strong><span data-edit>[COMPLETAR año / DOGV]</span></div>
+      </div>
+      <p class="note">Estos datos cambian en cada convocatoria. Consulta siempre las bases publicadas en el <a href="https://dogv.gva.es" target="_blank" rel="noopener">DOGV</a> y en la <a href="https://sede.gva.es" target="_blank" rel="noopener">sede electrónica de la GVA</a>.</p>
+    </div>
+  </section>
+
+  <section id="requisitos" class="section alt">
+    <div class="wrap narrow">
+      <h2>Requisitos para presentarte</h2>
+      <ul class="checks">
+        <li>Nacionalidad española o de otro país en los términos que fijen las bases.</li>
+        <li>Tener cumplidos 16 años y no exceder la edad de jubilación forzosa.</li>
+        <li>Poseer la titulación exigida en la convocatoria <span class="tag" data-edit>[COMPLETAR]</span>.</li>
+        <li>No haber sido separado del servicio en ninguna administración pública ni estar inhabilitado.</li>
+        <li>Capacidad funcional para las tareas del puesto.</li>
+        <li>Abonar la tasa de examen, salvo exenciones o bonificaciones que recojan las bases.</li>
+      </ul>
+      <p class="note">Revisa los requisitos exactos de tu convocatoria: pueden variar respecto a esta lista general.</p>
+    </div>
+  </section>
+
+  <section id="proceso" class="section">
+    <div class="wrap narrow">
+      <h2>Cómo es el proceso selectivo</h2>
+      <ol class="steps">
+        <li><h3>Solicitud</h3><p>Se presenta por vía telemática dentro del plazo de la convocatoria, con el pago de la tasa.</p></li>
+        <li><h3>Admitidos y excluidos</h3><p>Se publican las listas provisional y definitiva. Hay plazo para subsanar errores.</p></li>
+        <li><h3>Examen tipo test</h3><p>Preguntas sobre el temario, con cuatro opciones de respuesta. <span data-edit>[COMPLETAR nº de preguntas, tiempo y penalización]</span></p></li>
+        <li><h3>Calificación y lista de aprobados</h3><p>Se publica la puntuación y el listado de personas aprobadas.</p></li>
+        <li><h3>Adjudicación de destino y toma de posesión</h3><p>Se eligen destinos por orden de puntuación.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="calendario" class="section alt">
+    <div class="wrap narrow">
+      <h2>Calendario</h2>
+      <p>Fechas de referencia de la convocatoria. Edítalas en el archivo <code>js/main.js</code>.</p>
+      <table class="cal">
+        <thead><tr><th>Hito</th><th>Fecha</th></tr></thead>
+        <tbody id="calBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="recursos" class="section">
+    <div class="wrap">
+      <h2>Prepárala con nuestros recursos</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>App de tests</h3>
+          <p>Practica con tests tipo examen desde el móvil y sigue tu progreso.</p>
+          <p class="price"><span data-price>4</span> € <small>/ mes</small></p>
+          <a class="btn btn-primary" data-link="app" href="#">Probar la app</a>
+        </article>
+        <article class="card">
+          <h3>Temario en papel</h3>
+          <p>Temario completo de preparación, en formato libro.</p>
+          <a class="btn btn-dark" data-link="amazon" href="#" target="_blank" rel="noopener sponsored">Comprar en Amazon</a>
+        </article>
+        <article class="card">
+          <h3>Temario en PDF</h3>
+          <p>El mismo temario en digital, para estudiar en cualquier dispositivo.</p>
+          <a class="btn btn-dark" data-link="pdf" href="#" target="_blank" rel="noopener">Descargar PDF</a>
+        </article>
+      </div>
+      <p class="note center">Como afiliado de Amazon, puedo recibir una comisión por las compras que cumplan los requisitos, sin coste extra para ti.</p>
+    </div>
+  </section>
+
+  <section id="consejos" class="section alt">
+    <div class="wrap narrow">
+      <h2>Cómo organizar el estudio</h2>
+      <ul class="checks">
+        <li>Divide el temario en bloques semanales y repasa lo anterior antes de empezar uno nuevo.</li>
+        <li>Haz tests desde el primer mes; no esperes a terminar el temario.</li>
+        <li>Apunta los errores y vuelve sobre ellos hasta dominarlos.</li>
+        <li>Practica con tiempo real y respeta las condiciones del examen (penalización, duración).</li>
+        <li>Guarda las últimas semanas para simulacros completos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="wrap narrow">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Es una web oficial de la Generalitat?</summary><p>No. Es un sitio independiente de ayuda a opositores. La información oficial está en el DOGV y en la sede electrónica de la GVA.</p></details>
+        <details><summary>¿Cuánto tiempo se tarda en preparar la oposición?</summary><p>Depende de tu punto de partida y de las horas diarias. Muchas personas planifican entre varios meses y un año.</p></details>
+        <details><summary>¿Puedo cancelar la app cuando quiera?</summary><p>Sí. <span data-edit>[COMPLETAR según tu política de suscripción]</span></p></details>
+        <details><summary>¿El temario está actualizado?</summary><p>Se revisa cuando cambia la normativa. <span data-edit>[COMPLETAR fecha de última revisión]</span></p></details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© <span id="year"></span> SubalternosGVA. Sitio web no oficial, sin vinculación con la Generalitat Valenciana.</p>
+    <p><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a> · <a href="cookies.html">Cookies</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
