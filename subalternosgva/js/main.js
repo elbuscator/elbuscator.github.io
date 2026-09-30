@@ -26,6 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (url && url !== "#") a.href = url;
   });
 
+  // Cambio de tema claro / oscuro
+  const themeBtn = document.getElementById("themeBtn");
+  const root = document.documentElement;
+  function updateThemeLabel() {
+    const dark = root.getAttribute("data-theme") === "dark";
+    themeBtn.setAttribute("aria-label", dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+  }
+  updateThemeLabel();
+  themeBtn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    updateThemeLabel();
+  });
+
   // Menú móvil
   const btn = document.getElementById("menuBtn");
   const nav = document.getElementById("nav");
