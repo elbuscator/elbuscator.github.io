@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador Realista de Besos · Historia romántica interactiva</title>
+<meta name="description" content="Historia romántica interactiva por capítulos con personajes adultos. Desbloquea escenas, pon a prueba tus decisiones y descubre consejos sobre comunicación, respeto y consentimiento. Descárgala gratis.">
+<meta property="og:title" content="Simulador Realista de Besos · Historia romántica interactiva">
+<meta property="og:description" content="Cada capítulo abre un nuevo momento de una historia romántica. Escenas, decisiones y consejos de comunicación y consentimiento.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+
+<style>
+:root {
+  --bg: #fff8f7;
+  --surface: #f7dde1;
+  --surface-2: #ffffff;
+  --text: #22191b;
+  --muted: #524346;
+  --primary: #b3224d;
+  --on-primary: #ffffff;
+  --wine: #3f0016;
+  --gold: #8a5100;
+  --line: #d8c2c5;
+  --radius: 20px;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1013;
+    --surface: #3b2a2e;
+    --surface-2: #2a1a1e;
+    --text: #f5dde1;
+    --muted: #d8c2c5;
+    --primary: #ffb2bf;
+    --on-primary: #670027;
+    --wine: #ffd9df;
+    --gold: #ffb86b;
+    --line: #524346;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.15; margin: 0; color: var(--wine); }
+h1 { font-size: clamp(2.4rem, 7vw, 4.4rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin: 0; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 56ch; }
+
+/* Barra superior */
+header.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--wine); }
+.nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav ul a { text-decoration: none; padding: 8px 12px; border-radius: 999px; font-size: 0.95rem; color: var(--muted); }
+.nav ul a:hover { color: var(--text); background: var(--surface); }
+.nav ul a.cta { background: var(--primary); color: var(--on-primary); font-weight: 600; }
+.nav ul a.cta:hover { background: var(--primary); filter: brightness(1.08); color: var(--on-primary); }
+.menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--text); width: 44px; height: 44px; border-radius: 12px; font-size: 1.3rem; cursor: pointer; }
+@media (max-width: 760px) {
+  .menu-btn { display: block; }
+  .nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 20px 20px; }
+  .nav ul.open { display: flex; }
+  .nav ul a { display: block; padding: 12px 14px; }
+}
+
+/* Portada */
+.hero { padding: 64px 0 40px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+.badge { display: inline-block; background: var(--surface); color: var(--wine); padding: 6px 14px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
+.hero h1 { margin-bottom: 20px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
+.btn.primary { background: var(--primary); color: var(--on-primary); }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn.ghost { border: 1.5px solid var(--primary); color: var(--primary); }
+.btn.ghost:hover { background: var(--surface); }
+
+/* El elemento memorable: dos círculos que se acercan y forman un corazón, como en la app */
+.scene {
+  position: relative; aspect-ratio: 9 / 14; max-height: 520px; width: 100%; margin-inline: auto;
+  border-radius: 32px; overflow: hidden;
+  background: linear-gradient(160deg, #e8607a 0%, #b3224d 55%, #6b0f2e 100%);
+  box-shadow: 0 24px 60px -20px rgba(179, 34, 77, 0.55);
+  display: grid; place-items: center;
+}
+.scene .c { position: absolute; top: 50%; width: 34%; aspect-ratio: 1; border-radius: 50%; translate: 0 -50%; }
+.scene .c.l { left: 4%; background: #ffd9df; animation: meetL 7s ease-in-out infinite; }
+.scene .c.r { right: 4%; background: #ffb86b; animation: meetR 7s ease-in-out infinite; }
+.scene .heart { position: relative; font-size: clamp(3rem, 10vw, 5rem); animation: pop 7s ease-in-out infinite; }
+.scene .cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,0.9); font-family: var(--serif); font-size: 1.05rem; }
+@keyframes meetL { 0%, 12% { left: 4%; } 55%, 100% { left: 21%; } }
+@keyframes meetR { 0%, 12% { right: 4%; } 55%, 100% { right: 21%; } }
+@keyframes pop { 0%, 55% { opacity: 0; scale: 0.5; } 70%, 92% { opacity: 1; scale: 1.15; } 100% { opacity: 0; scale: 1.15; } }
+@media (prefers-reduced-motion: reduce) {
+  .scene .c, .scene .heart { animation: none; }
+  .scene .c.l { left: 21%; } .scene .c.r { right: 21%; }
+  .scene .heart { opacity: 1; }
+}
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .scene { max-width: 340px; aspect-ratio: 1 / 1; }
+}
+
+.notice { margin-top: 40px; }
+.notice .wrap > div { background: var(--surface); border-left: 5px solid var(--gold); border-radius: 14px; padding: 18px 22px; color: var(--text); }
+
+/* Secciones */
+section { padding: 72px 0; }
+section.alt { background: var(--surface); }
+.head { margin-bottom: 40px; }
+.head p { margin-top: 12px; color: var(--muted); max-width: 56ch; }
+
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .features { grid-template-columns: 1fr; } }
+.feature { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+.feature .ico { font-size: 1.8rem; display: block; margin-bottom: 10px; }
+.feature p { color: var(--muted); margin-top: 6px; }
+
+/* Capítulos */
+.chapters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 900px) { .chapters { grid-template-columns: repeat(2, 1fr); } }
+.chapter { position: relative; aspect-ratio: 16 / 10; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; overflow: hidden; }
+.chapter::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%); }
+.chapter > * { position: relative; z-index: 1; }
+.chapter small { opacity: 0.85; font-size: 0.8rem; }
+.chapter b { font-family: var(--serif); font-size: 1.05rem; line-height: 1.2; }
+.chapter .lock { position: absolute; top: 10px; right: 12px; z-index: 1; font-size: 1.1rem; }
+.chapter.g1 { background: linear-gradient(135deg, #e8607a, #b3224d); }
+.chapter.g2 { background: linear-gradient(135deg, #f4a261, #c2185b); }
+.chapter.g3 { background: linear-gradient(135deg, #d65db1, #845ec2); }
+.chapter.g4 { background: linear-gradient(135deg, #4a6fa5, #2b3a67); }
+.chapter.g5 { background: linear-gradient(135deg, #e76f51, #9c2f4f); }
+.chapter.g6 { background: linear-gradient(135deg, #6d597a, #355070); }
+.chapter.g7 { background: linear-gradient(135deg, #ffb347, #e8607a); }
+.chapter.g8 { background: linear-gradient(135deg, #c9a227, #8e2c48); }
+.chapters-note { margin-top: 18px; color: var(--muted); }
+
+/* Lista de motivos */
+.checks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 32px; }
+@media (max-width: 760px) { .checks { grid-template-columns: 1fr; } }
+.checks li { display: flex; gap: 12px; align-items: flex-start; }
+.checks li::before { content: "✓"; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; font-size: 0.85rem; font-weight: 700; margin-top: 2px; }
+
+/* Pasos */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+.step { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; counter-increment: step; }
+.step::before { content: counter(step); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: var(--on-primary); font-family: var(--serif); font-weight: 700; margin-bottom: 14px; }
+.step p { color: var(--muted); margin-top: 6px; }
+
+/* Capturas */
+.shots { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+.shots img { flex: none; height: 440px; width: auto; border-radius: 18px; scroll-snap-align: start; border: 1px solid var(--line); background: var(--surface); }
+@media (max-width: 580px) { .shots img { height: 360px; } }
+
+/* Llamada final */
+.final { text-align: center; }
+.final .wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.final .small { color: var(--muted); font-size: 0.9rem; max-width: 60ch; }
+
+footer { border-top: 1px solid var(--line); padding: 32px 0 40px; color: var(--muted); font-size: 0.95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: space-between; align-items: center; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--primary); text-decoration: underline; }
+</style>
+</head>
+
+<body id="top">
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">❤️ Historia de besos</a>
+    <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+    <ul id="menu">
+      <li><a href="#caracteristicas">Características</a></li>
+      <li><a href="#capitulos">Capítulos</a></li>
+      <li><a href="#como">Cómo funciona</a></li>
+      <li><a class="cta" href="https://play.google.com/store/apps/details?id=com.elbuscator.simuladorrealistadebesos">Descargar</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- PORTADA -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="badge">Descarga gratis en Google Play</span>
+      <h1>Simulador Realista de Besos</h1>
+      <p class="lead">Una historia romántica interactiva entre personajes adultos. Cada escena que completas abre el siguiente capítulo, y por el camino aprendes a comunicarte con respeto.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.simuladorrealistadebesos">Descargar gratis</a>
+        <a class="btn ghost" href="#como">Ver cómo funciona</a>
+      </div>
+    </div>
+    <div class="scene" role="img" aria-label="Animación: dos círculos se acercan y aparece un corazón">
+      <span class="c l"></span>
+      <span class="c r"></span>
+      <span class="heart" aria-hidden="true">❤️</span>
+      <span class="cap">Cada escena abre un capítulo</span>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="wrap">
+    <div><strong>Contenido romántico para adultos.</strong> Todos los personajes son adultos y las interacciones son mutuas y consentidas. La app no contiene desnudez ni contenido sexual explícito. Los consejos son orientativos y no sustituyen la ayuda de un profesional.</div>
+  </div>
+</div>
+
+<!-- CARACTERÍSTICAS -->
+<section id="caracteristicas">
+  <div class="wrap">
+    <div class="head">
+      <h2>Más que mirar: participa en la historia</h2>
+      <p>Escenas, decisiones y consejos pensados para disfrutar del romance a tu ritmo.</p>
+    </div>
+    <div class="features">
+      <article class="feature">
+        <span class="ico">🎬</span>
+        <h3>Escenas por capítulos</h3>
+        <p>Ocho capítulos, de «El primer beso» a «El beso de aniversario», con ambiente y emoción propios.</p>
+      </article>
+      <article class="feature">
+        <span class="ico">🔓</span>
+        <h3>Desbloqueo progresivo</h3>
+        <p>Completa una escena para abrir la siguiente. Lo que desbloqueas es tuyo y puedes volver a verlo siempre.</p>
+      </article>
+      <article class="feature">
+        <span class="ico">🤔</span>
+        <h3>¿Qué harías tú?</h3>
+        <p>Al terminar cada escena, una mini-decisión con tres opciones y una explicación amable de cada una.</p>
+      </article>
+      <article class="feature">
+        <span class="ico">💬</span>
+        <h3>Consejos y consultas</h3>
+        <p>Treinta consejos y doce preguntas frecuentes sobre acercamiento, comunicación, límites y consentimiento, con buscador.</p>
+      </article>
+      <article class="feature">
+        <span class="ico">⭐</span>
+        <h3>Tu colección</h3>
+        <p>Marca tus escenas favoritas y consulta tu progreso, tus reproducciones y tus decisiones acertadas.</p>
+      </article>
+      <article class="feature">
+        <span class="ico">🔒</span>
+        <h3>Sin cuenta ni registro</h3>
+        <p>Tu progreso se guarda en tu móvil. Ábrela y empieza, sin formularios.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CAPÍTULOS -->
+<section class="alt" id="capitulos">
+  <div class="wrap">
+    <div class="head">
+      <h2>Una historia en ocho momentos</h2>
+      <p>Solo el primer capítulo está abierto al instalar la app. El resto se desbloquea al completar la escena anterior.</p>
+    </div>
+    <div class="chapters">
+      <div class="chapter g1"><small>Capítulo 1</small><b>El primer beso</b></div>
+      <div class="chapter g2"><span class="lock">🔒</span><small>Capítulo 2</small><b>Después de la primera cita</b></div>
+      <div class="chapter g3"><span class="lock">🔒</span><small>Capítulo 3</small><b>Un beso inesperado</b></div>
+      <div class="chapter g4"><span class="lock">🔒</span><small>Capítulo 4</small><b>Bajo la lluvia</b></div>
+      <div class="chapter g5"><span class="lock">🔒</span><small>Capítulo 5</small><b>El beso de reconciliación</b></div>
+      <div class="chapter g6"><span class="lock">🔒</span><small>Capítulo 6</small><b>El beso de despedida</b></div>
+      <div class="chapter g7"><span class="lock">🔒</span><small>Capítulo 7</small><b>Volver a encontrarse</b></div>
+      <div class="chapter g8"><span class="lock">🔒</span><small>Capítulo 8</small><b>El beso de aniversario</b></div>
+    </div>
+    <p class="chapters-note">Los capítulos se irán publicando poco a poco con nuevas actualizaciones.</p>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section id="por-que">
+  <div class="wrap">
+    <div class="head">
+      <h2>Romance con cabeza y con corazón</h2>
+      <p>Una app que se disfruta y que además deja algo útil.</p>
+    </div>
+    <ul class="checks">
+      <li>Historia romántica por capítulos, protagonizada por personajes adultos.</li>
+      <li>Los consejos son opcionales: nunca interrumpen la escena.</li>
+      <li>Aprende a leer señales, preguntar y respetar los límites de la otra persona.</li>
+      <li>Un consejo nuevo cada día en la pantalla de inicio.</li>
+      <li>Disponible en español e inglés.</li>
+      <li>Gratis, con anuncios. Una compra única de 1,99 € los quita para siempre.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="alt" id="como">
+  <div class="wrap">
+    <div class="head">
+      <h2>Cómo funciona</h2>
+      <p>Tres pasos para avanzar por la historia.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Reproduce la escena</h3>
+        <p>Empieza por «El primer beso». Puedes pausarla, repetirla y marcarla como favorita.</p>
+      </div>
+      <div class="step">
+        <h3>Pon a prueba tus decisiones</h3>
+        <p>Al terminar, elige qué harías en esa situación y descubre por qué una opción funciona mejor que otra.</p>
+      </div>
+      <div class="step">
+        <h3>Desbloquea el siguiente capítulo</h3>
+        <p>Al completar la escena se abre el siguiente momento de la historia, y todo lo conseguido queda en tu colección.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPTURAS -->
+<!--
+  Para añadir capturas, sustituye la URL de cada <img> por la de tus capturas
+  de Google Play (como en la web de Bruja Maruja) y quita los comentarios.
+  La sección está comentada para no mostrar imágenes rotas.
+
+<section id="capturas">
+  <div class="wrap">
+    <div class="head">
+      <h2>Un vistazo a la historia</h2>
+      <p>Así se ve la app.</p>
+    </div>
+    <div class="shots">
+      <img src="URL_CAPTURA_1" alt="Captura 1 de la app" loading="lazy">
+      <img src="URL_CAPTURA_2" alt="Captura 2 de la app" loading="lazy">
+      <img src="URL_CAPTURA_3" alt="Captura 3 de la app" loading="lazy">
+      <img src="URL_CAPTURA_4" alt="Captura 4 de la app" loading="lazy">
+    </div>
+  </div>
+</section>
+-->
+
+<!-- LLAMADA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>¿Listo para abrir el primer capítulo?</h2>
+    <p class="lead">Descarga la app y empieza tu historia.</p>
+    <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.elbuscator.simuladorrealistadebesos">Descargar en Google Play</a>
+    <p class="small">Gratis · Contiene anuncios y una compra integrada opcional · Contenido romántico para adultos · Los consejos son orientativos y no sustituyen el consejo de un profesional.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>❤️ Historia de besos</span>
+    <nav aria-label="Enlaces del pie">
+      <a href="https://elbuscator.github.io">← Inicio</a>
+      <a href="https://elbuscator.github.io/privacy.html">Privacidad</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elbuscator.simuladorrealistadebesos">Google Play</a>
+    </nav>
+    <span>© 2026 elbuscator · Todos los derechos reservados</span>
+  </div>
+</footer>
+
+<script>
+  // Menú móvil
+  var btn = document.querySelector('.menu-btn');
+  var menu = document.getElementById('menu');
+  btn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+
+</body>
+</html>
